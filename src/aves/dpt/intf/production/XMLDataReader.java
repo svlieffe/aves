@@ -1,0 +1,44 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package aves.dpt.intf.production;
+
+import java.util.List;
+
+import aves.dpt.intf.production.MappaObject.MappaObjectType;
+/**
+ * Objects implementing this interface retrieve data with specific tags from the 
+ * {@link src/main/resource/data/mappadatasrc.xml} file
+ *
+ * @author stefaanvanliefferinge
+ * @version $Id: XMLDataReader.java,v 649d54af3d47 2012/03/29 17:18:33 svl $
+ */
+public interface XMLDataReader {
+    
+    /**
+     * sets the session or place to which the
+     * retrieved XML items belong
+     * @param itemGroupName 
+     */
+    void setGroup(String itemGroupName);
+    
+    /**
+     * sets the type of the items
+     * to be retrieved
+     * @param objectType 
+     */
+    void setType(MappaObjectType objectType);   
+    
+    /**
+     * reads the data from the source
+     * @param mappaObjectType 
+     */
+    void read();
+     
+    /** 
+     * returns the list of data values
+     * @return List<String>
+     */
+     List<String> valueList();
+}

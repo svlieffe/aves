@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : mappadatasrc.xml
+    Created on : February 11, 2012, 11:02 AM
+    Author     : stefaanvanliefferinge
+    Description:
+        Purpose of the document follows.
+        
+        TODO different sessions with same place name
+        TODO need for switch between type="img" and type="txt"
+        TODO need to write schema to validate XML
+-->
+
+<root>
+    <session date="02/05/2011">
+        <place name="Sens" latitude="48.20" longitude="3.28">
+            <document type="img" uri="images/Sens/Slide01.jpg"></document>
+            <document type="img" uri="images/Sens/Slide02.jpg"></document>
+            <document type="img" uri="images/Sens/Slide03.jpg"></document>
+            <document type="img" uri="images/Sens/Slide04.jpg"></document>
+            <document type="img" uri="images/Sens/Slide05.jpg"></document>
+            <document type="img" uri="images/Sens/Slide06.jpg"></document>
+            <document type="img" uri="images/Sens/Slide07.jpg"></document>
+            <document type="img" uri="images/Sens/Slide08.jpg"></document>
+        </place>
+        <place name="Canterbury" latitude="51.276681" longitude="1.074767">
+            <document type="img" uri="images/Canterbury/Slide01.jpg"></document>
+            <document type="img" uri="images/Canterbury/Slide02.jpg"></document>
+            <document type="img" uri="images/Canterbury/Slide03.jpg"></document>
+        </place>
+        <place name="Bourges" latitude="47.0844" longitude="2.3964">
+            <document type="img" uri="images/Bourges/Slide01.jpg"></document>
+            <document type="img" uri="images/Bourges/Slide02.jpg"></document>
+            <document type="img" uri="images/Bourges/Slide03.jpg"></document>
+        </place>
+    </session>
+    <session date="05/12/2012">
+        <place name="Chartres" latitude="48.4558" longitude="1.4842">
+            <document type="img" uri="images/Chartres/Slide01.jpg"></document>
+            <document type="img" uri="images/Chartres/Slide02.jpg"></document>            
+            <document type="img" uri="images/Chartres/Slide03.jpg"></document>
+        </place>
+    </session>
+    <session date="06/02/2012">
+        <place name="Saint-Denis" latitude="48.9364" longitude="2.3547">
+            <document type="img" uri="images/SaintDenis/Slide01.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide02.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide03.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide04.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide05.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide06.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide07.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide08.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide09.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide10.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide11.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide12.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide13.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide14.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide15.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide16.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide17.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide18.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide19.jpg"></document>
+            <document type="img" uri="images/SaintDenis/Slide20.jpg"></document>
+        </place>
+    </session>
+    <session date="05/05/2012">
+    </session>
+    <session date="05/20/2012">
+    </session>
+</root>

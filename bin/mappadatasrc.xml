@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : mappadatasrc.xml
+    Created on : March 30, 2012, 11:02 AM
+    Author     : stefaanvanliefferinge
+    Description:
+        Purpose of the document follows.
+        
+        TODO different sessions with same place name
+        TODO need for switch between type="img" and type="txt"
+        TODO need to write schema to validate XML
+-->
+
+<root>
+    <session date="04/03/2013">
+<!--        <place name="Paris" latitude="48.8567" longitude="2.3508">
+        </place>
+        <place name="London" latitude="51.507222" longitude="-0.1275">
+        </place>
+        <place name="Canterbury" latitude="51.276681" longitude="1.074767">
+            <document type="img" uri="CanterburyGlass/Slide01.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide02.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide03.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide04.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide05.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide06.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide07.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide08.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide09.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide10.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide11.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide12.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide13.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide14.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide15.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide16.jpg"></document>
+            <document type="img" uri="CanterburyGlass/Slide17.jpg"></document>
+        </place> -->
+    </session>
+    <session date="04/05/2013">
+<!--        <place name="Paris" latitude="48.8567" longitude="2.3508">
+        </place>
+        <place name="London" latitude="51.507222" longitude="-0.1275">
+        </place>
+        <place name="Chartres" latitude="48.4558" longitude="1.4842">
+            <document type="img" uri="Chartres/Slide01.jpg"></document>
+            <document type="img" uri="Chartres/Slide02.jpg"></document>            
+            <document type="img" uri="Chartres/Slide03.jpg"></document>
+            <document type="img" uri="Chartres/Slide04.jpg"></document>
+            <document type="img" uri="Chartres/Slide05.jpg"></document>            
+            <document type="img" uri="Chartres/Slide06.jpg"></document>            
+            <document type="img" uri="Chartres/Slide07.jpg"></document>            
+            <document type="img" uri="Chartres/Slide08.jpg"></document>            
+            <document type="img" uri="Chartres/Slide09.jpg"></document>            
+            <document type="img" uri="Chartres/Slide10.jpg"></document>            
+            <document type="img" uri="Chartres/Slide11.jpg"></document>            
+            <document type="img" uri="Chartres/Slide12.jpg"></document>            
+            <document type="img" uri="Chartres/Slide13.jpg"></document>            
+            <document type="img" uri="Chartres/Slide14.jpg"></document>            
+            <document type="img" uri="Chartres/Slide15.jpg"></document>            
+            <document type="img" uri="Chartres/Slide16.jpg"></document>            
+            <document type="img" uri="Chartres/Slide17.jpg"></document>            
+            <document type="img" uri="Chartres/Slide18.jpg"></document>            
+            <document type="img" uri="Chartres/Slide19.jpg"></document>            
+            <document type="img" uri="Chartres/Slide20.jpg"></document>            
+            <document type="img" uri="Chartres/Slide21.jpg"></document>            
+            <document type="img" uri="Chartres/Slide22.jpg"></document>            
+        </place>    -->
+    </session>
+    <session date="04/10/2013">
+<!--        <place name="Paris" latitude="48.8567" longitude="2.3508">
+        </place>
+        <place name="London" latitude="51.507222" longitude="-0.1275">
+        </place>
+        <place name="Chartres" latitude="48.4558" longitude="1.4842">
+            <document type="img" uri="ChartresTransepts/Slide01.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide02.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide03.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide04.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide05.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide06.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide07.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide08.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide09.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide10.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide11.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide12.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide13.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide14.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide15.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide16.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide17.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide18.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide19.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide20.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide21.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide22.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide23.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide24.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide25.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide26.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide27.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide28.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide29.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide30.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide31.jpg"></document>
+            <document type="img" uri="ChartresTransepts/Slide32.jpg"></document>
+        </place> -->
+    </session>
+    <session date="04/12/2013">
+ <!--       <place name="Paris" latitude="48.8567" longitude="2.3508">
+        </place>
+        <place name="London" latitude="51.507222" longitude="-0.1275">
+        </place> 
+        <place name="Chartres" latitude="48.4558" longitude="1.4842">
+            <document type="img" uri="ChartresGlass/Slide01.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide02.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide03.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide04.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide05.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide06.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide07.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide08.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide09.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide10.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide11.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide12.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide13.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide14.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide15.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide16.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide17.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide18.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide19.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide20.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide21.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide22.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide23.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide24.jpg"></document>
+        </place>-->
+    </session>
+    <session date="04/17/2013">
+<!--        <place name="Paris" latitude="48.8567" longitude="2.3508">
+        </place>
+        <place name="London" latitude="51.507222" longitude="-0.1275">
+        </place>
+        <place name="Canterbury" latitude="51.276681" longitude="1.074767">
+        </place>
+        <place name="Chartres" latitude="48.4558" longitude="1.4842">         
+            <document type="img" uri="ChartresGlass/Slide25.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide26.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide27.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide28.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide29.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide30.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide31.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide32.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide33.jpg"></document>
+            <document type="img" uri="ChartresGlass/Slide34.jpg"></document>
+        </place>
+        <place name="Honnecourt" latitude="50.0375" longitude="3.1964">
+            <document type="img" uri="Villard/Slide01.jpg"></document>
+            <document type="img" uri="Villard/Slide02.jpg"></document>
+            <document type="img" uri="Villard/Slide03.jpg"></document>
+            <document type="img" uri="Villard/Slide04.jpg"></document>
+            <document type="img" uri="Villard/Slide05.jpg"></document>
+            <document type="img" uri="Villard/Slide05.jpg"></document>
+            <document type="img" uri="Villard/Slide06.jpg"></document>
+            <document type="img" uri="Villard/Slide07.jpg"></document>
+            <document type="img" uri="Villard/Slide08.jpg"></document>
+            <document type="img" uri="Villard/Slide09.jpg"></document>
+            <document type="img" uri="Villard/Slide11.jpg"></document>
+            <document type="img" uri="Villard/Slide12.jpg"></document>
+            <document type="img" uri="Villard/Slide13.jpg"></document>
+            <document type="img" uri="Villard/Slide14.jpg"></document>
+            <document type="img" uri="Villard/Slide15.jpg"></document>
+            <document type="img" uri="Villard/Slide16.jpg"></document>
+            <document type="img" uri="Villard/Slide17.jpg"></document>
+            <document type="img" uri="Villard/Slide18.jpg"></document>
+            <document type="img" uri="Villard/Slide19.jpg"></document>
+            <document type="img" uri="Villard/Slide20.jpg"></document>
+        </place>
+        <place name="Reims" latitude="49.2628" longitude="4.0347">
+            <document type="img" uri="Reims/Slide01.jpg"></document>
+            <document type="img" uri="Reims/Slide02.jpg"></document>
+            <document type="img" uri="Reims/Slide03.jpg"></document>
+            <document type="img" uri="Reims/Slide04.jpg"></document>
+            <document type="img" uri="Reims/Slide05.jpg"></document>
+            <document type="img" uri="Reims/Slide06.jpg"></document>
+            <document type="img" uri="Reims/Slide07.jpg"></document>
+            <document type="img" uri="Reims/Slide08.jpg"></document>
+            <document type="img" uri="Reims/Slide09.jpg"></document>
+            <document type="img" uri="Reims/Slide10.jpg"></document>
+            <document type="img" uri="Reims/Slide11.jpg"></document>
+            <document type="img" uri="Reims/Slide12.jpg"></document>
+            <document type="img" uri="Reims/Slide13.jpg"></document>
+            <document type="img" uri="Reims/Slide14.jpg"></document>
+            <document type="img" uri="Reims/Slide15.jpg"></document>
+            <document type="img" uri="Reims/Slide16.jpg"></document>
+            <document type="img" uri="Reims/Slide17.jpg"></document>
+            <document type="img" uri="Reims/Slide18.jpg"></document>
+            <document type="img" uri="Reims/Slide19.jpg"></document>
+            <document type="img" uri="Reims/Slide20.jpg"></document>
+            <document type="img" uri="Reims/Slide21.jpg"></document>
+            <document type="img" uri="Reims/Slide22.jpg"></document>
+            <document type="img" uri="Reims/Slide23.jpg"></document>
+            <document type="img" uri="Reims/Slide24.jpg"></document>
+            <document type="img" uri="Reims/Slide25.jpg"></document>
+            <document type="img" uri="Reims/Slide26.jpg"></document>
+            <document type="img" uri="Reims/Slide27.jpg"></document>
+            <document type="img" uri="Reims/Slide28.jpg"></document>
+            <document type="img" uri="Reims/Slide29.jpg"></document>
+            <document type="img" uri="Reims/Slide30.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide01.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide02.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide03.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide04.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide05.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide06.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide07.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide08.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide09.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide10.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide11.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide12.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide13.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide14.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide15.jpg"></document>
+            <document type="img" uri="ReimsVillard/Slide16.jpg"></document>
+        </place> -->
+    </session>
+    <session date="11/02/2013">
+        <place name="New York" latitude="40.67" longitude="-73.94">
+            <document type="img" uri="Rutgers/Slide1.jpg"></document>
+        </place>
+        <place name="London" latitude="51.507222" longitude="-0.1275">
+        </place>
+        <place name="Canterbury" latitude="51.276681" longitude="1.074767">
+        </place>
+        <place name="Chartres" latitude="48.4558" longitude="1.4842">
+            <document type="web" uri="BrowserBalloonExampleWebsite.html"></document>
+        </place>
+        <place name="Reims" latitude="49.2628" longitude="4.0347">
+        </place>
+        <place name="Honnecourt" latitude="50.0375" longitude="3.1964">
+            <document type="img" uri="Rutgers/Slide3.jpg"></document>
+            <document type="img" uri="Rutgers/Slide2.jpg"></document>
+            <document type="img" uri="Rutgers/Slide4.jpg"></document>
+            <document type="img" uri="Rutgers/Slide5.jpg"></document>
+            <document type="img" uri="Rutgers/Slide6.jpg"></document>
+            <document type="img" uri="Rutgers/Slide10.jpg"></document>
+        </place>
+        <place name="Saint Denis" latitude="48.9364" longitude="2.3547">
+            <document type="img" uri="Rutgers/Slide7.jpg"></document>
+            <document type="img" uri="Rutgers/Slide8.jpg"></document>
+            <document type="img" uri="Rutgers/Slide9.jpg"></document>
+            <document type="img" uri="Rutgers/Slide10.jpg"></document>
+            <document type="img" uri="Rutgers/Slide11.jpg"></document>
+            <document type="img" uri="Rutgers/Slide12.jpg"></document>
+            <document type="web" uri="data/BrowserBalloonExample_MCHA_HA.html"></document> 
+<!--            <document type="web" uri="data/BrowserBalloonAmiensQTVR.html"></document> -->
+<!--            <document type="uri" uri="http://learn.columbia.edu/ha/index.html"></document> -->
+            <document type="web" uri="data/BrowserBalloonExampleMurray.html"></document>
+            <document type="web" uri="data/BrowserBalloon_Mobile-Mapping.html"></document>
+            <document type="img" uri="Rutgers/Slide13.jpg"></document>
+            <document type="img" uri="Rutgers/Slide14.jpg"></document>
+            <document type="img" uri="Rutgers/Slide15.jpg"></document>
+            <document type="img" uri="Rutgers/Slide16.jpg"></document>
+            <document type="img" uri="Rutgers/Slide17.jpg"></document>
+            <document type="img" uri="Rutgers/Slide18.jpg"></document>
+            <document type="img" uri="Rutgers/Slide19.jpg"></document>
+        </place>
+        <place name="Paris" latitude="48.8567" longitude="2.3508">
+            <document type="img" uri="Rutgers/Slide19.jpg"></document>
+            <document type="img" uri="Rutgers/Slide20.jpg"></document>
+            <document type="img" uri="Rutgers/Slide21.jpg"></document>
+            <document type="img" uri="Rutgers/Slide22.jpg"></document>
+            <document type="img" uri="Rutgers/Slide23.jpg"></document>
+            <document type="img" uri="Rutgers/Slide24.jpg"></document>
+            <document type="img" uri="Rutgers/Slide25.jpg"></document>
+            <document type="img" uri="Rutgers/Slide19.jpg"></document>
+            <document type="img" uri="Rutgers/Slide26.jpg"></document>
+            <document type="img" uri="Rutgers/Slide27.jpg"></document>
+            <document type="img" uri="Rutgers/Slide19.jpg"></document>
+            <document type="img" uri="Rutgers/Slide28.jpg"></document>
+            <document type="img" uri="Rutgers/Slide29.jpg"></document>
+            <document type="img" uri="Rutgers/Slide30.jpg"></document>
+            <document type="img" uri="Rutgers/Slide31.jpg"></document>
+            <document type="img" uri="Rutgers/Slide32.jpg"></document>
+            <document type="img" uri="Rutgers/Slide33.jpg"></document>
+            <document type="img" uri="Rutgers/Slide34.jpg"></document>
+            <document type="img" uri="Rutgers/Slide35.jpg"></document>
+            <document type="img" uri="Rutgers/Slide36.jpg"></document>
+            <document type="img" uri="Rutgers/Slide37.jpg"></document>
+        </place>
+        <place name="Paray-le-Monial" latitude="46.4519" longitude="4.1203">
+        </place>
+        <place name="Sens" latitude="48.1975" longitude="3.2877">
+        </place>
+        <place name="Clermont-Ferrand" latitude="45.7831" longitude="3.0824">
+            <document type="img" uri="Rutgers/Slide19.jpg"></document>
+            <document type="img" uri="Rutgers/Slide38.jpg"></document>
+            <document type="img" uri="Rutgers/Slide39.jpg"></document>
+            <document type="img" uri="Rutgers/Slide40.jpg"></document>
+            <document type="img" uri="Rutgers/Slide41.jpg"></document>
+            <document type="img" uri="Rutgers/Slide42.jpg"></document>
+        </place>
+        <place name="Athens" latitude="33.95" longitude="-83.383333">
+            <document type="img" uri="Rutgers/Slide19.jpg"></document>
+            <document type="img" uri="Rutgers/Slide43.jpg"></document>
+            <document type="img" uri="Rutgers/Slide44.jpg"></document>
+            <document type="img" uri="Rutgers/Slide45.jpg"></document>
+            <document type="img" uri="Rutgers/Slide46.jpg"></document>
+            <document type="img" uri="Rutgers/Slide47.jpg"></document>
+            <document type="img" uri="Rutgers/Slide48.jpg"></document>
+            <document type="img" uri="Rutgers/Slide49.jpg"></document>
+            <document type="img" uri="Rutgers/Slide50.jpg"></document>
+            <document type="img" uri="Rutgers/Slide51.jpg"></document>
+            <document type="img" uri="Rutgers/Slide52.jpg"></document>
+            <document type="img" uri="Rutgers/Slide53.jpg"></document>
+            <document type="img" uri="Rutgers/Slide54.jpg"></document>
+            <document type="img" uri="Rutgers/Slide55.jpg"></document>
+            <document type="img" uri="Rutgers/Slide56.jpg"></document>
+            <document type="img" uri="Rutgers/Slide57.jpg"></document>
+            <document type="img" uri="Rutgers/Slide58.jpg"></document>
+            <document type="img" uri="Rutgers/Slide59.jpg"></document>
+            <document type="img" uri="Rutgers/Slide60.jpg"></document>
+            <document type="img" uri="Rutgers/Slide61.jpg"></document>
+            <document type="img" uri="Rutgers/Slide62.jpg"></document>
+            <document type="img" uri="Rutgers/Slide63.jpg"></document>
+            <document type="img" uri="Rutgers/Slide64.jpg"></document>
+            <document type="img" uri="Rutgers/Slide65.jpg"></document>
+            <document type="img" uri="Rutgers/Slide66.jpg"></document>
+            <document type="img" uri="Rutgers/Slide67.jpg"></document>
+            <document type="img" uri="Rutgers/Slide68.jpg"></document>
+            <document type="img" uri="Rutgers/Slide69.jpg"></document>
+        </place>
+    </session>
+</root>
