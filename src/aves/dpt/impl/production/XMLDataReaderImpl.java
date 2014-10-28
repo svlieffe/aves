@@ -4,6 +4,7 @@
  */
 package aves.dpt.impl.production;
 
+import java.io.FileInputStream;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -30,27 +31,6 @@ public class XMLDataReaderImpl implements XMLDataReader{
      */
     public void startParse() {
         try {
-            // returns the Class object associated with this class
-            Class cls = Class.forName("XMLDataReaderImpl");
-
-            // returns the ClassLoader object associated with this Class.
-            ClassLoader cLoader = cls.getClassLoader();
-
-            if (cLoader == null) {
-               System.out.println("The default system class was used.");
-            }
-            else {
-               // returns the class loader
-               Class loaderClass = cLoader.getClass();
-
-               System.out.println("Class associated with ClassLoader = " +
-               loaderClass.getName());
-            }
-         }
-         catch (ClassNotFoundException e) {
-            System.out.println(e.toString());
-         }
-        try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
 
             SAXParser parser = factory.newSAXParser();
@@ -61,13 +41,13 @@ public class XMLDataReaderImpl implements XMLDataReader{
             
             xmlHandler.setGroup(groupName);
 
-            parser.parse(getClass().getClassLoader().getResourceAsStream("mappadatasrc.xml"), xmlHandler);
-//debug
-            Class loaderClass = getClass();
-            System.out.println("Class associated with ClassLoader = " +
-            loaderClass.getName());
-            System.out.println("resoures path = " + loaderClass.getClassLoader().getResource("mappadatasrc.xml"));
-//enddebug
+//			getClassLoader instead of FileInputStream
+//          parser.parse(getClass().getClassLoader().getResourceAsStream("mappadatasrc.xml"), xmlHandler);
+
+            FileInputStream inStream = new FileInputStream("data/mappadatasrc.xml");
+            parser.parse(inStream, xmlHandler);
+
+            valueList = (ArrayList)xmlHandler.valueList();
             valueList = (ArrayList)xmlHandler.valueList();
 
         } catch (Exception ex) {
