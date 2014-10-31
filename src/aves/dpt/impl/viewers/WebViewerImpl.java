@@ -62,7 +62,7 @@ public class WebViewerImpl extends JPanel implements WebViewer { //, KeyListener
     InputStream contentStream = null;
     static GLCanvas canvas = new GLCanvas();
     protected HotSpotController hotSpotController;
-    MappaBrowser ogb;
+    AvesBrowser ogb;
     WorldWindowGLJPanel wwp;
 //    DataViewerImpl calling_dv;
     
@@ -70,7 +70,7 @@ public class WebViewerImpl extends JPanel implements WebViewer { //, KeyListener
         
     }
     
-    public MappaBrowser getMappaBrowser() {
+    public AvesBrowser getAvesBrowser() {
         return ogb;
     }
 /*
@@ -107,7 +107,7 @@ public class WebViewerImpl extends JPanel implements WebViewer { //, KeyListener
                 htmlString = Logging.getMessage("generic.ExceptionAttemptingToReadFile", source);
             }
 
-            ogb = new MappaBrowser(htmlString, this.getWidth(), this.getHeight());
+            ogb = new AvesBrowser(htmlString, this.getWidth(), this.getHeight());
 //            JFrame frame = new JFrame();
 
 

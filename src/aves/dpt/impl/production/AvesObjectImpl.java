@@ -7,27 +7,27 @@ package aves.dpt.impl.production;
 import java.util.List;
 import java.util.ArrayList;
 
-import aves.dpt.intf.production.MappaObject;
+import aves.dpt.intf.production.AvesObject;
 
 /**
- * Implements a {@link aves.dpt.intf.production.MappaObject}
+ * Implements a {@link aves.dpt.intf.production.AvesObject}
  * 
  * @author svlieffe
- * @version $Id: MappaObjectImpl.java,v 649d54af3d47 2012/03/29 17:18:33 svlieffe $
+ * @version $Id: AvesObjectImpl.java,v 649d54af3d47 2012/03/29 17:18:33 svlieffe $
  */
-public class MappaObjectImpl implements MappaObject {
+public class AvesObjectImpl implements AvesObject {
     
     private ArrayList<String> dataValue = new ArrayList<String>();;
-    private MappaObjectType objectType;
+    private AvesObjectType objectType;
     private ObjectDataType type;
     
     /**
      * {@inheritDoc }
      * 
-     * @param mappaObjectType 
+     * @param avesObjectType 
      */
-    public void setObjectType(MappaObjectType mappaObjectType) {
-        objectType = mappaObjectType;
+    public void setObjectType(AvesObjectType avesObjectType) {
+        objectType = avesObjectType;
     }
     
     /**
@@ -35,7 +35,7 @@ public class MappaObjectImpl implements MappaObject {
      * 
      * @return 
      */
-    public MappaObjectType getObjectType() {
+    public AvesObjectType getObjectType() {
         return objectType;
     }
     

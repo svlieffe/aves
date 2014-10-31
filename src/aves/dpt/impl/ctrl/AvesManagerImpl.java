@@ -2,16 +2,16 @@ package aves.dpt.impl.ctrl;
 
 import java.util.ArrayList;
 
-//import aves.dpt.impl.production.MappaObjectImpl;
-//import aves.dpt.intf.production.MappaObject.MappaObjectType;
+//import aves.dpt.impl.production.AvesObjectImpl;
+//import aves.dpt.intf.production.AvesObject.AvesObjectType;
 
 import aves.dpt.impl.production.FactoryImpl;
-import aves.dpt.impl.viewers.MappaViewerImpl;
-import aves.dpt.intf.ctrl.MappaManager;
-import aves.dpt.intf.production.MappaObject;
+import aves.dpt.impl.viewers.AvesViewerImpl;
+import aves.dpt.intf.ctrl.AvesManager;
+import aves.dpt.intf.production.AvesObject;
 import aves.dpt.intf.production.Factory.ProductionMode;
 import aves.dpt.intf.viewers.ViewerEvent;
-import aves.dpt.intf.viewers.MappaViewer.ViewerType;
+import aves.dpt.intf.viewers.AvesViewer.ViewerType;
 
 //import gov.nasa.worldwind.geom.LatLon;
 import java.awt.Color;
@@ -19,37 +19,37 @@ import java.util.List;
 
 /**
  *
- * This class implements a {@link aves.dpt.intf.ctrl.MappaManager}. It
- * organizes requests for {@link aves.dpt.intf.production.MappaObject}s 
+ * This class implements a {@link aves.dpt.intf.ctrl.AvesManager}. It
+ * organizes requests for {@link aves.dpt.intf.production.AvesObject}s 
  * from the {@link aves.dpt.intf.production.Factory}
  * and delegates the display of these
- * {@link aves.dpt.intf.production.MappaObject}s to 
- * the {@link aves.dpt.intf.viewers.MappaViewer}. It
- * receives user input as a callback from the {@link aves.dpt.intf.viewers.MappaViewer} 
+ * {@link aves.dpt.intf.production.AvesObject}s to 
+ * the {@link aves.dpt.intf.viewers.AvesViewer}. It
+ * receives user input as a callback from the {@link aves.dpt.intf.viewers.AvesViewer} 
  * and analyzes this input to make further decisions.
  * 
  * @author svlieffe
  * 
- * @version $Id: MappaManagerImpl.java,v 649d54af3d47 2012/03/29 17:18:33 svlieffe $
+ * @version $Id: AvesManagerImpl.java,v 649d54af3d47 2012/03/29 17:18:33 svlieffe $
  */
-public class MappaManagerImpl implements MappaManager, ViewerEvent {
+public class AvesManagerImpl implements AvesManager, ViewerEvent {
 
-    private MappaViewerImpl mv;//
+    private AvesViewerImpl mv;//
     private ProductionMode mode;
     private FactoryImpl factory;
     private boolean fullScreen;
     private String mvSelected;
     private String mvSelectedType;
-    private boolean callIsFromMappaViewer;
+    private boolean callIsFromAvesViewer;
 
-    public MappaManagerImpl() {
+    public AvesManagerImpl() {
 
         fullScreen = false;             // toggle fullscreen
-        callIsFromMappaViewer = false;
+        callIsFromAvesViewer = false;
 
         factory = new FactoryImpl();
 
-        mv = new MappaViewerImpl(this);
+        mv = new AvesViewerImpl(this);
         mv.setFullScreen(fullScreen);
         mv.getContentPane().setBackground(Color.black);
         this.setPhase(Phase.session); // the first phase is to show the sessions
@@ -64,7 +64,7 @@ public class MappaManagerImpl implements MappaManager, ViewerEvent {
     @Override
     public void viewerEvent() {
         Phase currentPhase = Phase.session;
-        callIsFromMappaViewer = true;
+        callIsFromAvesViewer = true;
         mvSelected = mv.getSelectedItem();
         mvSelectedType = mv.getSelectedItemType();
         System.out.println("Manager receives:" + mvSelected);
@@ -86,11 +86,11 @@ public class MappaManagerImpl implements MappaManager, ViewerEvent {
         
         switch (currentPhase) {
             case session:
-                if (callIsFromMappaViewer) {
+                if (callIsFromAvesViewer) {
                     factory.setRequestedItem(mvSelected);
                     currentPhase = Phase.route;
                     System.out.println("from session to route phase");
-                    callIsFromMappaViewer = false;
+                    callIsFromAvesViewer = false;
                 }
                 break;
             case route:
@@ -112,10 +112,10 @@ public class MappaManagerImpl implements MappaManager, ViewerEvent {
      * {@inheritDoc } 
      */
     public void produceAndShow(Phase currentPhase) {
-        ArrayList<MappaObject> mappaObjectList = new ArrayList<MappaObject>();
+        ArrayList<AvesObject> avesObjectList = new ArrayList<AvesObject>();
         makeObjectsInFactory(currentPhase);
-        mappaObjectList = (ArrayList)requestObjectsFromFactory();
-        displayObjectsInViewer(currentPhase, mappaObjectList);      
+        avesObjectList = (ArrayList)requestObjectsFromFactory();
+        displayObjectsInViewer(currentPhase, avesObjectList);      
     }
 
     /**
@@ -123,8 +123,8 @@ public class MappaManagerImpl implements MappaManager, ViewerEvent {
      * {@inheritDoc }
      */
     public void makeObjectsInFactory(Phase currentPhase) {
-        //creates a FactoryImpl that maintains a list of MappaObjects
-        //MappaObjects are of a certain type (session, place, document)
+        //creates a FactoryImpl that maintains a list of AvesObjects
+        //AvesObjects are of a certain type (session, place, document)
         switch (currentPhase) {
             case session:   //request FactoryImpl to maintain list of sessions
                 mode = ProductionMode.sessionMode;
@@ -146,21 +146,21 @@ public class MappaManagerImpl implements MappaManager, ViewerEvent {
      * 
      * {@inheritDoc }
      */
-    public List<? extends MappaObject> requestObjectsFromFactory() {
+    public List<? extends AvesObject> requestObjectsFromFactory() {
         
-        ArrayList<MappaObject> mappaObjectList = new ArrayList<MappaObject>();
+        ArrayList<AvesObject> avesObjectList = new ArrayList<AvesObject>();
 
-        mappaObjectList = (ArrayList) factory.listOfObjects();
+        avesObjectList = (ArrayList) factory.listOfObjects();
         
-        return mappaObjectList;
+        return avesObjectList;
     }
 
     /**
      * {@inheritDoc }
      */
-    public void displayObjectsInViewer(Phase phase, List<? extends MappaObject> mappaObjects) {
+    public void displayObjectsInViewer(Phase phase, List<? extends AvesObject> avesObjects) {
     switch (phase) {
-            case session: //I believe I should remove the case and only invoke the mappaviewer; the mappaviewer will decide what actions to take 
+            case session: //I believe I should remove the case and only invoke the avesviewer; the avesviewer will decide what actions to take 
                 mv.selectSpecializedViewer(ViewerType.worldWindSessions);
                 break;
             case route:
@@ -170,7 +170,7 @@ public class MappaManagerImpl implements MappaManager, ViewerEvent {
                 mv.selectSpecializedViewer(ViewerType.dataViewer);
                 break;
         }
-        mv.setMappaObjectsList(mappaObjects);
+        mv.setAvesObjectsList(avesObjects);
         mv.runSpecializedViewers();
     }
 }

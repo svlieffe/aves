@@ -65,7 +65,7 @@ import javax.swing.JPanel;
  * based on gov.nasa.worldwind.render.AbstractBrowserBalloon.java @author dcollins
  * 
  */
-public class MappaBrowser extends AVListImpl implements OrderedRenderable, HotSpot, WWObject {
+public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpot, WWObject {
     protected WebView webView;
     protected Point screenPoint = new Point(0, 0);
     protected Dimension screenSize;
@@ -75,7 +75,7 @@ public class MappaBrowser extends AVListImpl implements OrderedRenderable, HotSp
 //    InputStream contentStream = null;
     protected TextDecoder textDecoder = new BasicTextDecoder();
     protected String text;
-    protected static final String BROWSER_CONTENT_PATH = "MappaBrowserTest/BrowserBalloonExample.html";//gov/nasa/worldwindx/examples/data/BrowserBalloonExample.html";
+    protected static final String BROWSER_CONTENT_PATH = "AvesBrowserTest/BrowserBalloonExample.html";//gov/nasa/worldwindx/examples/data/BrowserBalloonExample.html";
     Rectangle webViewRect;
     Rectangle screenRect;
     /**
@@ -94,7 +94,7 @@ public class MappaBrowser extends AVListImpl implements OrderedRenderable, HotSp
     FloatBuffer tbuf;
     IntBuffer vbuf;
     WWTexture texture; // added svl
-//    private static MappaBrowserTest ogb;  
+//    private static AvesBrowserTest ogb;  
     Object delegateOwner;
     /**
      * Indicates the object used to resolve relative resource paths in this browser balloon's HTML content. May be one
@@ -128,11 +128,11 @@ public class MappaBrowser extends AVListImpl implements OrderedRenderable, HotSp
 //    protected boolean highlighted;
     protected static final String DEFAULT_WEB_VIEW_FACTORY = BasicWebViewFactory.class.getName();
 
-    public MappaBrowser(String htmlStr, int width, int height) {
+    public AvesBrowser(String htmlStr, int width, int height) {
 
         this.setText(htmlStr);
         this.htmlString = htmlStr;
-//        System.out.println("mappabrowser width = " + width);
+//        System.out.println("avesbrowser width = " + width);
         this.screenSize = new Dimension(width, height);
         webViewRect = new Rectangle(screenSize);
         screenRect = new Rectangle(screenSize);

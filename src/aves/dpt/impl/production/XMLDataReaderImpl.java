@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.xml.parsers.*;
 
 import aves.dpt.intf.production.XMLDataReader;
-import aves.dpt.intf.production.MappaObject.MappaObjectType;
+import aves.dpt.intf.production.AvesObject.AvesObjectType;
 
 /**
  * Basic implementation of the {@link aves.dpt.intf.production.XMLDataReader}
@@ -19,7 +19,7 @@ public class XMLDataReaderImpl implements XMLDataReader{
 
     private ArrayList<String> valueList = new ArrayList<String>();
     private String groupName;
-    private MappaObjectType objectType;
+    private AvesObjectType objectType;
 
     /**
      * parses the data source using a 
@@ -38,9 +38,9 @@ public class XMLDataReaderImpl implements XMLDataReader{
             xmlHandler.setGroup(groupName);
 
 //			getClassLoader instead of FileInputStream
-//          parser.parse(getClass().getClassLoader().getResourceAsStream("mappadatasrc.xml"), xmlHandler);
+//          parser.parse(getClass().getClassLoader().getResourceAsStream("avesdatasrc.xml"), xmlHandler);
 
-            FileInputStream inStream = new FileInputStream("data/mappadatasrc.xml");
+            FileInputStream inStream = new FileInputStream("data/avesdatasrc.xml");
             parser.parse(inStream, xmlHandler);
 
             valueList = (ArrayList)xmlHandler.valueList();
@@ -63,7 +63,7 @@ public class XMLDataReaderImpl implements XMLDataReader{
     /**
      * {@inheritDoc }
      * 
-     * @param mappaObjectType 
+     * @param avesObjectType 
      */
     public void read() {
         startParse();
@@ -72,10 +72,10 @@ public class XMLDataReaderImpl implements XMLDataReader{
     /**
      * {@inheritDoc }
      * 
-     * @param mappaObjectType 
+     * @param avesObjectType 
      */
-    public void setType(MappaObjectType mappaObjectType) {
-        objectType = mappaObjectType;
+    public void setType(AvesObjectType avesObjectType) {
+        objectType = avesObjectType;
         
     }
     

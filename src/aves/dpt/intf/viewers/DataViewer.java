@@ -6,13 +6,13 @@ package aves.dpt.intf.viewers;
 
 import java.util.List;
 
-import aves.dpt.impl.production.MappaObjectImpl;
-import aves.dpt.intf.production.MappaObject.ObjectDataType;
+import aves.dpt.impl.production.AvesObjectImpl;
+import aves.dpt.intf.production.AvesObject.ObjectDataType;
 
 /**
  * 
  * A basic interface for a viewer specialized in displaying data. Classes implementing
- * this interface can be called by a {@link aves.dpt.intf.viewers.MappaViewer}
+ * this interface can be called by a {@link aves.dpt.intf.viewers.AvesViewer}
  * to display different types of data.
  *
  * <p> 
@@ -39,16 +39,16 @@ public interface DataViewer {
     public void displayPrev() throws Exception;
     
     /**
-     * Sets the list of {@link aves.dpt.intf.production.MappaObject}
+     * Sets the list of {@link aves.dpt.intf.production.AvesObject}
      * data to display in the show.
      * 
-     * @param mappaObjects 
+     * @param avesObjects 
      */
-    void setObjectsToDisplay(List<? extends MappaObjectImpl> mappaObjects);
+    void setObjectsToDisplay(List<? extends AvesObjectImpl> avesObjects);
 
     /**
      * Sets the {@link aves.dpt.intf.viewers.DataViewer.DataViewerType}
-     * based on the {@link aves.dpt.intf.production.MappaObject.ObjectDataType}.
+     * based on the {@link aves.dpt.intf.production.AvesObject.ObjectDataType}.
      * @param objectType 
      */
     void setViewerType(ObjectDataType objectType);

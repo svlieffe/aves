@@ -7,7 +7,7 @@ package aves.dpt.intf.viewers;
 /**
  *
  * Generates an error when the program cannot find the source data
- * of the requested {@link aves.dpt.intf.production.MappaObject}
+ * of the requested {@link aves.dpt.intf.production.AvesObject}
  * 
  * @author stefaanvanliefferinge
  */

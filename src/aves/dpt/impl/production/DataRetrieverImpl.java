@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import aves.dpt.intf.production.DataRetriever;
-import aves.dpt.intf.production.MappaObject.MappaObjectType;
+import aves.dpt.intf.production.AvesObject.AvesObjectType;
 
 
 /**
@@ -21,7 +21,7 @@ import aves.dpt.intf.production.MappaObject.MappaObjectType;
  */
 public class DataRetrieverImpl implements DataRetriever{
     
-    private MappaObjectType objectType;
+    private AvesObjectType objectType;
     private String groupName;
     private XMLDataReaderImpl dr = new XMLDataReaderImpl();
     private ArrayList<String> dataList = new ArrayList<String>();
@@ -40,10 +40,10 @@ public class DataRetrieverImpl implements DataRetriever{
     
     /**
      * {@inheritDoc }
-     * @param mappaObjectType 
+     * @param avesObjectType 
      */
-    public void setDataType(MappaObjectType mappaObjectType) {
-        objectType = mappaObjectType;        
+    public void setDataType(AvesObjectType avesObjectType) {
+        objectType = avesObjectType;        
     }
     
     /**

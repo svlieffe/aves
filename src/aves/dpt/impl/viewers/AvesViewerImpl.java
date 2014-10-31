@@ -11,10 +11,10 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import aves.dpt.impl.production.MappaObjectImpl;
-import aves.dpt.intf.production.MappaObject;
-import aves.dpt.intf.production.MappaObject.MappaObjectType;
-import aves.dpt.intf.viewers.MappaViewer;
+import aves.dpt.impl.production.AvesObjectImpl;
+import aves.dpt.intf.production.AvesObject;
+import aves.dpt.intf.production.AvesObject.AvesObjectType;
+import aves.dpt.intf.viewers.AvesViewer;
 import aves.dpt.intf.viewers.ViewerEvent;
 
 import java.awt.event.*;
@@ -54,21 +54,21 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 /**
- * Basic implementation of a {@link aves.dpt.intf.viewers.MappaViewer}. Manages
+ * Basic implementation of a {@link aves.dpt.intf.viewers.AvesViewer}. Manages
  * the content-specific viewers.
  * @author svlieffe
  * 
- * @version $Id: MappaViewerImpl.java,v a1656ba63334 2012/03/31 20:52:12 svlieffe $
+ * @version $Id: AvesViewerImpl.java,v a1656ba63334 2012/03/31 20:52:12 svlieffe $
  */
-public class MappaViewerImpl extends JFrame implements MappaViewer, ActionListener, SelectListener  {
+public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener, SelectListener  {
 
     private ViewerType type;
     private GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
     private GraphicsDevice gd = ge.getDefaultScreenDevice();
     boolean isFullScreen = gd.isFullScreenSupported();
     boolean needGraphics = true;
-    private ArrayList<MappaObjectImpl> mappaObjects = new ArrayList<MappaObjectImpl>();
-    private Iterator<MappaObjectImpl> e;
+    private ArrayList<AvesObjectImpl> avesObjects = new ArrayList<AvesObjectImpl>();
+    private Iterator<AvesObjectImpl> e;
     private ArrayList<Integer> buttonIndexes = new ArrayList<Integer>();
     private ArrayList<JButton> buttonList = new ArrayList<JButton>();
     private Dimension dim = new Dimension(720, 540);
@@ -80,7 +80,7 @@ public class MappaViewerImpl extends JFrame implements MappaViewer, ActionListen
     private DataViewerImpl dv;
     private final Integer borderFraction;
    
-    public MappaViewerImpl(ViewerEvent event) {
+    public AvesViewerImpl(ViewerEvent event) {
         ve = event;
         borderFraction = 10;
     }
@@ -144,8 +144,8 @@ public class MappaViewerImpl extends JFrame implements MappaViewer, ActionListen
         type = viewertype;
     }
 
-    public void setMappaObjectsList(List<? extends MappaObject> objectList) {
-        mappaObjects = (ArrayList)objectList;
+    public void setAvesObjectsList(List<? extends AvesObject> objectList) {
+        avesObjects = (ArrayList)objectList;
     }
     
     /**
@@ -159,8 +159,8 @@ public class MappaViewerImpl extends JFrame implements MappaViewer, ActionListen
 
                 getLayeredPane().setLayout(new FlowLayout());
 
-                for (MappaObject mo : mappaObjects) {
-                    MappaObjectType objectType = mo.getObjectType();
+                for (AvesObject mo : avesObjects) {
+                    AvesObjectType objectType = mo.getObjectType();
                     ArrayList<String> values = new ArrayList<String>();
                     values = (ArrayList) mo.getDataValues();
                     switch (objectType) {
@@ -204,8 +204,8 @@ public class MappaViewerImpl extends JFrame implements MappaViewer, ActionListen
                 }
 
                 boolean first = true;
-                for (MappaObject mo : mappaObjects) {
-                    MappaObjectType objectType = mo.getObjectType();
+                for (AvesObject mo : avesObjects) {
+                    AvesObjectType objectType = mo.getObjectType();
                     ArrayList<String> values = new ArrayList<String>();
                     values = (ArrayList) mo.getDataValues();
                     switch (objectType) {
@@ -272,7 +272,7 @@ public class MappaViewerImpl extends JFrame implements MappaViewer, ActionListen
                 break;
             }
             case dataViewer: {
-                MappaObjectType objectType = MappaObjectType.documentObject;
+                AvesObjectType objectType = AvesObjectType.documentObject;
                 switch (objectType) { //this switch is unused but can be used for other types than documents (?)
                     case documentObject:
                         switch (objectType) {
@@ -312,7 +312,7 @@ public class MappaViewerImpl extends JFrame implements MappaViewer, ActionListen
                                 System.out.println("DataViewer width: " + this.getWidth());
                                 System.out.println("DataViewer height: " + this.getHeight());
                                 
-                                dv.setObjectsToDisplay((List) mappaObjects);
+                                dv.setObjectsToDisplay((List) avesObjects);
                                 //getLayeredPane().setLayout(new java.awt.FlowLayout());
                                 //getLayeredPane().add(dv, java.awt.FlowLayout.LEFT);
                                 getLayeredPane().add(dv, java.awt.BorderLayout.CENTER, new Integer(300));
@@ -325,7 +325,7 @@ public class MappaViewerImpl extends JFrame implements MappaViewer, ActionListen
                                     dv.displayNext();
                                 } catch (Exception ex) {
                                     System.out.println("error opening DataViewer:" + ex);
-                                 //   Logger.getLogger(MappaViewerImpl.class.getName()).log(Level.SEVERE, null, ex);
+                                 //   Logger.getLogger(AvesViewerImpl.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                                 break;
                         }
@@ -366,7 +366,7 @@ public class MappaViewerImpl extends JFrame implements MappaViewer, ActionListen
     }
    
     /**
-     * Shows the {@link aves.dpt.intf.viewers.MappaViewer}, 
+     * Shows the {@link aves.dpt.intf.viewers.AvesViewer}, 
      * full screen or in a window.
      * 
      * <p>
@@ -374,7 +374,7 @@ public class MappaViewerImpl extends JFrame implements MappaViewer, ActionListen
     private void displayViewer() {
         setUndecorated(isFullScreen);
         setResizable(!isFullScreen);
-        this.setDefaultCloseOperation(MappaViewerImpl.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(AvesViewerImpl.EXIT_ON_CLOSE);
         if (isFullScreen) {
             // Full-screen mode
             if (needGraphics) {
@@ -434,7 +434,7 @@ public class MappaViewerImpl extends JFrame implements MappaViewer, ActionListen
     }
     
     /**
-     * Initializes {@link aves.dpt.impl.viewers.MappaViewerImpl.NamedSpot} 
+     * Initializes {@link aves.dpt.impl.viewers.AvesViewerImpl.NamedSpot} 
      * object used to mark a specific location in the 
      * WorldWind RenderableLayer.
      * @param attrs 

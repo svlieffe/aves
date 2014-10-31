@@ -6,8 +6,8 @@ package aves.dpt.intf.viewers;
 
 /**
  *
- * Serves to produce a callback from the {@link aves.dpt.intf.viewers.MappaViewer}
- * to the {@link aves.dpt.intf.ctrl.MappaManager}.
+ * Serves to produce a callback from the {@link aves.dpt.intf.viewers.AvesViewer}
+ * to the {@link aves.dpt.intf.ctrl.AvesManager}.
  * 
  * @author stefaanvanliefferinge
  * @version $Id: ViewerEvent.java,v 649d54af3d47 2012/03/29 17:18:33 svl $

@@ -9,6 +9,6 @@ package aves.dpt.intf.viewers;
  * @author stefaanvanliefferinge
  * @version $Id$
  */
-public interface MappaBrowser {
+public interface AvesBrowser {
     
 }

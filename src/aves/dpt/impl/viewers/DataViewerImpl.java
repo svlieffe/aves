@@ -15,8 +15,8 @@ import java.util.ListIterator;
 import java.util.Iterator;
 import java.awt.event.*;
 
-import aves.dpt.impl.production.MappaObjectImpl;
-import aves.dpt.intf.production.MappaObject.ObjectDataType;
+import aves.dpt.impl.production.AvesObjectImpl;
+import aves.dpt.intf.production.AvesObject.ObjectDataType;
 import aves.dpt.intf.viewers.DataNotFoundException;
 import aves.dpt.intf.viewers.DataViewer;
 import aves.dpt.intf.viewers.DisplaySlideException;
@@ -31,7 +31,7 @@ import java.awt.Toolkit;
  *
  * Implements the {@link aves.dpt.intf.viewers.DataViewer}. 
  * The current implementation is ready to display data based on the 
- * {@link aves.dpt.intf.production.MappaObject.ObjectDataType}
+ * {@link aves.dpt.intf.production.AvesObject.ObjectDataType}
  * but can actually only handle to display images as a slide show by using a 
  * {@link aves.dpt.intf.viewers.ImageViewer}.
  * <p>
@@ -50,19 +50,19 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
     private GridBagConstraints gbc;
     private BufferedImage bi;
     private String source;
-    private MappaObjectImpl object;
-    private List<MappaObjectImpl> objects = new ArrayList<MappaObjectImpl>();
-    private ListIterator<MappaObjectImpl> mOIt;
+    private AvesObjectImpl object;
+    private List<AvesObjectImpl> objects = new ArrayList<AvesObjectImpl>();
+    private ListIterator<AvesObjectImpl> mOIt;
     private List<String> values = new ArrayList<String>();
     private Iterator<String> s;
-    private MappaViewerImpl parent;
+    private AvesViewerImpl parent;
     boolean last = false;
     boolean firstIm = true;
     boolean movingBackwards = false;
     
-    public DataViewerImpl(MappaViewerImpl mappaViewer) {
+    public DataViewerImpl(AvesViewerImpl avesViewer) {
         
-        parent = mappaViewer;
+        parent = avesViewer;
         addKeyListener(this);
         setFocusable(true);
                     setLayout(new GridBagLayout());
@@ -74,11 +74,11 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
     /**
      * {@inheritDoc }
      * 
-     * @param mappaObjects 
+     * @param avesObjects 
      */
-    public void setObjectsToDisplay(List<? extends MappaObjectImpl> mappaObjects) {
+    public void setObjectsToDisplay(List<? extends AvesObjectImpl> avesObjects) {
         
-        objects = (ArrayList) mappaObjects;
+        objects = (ArrayList) avesObjects;
         mOIt = objects.listIterator();
         
     }
@@ -102,7 +102,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
                 //    remove(txtV);
                 if (webV != null) {
                     //not working
-                    webV.getMappaBrowser().dispose();               
+                    webV.getAvesBrowser().dispose();               
                     remove(webV);
                 }
                 DataViewerType prevtype = type;
@@ -168,7 +168,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
     public void displayNext() throws DisplaySlideException {
         try {
             if (mOIt.hasNext()) {
-                MappaObjectImpl currentObject;
+                AvesObjectImpl currentObject;
                 currentObject = mOIt.next();
                 //because of implementation of ListIterator
                 if (movingBackwards) {
@@ -193,7 +193,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
     public void displayPrev() throws DisplaySlideException {
         try {
             if (mOIt.hasPrevious()) {
-                MappaObjectImpl currentObject;
+                AvesObjectImpl currentObject;
                 currentObject = mOIt.previous();
                 //because of implementation of ListIterator
                 if (!movingBackwards) {

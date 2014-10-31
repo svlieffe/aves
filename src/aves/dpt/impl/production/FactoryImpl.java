@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-//TODO redesign to implement a more general method to add MappaObjects to the List 
+//TODO redesign to implement a more general method to add AvesObjects to the List 
 
 package aves.dpt.impl.production;
 
@@ -11,15 +11,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import aves.dpt.intf.production.Factory;
-import aves.dpt.intf.production.MappaObject;
+import aves.dpt.intf.production.AvesObject;
 import aves.dpt.intf.production.Factory.ProductionMode;
-import aves.dpt.intf.production.MappaObject.MappaObjectType;
-import aves.dpt.intf.production.MappaObject.ObjectDataType;
+import aves.dpt.intf.production.AvesObject.AvesObjectType;
+import aves.dpt.intf.production.AvesObject.ObjectDataType;
 
 /**
  * An implementation of a {@link aves.dpt.intf.production.Factory}
  * to answer to requests of objects implementing
- * {@link aves.dpt.intf.ctrl.MappaManager}
+ * {@link aves.dpt.intf.ctrl.AvesManager}
  *
  * @author svlieffe
  */
@@ -27,8 +27,8 @@ public class FactoryImpl implements Factory {
 
     private ProductionMode productionMode;
     private String requestedItem;
-    private MappaObjectType mappaObjectType;
-    private ArrayList<MappaObject> listOfObjects = new ArrayList<MappaObject>();
+    private AvesObjectType avesObjectType;
+    private ArrayList<AvesObject> listOfObjects = new ArrayList<AvesObject>();
 
 
     /**
@@ -51,30 +51,30 @@ public class FactoryImpl implements Factory {
     
     /**
      * Adds a Session object to the {@link java.util.List} of 
-     * {@link aves.dpt.intf.production.MappaObject}
+     * {@link aves.dpt.intf.production.AvesObject}
      * 
-     * @param mappaObjectType
+     * @param avesObjectType
      * @param valueOfObjectToAdd 
      */
-    private void addMappaSessionObject(MappaObjectType mappaObjectType, String valueOfObjectToAdd) {
-        MappaObjectImpl mo = new MappaObjectImpl();
-        mo.setObjectType(mappaObjectType);
+    private void addAvesSessionObject(AvesObjectType avesObjectType, String valueOfObjectToAdd) {
+        AvesObjectImpl mo = new AvesObjectImpl();
+        mo.setObjectType(avesObjectType);
         mo.addDataValue(valueOfObjectToAdd);
         listOfObjects.add(mo);
     }
  
    /**
      * Adds a Document object to the {@link java.util.List} of 
-     * {@link aves.dpt.intf.production.MappaObject}
+     * {@link aves.dpt.intf.production.AvesObject}
      * 
-     * @param mappaObjectType
+     * @param avesObjectType
      * @param typeOfObjectToAdd
      * @param valueOfObjectToAdd 
      */
-    private void addMappaDocumentObject(MappaObjectType mappaObjectType, String typeOfObjectToAdd, String valueOfObjectToAdd) {
+    private void addAvesDocumentObject(AvesObjectType avesObjectType, String typeOfObjectToAdd, String valueOfObjectToAdd) {
         ObjectDataType dataType = null;
-        MappaObjectImpl mo = new MappaObjectImpl();
-        mo.setObjectType(mappaObjectType);
+        AvesObjectImpl mo = new AvesObjectImpl();
+        mo.setObjectType(avesObjectType);
         if ("txt".equals(typeOfObjectToAdd)) {
             dataType = ObjectDataType.text;
         } else if ("img".equals(typeOfObjectToAdd)){
@@ -92,17 +92,17 @@ public class FactoryImpl implements Factory {
 
    /**
      * Adds a Location object to the {@link java.util.List} of 
-     * {@link aves.dpt.intf.production.MappaObject}
+     * {@link aves.dpt.intf.production.AvesObject}
      * 
-     * @param mappaObjectType
+     * @param avesObjectType
      * @param place
      * @param longitude
      * @param latitude 
      */
-    private void addMappaLocationObject(MappaObjectType mappaObjectType, String place, String longitude, String latitude) {
+    private void addAvesLocationObject(AvesObjectType avesObjectType, String place, String longitude, String latitude) {
         ObjectDataType dataType = null;
-        MappaObjectImpl mo = new MappaObjectImpl();
-        mo.setObjectType(mappaObjectType);
+        AvesObjectImpl mo = new AvesObjectImpl();
+        mo.setObjectType(avesObjectType);
         mo.setDataType(dataType);
         mo.addDataValue(place);
         mo.addDataValue(longitude);
@@ -114,7 +114,7 @@ public class FactoryImpl implements Factory {
      * {@inheritDoc }
      *  
      */
-    public List<MappaObject> listOfObjects() {
+    public List<AvesObject> listOfObjects() {
 
         return listOfObjects;
     }
@@ -131,14 +131,14 @@ public class FactoryImpl implements Factory {
 
         switch (productionMode) {
             case sessionMode:
-                mappaObjectType = MappaObjectType.sessionObject;
+                avesObjectType = AvesObjectType.sessionObject;
                 String session;
                 dr = new DataRetrieverImpl();
-                dr.setDataType(mappaObjectType);
+                dr.setDataType(avesObjectType);
                 e = dr.getData().iterator();
                 while (e.hasNext()) {
                     session = e.next();
-                    addMappaSessionObject(mappaObjectType, session);
+                    addAvesSessionObject(avesObjectType, session);
                 }
                 break;
             case locationMode:
@@ -146,31 +146,31 @@ public class FactoryImpl implements Factory {
                 String longitude;
                 String latitude;
                 listOfObjects.clear();
-                mappaObjectType = MappaObjectType.placeObject;
+                avesObjectType = AvesObjectType.placeObject;
                 dr = new DataRetrieverImpl();
-                dr.setDataType(mappaObjectType);
+                dr.setDataType(avesObjectType);
                 dr.setGroupName(requestedItem);
                 e = dr.getData().iterator();
                 while (e.hasNext()) {      
                     place = e.next();
                     longitude = e.next();
                     latitude = e.next();
-                    addMappaLocationObject(mappaObjectType, place, longitude, latitude);
+                    addAvesLocationObject(avesObjectType, place, longitude, latitude);
                }
                 break;
             case docMode:
                 String uri;
                 String type;
                 listOfObjects.clear();
-                mappaObjectType = MappaObjectType.documentObject;
+                avesObjectType = AvesObjectType.documentObject;
                 dr = new DataRetrieverImpl();
-                dr.setDataType(mappaObjectType);
+                dr.setDataType(avesObjectType);
                 dr.setGroupName(requestedItem);
                 e = dr.getData().iterator();
                 while (e.hasNext()) {      
                     type = e.next();
                     uri = e.next();
-                    addMappaDocumentObject(mappaObjectType, type, uri);
+                    addAvesDocumentObject(avesObjectType, type, uri);
                }
                break;
         }

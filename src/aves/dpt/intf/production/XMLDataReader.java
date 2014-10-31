@@ -6,10 +6,10 @@ package aves.dpt.intf.production;
 
 import java.util.List;
 
-import aves.dpt.intf.production.MappaObject.MappaObjectType;
+import aves.dpt.intf.production.AvesObject.AvesObjectType;
 /**
  * Objects implementing this interface retrieve data with specific tags from the 
- * {@link src/main/resource/data/mappadatasrc.xml} file
+ * {@link src/main/resource/data/avesdatasrc.xml} file
  *
  * @author stefaanvanliefferinge
  * @version $Id: XMLDataReader.java,v 649d54af3d47 2012/03/29 17:18:33 svl $
@@ -28,11 +28,11 @@ public interface XMLDataReader {
      * to be retrieved
      * @param objectType 
      */
-    void setType(MappaObjectType objectType);   
+    void setType(AvesObjectType objectType);   
     
     /**
      * reads the data from the source
-     * @param mappaObjectType 
+     * @param avesObjectType 
      */
     void read();
      

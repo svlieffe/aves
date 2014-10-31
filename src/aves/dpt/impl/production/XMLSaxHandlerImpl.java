@@ -11,7 +11,7 @@ import org.xml.sax.helpers.*;
 import java.util.List;
 import java.util.ArrayList;
 
-import aves.dpt.intf.production.MappaObject.MappaObjectType;
+import aves.dpt.intf.production.AvesObject.AvesObjectType;
 /**
  * Hander for the {@link javax.xml.parsers.SAXParser}.
  *
@@ -19,7 +19,7 @@ import aves.dpt.intf.production.MappaObject.MappaObjectType;
  */
 public class XMLSaxHandlerImpl extends DefaultHandler {
     
-    private MappaObjectType type;
+    private AvesObjectType type;
     private String group;
     private String sessionDate = "";
     private String placeName = "";
@@ -91,8 +91,8 @@ public class XMLSaxHandlerImpl extends DefaultHandler {
         return dataList;
     }
     
-    public void setType(MappaObjectType mappaObjectType) {
-        type = mappaObjectType;
+    public void setType(AvesObjectType avesObjectType) {
+        type = avesObjectType;
     }
     
     public void setGroup(String groupName) {

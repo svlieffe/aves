@@ -7,21 +7,21 @@ package aves.dpt.intf.viewers;
 import java.util.List;
 
 import gov.nasa.worldwind.geom.LatLon;
-import aves.dpt.intf.production.MappaObject;
+import aves.dpt.intf.production.AvesObject;
 
 /**
  *
  * @author stefaanvanliefferinge
- * @version $Id: MappaViewer.java,v 649d54af3d47 2012/03/29 17:18:33 svl $
+ * @version $Id: AvesViewer.java,v 649d54af3d47 2012/03/29 17:18:33 svl $
  */
 
 /**
- * User interface showing {@link aves.dpt.intf.production.MappaObject}
- * content managed by a {@link aves.dpt.intf.ctrl.MappaManager}. 
- * Delegates the display of specific content depending on the {@link aves.dpt.intf.production.MappaObject.MappaObjectType}
- * and on the {@link aves.dpt.intf.ctrl.MappaManager.Phase}.
+ * User interface showing {@link aves.dpt.intf.production.AvesObject}
+ * content managed by a {@link aves.dpt.intf.ctrl.AvesManager}. 
+ * Delegates the display of specific content depending on the {@link aves.dpt.intf.production.AvesObject.AvesObjectType}
+ * and on the {@link aves.dpt.intf.ctrl.AvesManager.Phase}.
  */
-public interface MappaViewer{
+public interface AvesViewer{
     enum ViewerType {
         worldWindSessions, worldWindPlaces, dataViewer
     }
@@ -34,15 +34,15 @@ public interface MappaViewer{
     void selectSpecializedViewer(ViewerType type);
     
     /**
-     * Sets the list of {@link aves.dpt.intf.production.MappaObject} to be displayed
+     * Sets the list of {@link aves.dpt.intf.production.AvesObject} to be displayed
      * 
      * @param objectList 
      */
     
-    void setMappaObjectsList(List<? extends MappaObject> objectList);    
+    void setAvesObjectsList(List<? extends AvesObject> objectList);    
     
     /**
-     * Opens a specific viewer depending on the current {@link aves.dpt.intf.ctrl.MappaManager.Phase}
+     * Opens a specific viewer depending on the current {@link aves.dpt.intf.ctrl.AvesManager.Phase}
      * <p>
      * {@link aves.dpt.intf.viewers.WorldWindViewer}
      * <p>
@@ -60,7 +60,7 @@ public interface MappaViewer{
 
     
     /**
-     * Sets the {@link aves.dpt.intf.viewers.MappaViewer} to full screen.
+     * Sets the {@link aves.dpt.intf.viewers.AvesViewer} to full screen.
      */
     void setFullScreen(boolean val);
     

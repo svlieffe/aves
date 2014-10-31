@@ -3,7 +3,7 @@
 <!--
     TODO define vocabulary identification
     PUBLIC ID: -//vendor//vocabulary//EN
-    SYSTEM ID: http://server/path/mappadatasrc.dtd
+    SYSTEM ID: http://server/path/avesdatasrc.dtd
 
 -->
 
@@ -12,7 +12,7 @@
 
     <?xml version="1.0"?>
 
-    <!DOCTYPE session SYSTEM "mappadatasrc.dtd">
+    <!DOCTYPE session SYSTEM "avesdatasrc.dtd">
 
     <session>
     ...
