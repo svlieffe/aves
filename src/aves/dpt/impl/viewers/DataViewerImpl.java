@@ -250,7 +250,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
 //			use classloader instead of File            
 //          bIm = ImageIO.read(getClass().getClassLoader().getResource(uri));
 
-            java.io.File file = new java.io.File("images/"+uri);
+            java.io.File file = new java.io.File("img/"+uri);
             bIm = ImageIO.read(file);
             if (bIm == null) {
                 throw new DataNotFoundException("Image is null");
@@ -282,7 +282,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
         try {
             s = values.iterator();
 
-            source = s.next();
+            source = "web/" + s.next();
 
             if (source == null) {
                 throw new DataNotFoundException("error reading uri");
