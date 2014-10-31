@@ -44,7 +44,7 @@ public class MappaManagerImpl implements MappaManager, ViewerEvent {
 
     public MappaManagerImpl() {
 
-        fullScreen = true;             // toggle fullscreen
+        fullScreen = false;             // toggle fullscreen
         callIsFromMappaViewer = false;
 
         factory = new FactoryImpl();

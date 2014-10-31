@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package aves.dpt.impl.viewers;
 
 //TODO add button to close data viewer
@@ -127,7 +123,6 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
                     gbc.insets = new Insets( - this.getHeight(), - this.getWidth(), 0, 0);
                     }
                     add(imV, gbc);
-
                     parent.validate();
                     
                     System.out.println("dataviewe width post validate: " + this.getWidth());
@@ -252,8 +247,11 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
             s = values.iterator();
 
             String uri = s.next();
+//			use classloader instead of File            
+//          bIm = ImageIO.read(getClass().getClassLoader().getResource(uri));
 
-            bIm = ImageIO.read(getClass().getClassLoader().getResource(uri)); //why not use getResourceAsStream(String)
+            java.io.File file = new java.io.File("images/"+uri);
+            bIm = ImageIO.read(file);
             if (bIm == null) {
                 throw new DataNotFoundException("Image is null");
             }
@@ -265,12 +263,11 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
         } catch (DataNotFoundException dNFE) {
             System.err.println(dNFE);
             try {
-                        displayNext();                   
+                displayNext(); 
             } catch(Exception e) {
                 System.out.println(e);
             }
         }
-
         return bIm;
     }
     
