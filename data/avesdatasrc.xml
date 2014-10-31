@@ -232,109 +232,35 @@
     </session>
     <session date="11/02/2013">
         <place name="New York" latitude="40.67" longitude="-73.94">
-            <document type="img" uri="Rutgers/Slide1.jpg"></document>
+            <document type="web" uri="FirstSession/Mcah.html"></document>
         </place>
         <place name="London" latitude="51.507222" longitude="-0.1275">
         </place>
         <place name="Canterbury" latitude="51.276681" longitude="1.074767">
         </place>
         <place name="Chartres" latitude="48.4558" longitude="1.4842">
-            <document type="web" uri="BrowserBalloonExampleWebsite.html"></document>
+            <document type="web" uri="ThirdSession/MTDavisChartres.html"></document>
         </place>
         <place name="Reims" latitude="49.2628" longitude="4.0347">
         </place>
         <place name="Honnecourt" latitude="50.0375" longitude="3.1964">
-            <document type="img" uri="Rutgers/Slide3.jpg"></document>
-            <document type="img" uri="Rutgers/Slide2.jpg"></document>
-            <document type="img" uri="Rutgers/Slide4.jpg"></document>
-            <document type="img" uri="Rutgers/Slide5.jpg"></document>
-            <document type="img" uri="Rutgers/Slide6.jpg"></document>
-            <document type="img" uri="Rutgers/Slide10.jpg"></document>
         </place>
         <place name="Saint Denis" latitude="48.9364" longitude="2.3547">
-            <document type="img" uri="Rutgers/Slide7.jpg"></document>
-            <document type="img" uri="Rutgers/Slide8.jpg"></document>
-            <document type="img" uri="Rutgers/Slide9.jpg"></document>
-            <document type="img" uri="Rutgers/Slide10.jpg"></document>
-            <document type="img" uri="Rutgers/Slide11.jpg"></document>
-            <document type="img" uri="Rutgers/Slide12.jpg"></document>
-            <document type="web" uri="data/BrowserBalloonExample_MCHA_HA.html"></document> 
-<!--            <document type="web" uri="data/BrowserBalloonAmiensQTVR.html"></document> -->
-<!--            <document type="uri" uri="http://learn.columbia.edu/ha/index.html"></document> -->
-            <document type="web" uri="data/BrowserBalloonExampleMurray.html"></document>
-            <document type="web" uri="data/BrowserBalloon_Mobile-Mapping.html"></document>
-            <document type="img" uri="Rutgers/Slide13.jpg"></document>
-            <document type="img" uri="Rutgers/Slide14.jpg"></document>
-            <document type="img" uri="Rutgers/Slide15.jpg"></document>
-            <document type="img" uri="Rutgers/Slide16.jpg"></document>
-            <document type="img" uri="Rutgers/Slide17.jpg"></document>
-            <document type="img" uri="Rutgers/Slide18.jpg"></document>
-            <document type="img" uri="Rutgers/Slide19.jpg"></document>
+            <document type="img" uri="SecondSession/SDenis/Slide7.jpg"></document>
+            <document type="img" uri="SecondSession/SDenis/Slide8.jpg"></document>
+            <document type="web" uri="SecondSession/SDenis/Mobile-Mapping.html"></document>
         </place>
         <place name="Paris" latitude="48.8567" longitude="2.3508">
-            <document type="img" uri="Rutgers/Slide19.jpg"></document>
-            <document type="img" uri="Rutgers/Slide20.jpg"></document>
-            <document type="img" uri="Rutgers/Slide21.jpg"></document>
-            <document type="img" uri="Rutgers/Slide22.jpg"></document>
-            <document type="img" uri="Rutgers/Slide23.jpg"></document>
-            <document type="img" uri="Rutgers/Slide24.jpg"></document>
-            <document type="img" uri="Rutgers/Slide25.jpg"></document>
-            <document type="img" uri="Rutgers/Slide19.jpg"></document>
-            <document type="img" uri="Rutgers/Slide26.jpg"></document>
-            <document type="img" uri="Rutgers/Slide27.jpg"></document>
-            <document type="img" uri="Rutgers/Slide19.jpg"></document>
-            <document type="img" uri="Rutgers/Slide28.jpg"></document>
-            <document type="img" uri="Rutgers/Slide29.jpg"></document>
-            <document type="img" uri="Rutgers/Slide30.jpg"></document>
-            <document type="img" uri="Rutgers/Slide31.jpg"></document>
-            <document type="img" uri="Rutgers/Slide32.jpg"></document>
-            <document type="img" uri="Rutgers/Slide33.jpg"></document>
-            <document type="img" uri="Rutgers/Slide34.jpg"></document>
-            <document type="img" uri="Rutgers/Slide35.jpg"></document>
-            <document type="img" uri="Rutgers/Slide36.jpg"></document>
-            <document type="img" uri="Rutgers/Slide37.jpg"></document>
+            <document type="img" uri="SecondSession/Paris/Slide20.jpg"></document>
+            <document type="img" uri="SecondSession/Paris/Slide47.jpg"></document>
         </place>
         <place name="Paray-le-Monial" latitude="46.4519" longitude="4.1203">
         </place>
         <place name="Sens" latitude="48.1975" longitude="3.2877">
         </place>
         <place name="Clermont-Ferrand" latitude="45.7831" longitude="3.0824">
-            <document type="img" uri="Rutgers/Slide19.jpg"></document>
-            <document type="img" uri="Rutgers/Slide38.jpg"></document>
-            <document type="img" uri="Rutgers/Slide39.jpg"></document>
-            <document type="img" uri="Rutgers/Slide40.jpg"></document>
-            <document type="img" uri="Rutgers/Slide41.jpg"></document>
-            <document type="img" uri="Rutgers/Slide42.jpg"></document>
         </place>
         <place name="Athens" latitude="33.95" longitude="-83.383333">
-            <document type="img" uri="Rutgers/Slide19.jpg"></document>
-            <document type="img" uri="Rutgers/Slide43.jpg"></document>
-            <document type="img" uri="Rutgers/Slide44.jpg"></document>
-            <document type="img" uri="Rutgers/Slide45.jpg"></document>
-            <document type="img" uri="Rutgers/Slide46.jpg"></document>
-            <document type="img" uri="Rutgers/Slide47.jpg"></document>
-            <document type="img" uri="Rutgers/Slide48.jpg"></document>
-            <document type="img" uri="Rutgers/Slide49.jpg"></document>
-            <document type="img" uri="Rutgers/Slide50.jpg"></document>
-            <document type="img" uri="Rutgers/Slide51.jpg"></document>
-            <document type="img" uri="Rutgers/Slide52.jpg"></document>
-            <document type="img" uri="Rutgers/Slide53.jpg"></document>
-            <document type="img" uri="Rutgers/Slide54.jpg"></document>
-            <document type="img" uri="Rutgers/Slide55.jpg"></document>
-            <document type="img" uri="Rutgers/Slide56.jpg"></document>
-            <document type="img" uri="Rutgers/Slide57.jpg"></document>
-            <document type="img" uri="Rutgers/Slide58.jpg"></document>
-            <document type="img" uri="Rutgers/Slide59.jpg"></document>
-            <document type="img" uri="Rutgers/Slide60.jpg"></document>
-            <document type="img" uri="Rutgers/Slide61.jpg"></document>
-            <document type="img" uri="Rutgers/Slide62.jpg"></document>
-            <document type="img" uri="Rutgers/Slide63.jpg"></document>
-            <document type="img" uri="Rutgers/Slide64.jpg"></document>
-            <document type="img" uri="Rutgers/Slide65.jpg"></document>
-            <document type="img" uri="Rutgers/Slide66.jpg"></document>
-            <document type="img" uri="Rutgers/Slide67.jpg"></document>
-            <document type="img" uri="Rutgers/Slide68.jpg"></document>
-            <document type="img" uri="Rutgers/Slide69.jpg"></document>
         </place>
     </session>
 </root>
