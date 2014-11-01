@@ -44,7 +44,7 @@ public class AvesManagerImpl implements AvesManager, ViewerEvent {
 
     public AvesManagerImpl() {
 
-        fullScreen = false;             // toggle fullscreen
+        fullScreen = true;             // toggle fullscreen
         callIsFromAvesViewer = false;
 
         factory = new FactoryImpl();

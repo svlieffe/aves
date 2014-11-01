@@ -38,9 +38,9 @@ public class XMLDataReaderImpl implements XMLDataReader{
             xmlHandler.setGroup(groupName);
 
 //			getClassLoader instead of FileInputStream
-//          parser.parse(getClass().getClassLoader().getResourceAsStream("avesdatasrc.xml"), xmlHandler);
+//          parser.parse(getClass().getClassLoader().getResourceAsStream("avesJourneys.xml"), xmlHandler);
 
-            FileInputStream inStream = new FileInputStream("data/avesdatasrc.xml");
+            FileInputStream inStream = new FileInputStream("Journeys/avesJourneys.xml");
             parser.parse(inStream, xmlHandler);
 
             valueList = (ArrayList)xmlHandler.valueList();
