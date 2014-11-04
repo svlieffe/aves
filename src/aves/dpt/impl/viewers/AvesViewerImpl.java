@@ -15,7 +15,11 @@ import aves.dpt.impl.production.AvesObjectImpl;
 import aves.dpt.intf.production.AvesObject;
 import aves.dpt.intf.production.AvesObject.AvesObjectType;
 import aves.dpt.intf.viewers.AvesViewer;
+import aves.dpt.intf.viewers.DataViewer.DataViewerEvent;
 import aves.dpt.intf.viewers.ViewerEvent;
+import aves.dpt.intf.viewers.AvesViewer.ViewerType;
+import aves.dpt.intf.ctrl.*;
+import aves.dpt.intf.ctrl.AvesManager.Phase;
 
 import java.awt.event.*;
 
@@ -51,6 +55,7 @@ import gov.nasa.worldwind.view.ViewPropertyAccessor;
 import gov.nasa.worldwind.util.PropertyAccessor.AngleAccessor;
 
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 /**
@@ -60,9 +65,9 @@ import javax.swing.JPanel;
  * 
  * @version $Id: AvesViewerImpl.java,v a1656ba63334 2012/03/31 20:52:12 svlieffe $
  */
-public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener, SelectListener  {
+public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener, SelectListener, ViewerEvent, KeyListener  {
 
-    private ViewerType type;
+	private ViewerType type;
     private GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
     private GraphicsDevice gd = ge.getDefaultScreenDevice();
     boolean isFullScreen = gd.isFullScreenSupported();
@@ -74,11 +79,13 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
     private Dimension dim = new Dimension(720, 540);
     private String selectedItem;
     private String selectedItemType;
+    private KeyEvent keyEvent;
     private ViewerEvent ve;
     private Integer count = 0;
     private WorldWindViewerImpl wwv;
     private DataViewerImpl dv;
     private final Integer borderFraction;
+//    private AvesManager parent;
    
     public AvesViewerImpl(ViewerEvent event) {
         ve = event;
@@ -88,11 +95,30 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
     /**
      * {@inheritDoc }
      * <p>
+     *  
+     */
+    @Override
+    public void viewerEvent() {
+    	switch(dv.getEvent()) {
+    		case UPDATE:
+    			this.validate();
+    			break;
+    		case ENDSHOW:
+    			this.closeDataViewer();
+    		default:
+    			break;    		
+    	}
+    }
+
+    /**
+     * {@inheritDoc }
+     * <p>
      * @param ae 
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
         // session selection takes place once only
+    	System.out.println("action performerd");
         if (count == 0) {
             //JButton source = (JButton) ae.getSource();
             //selectedSession = source.getText();
@@ -135,13 +161,27 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
         return selectedItemType;
     }
     
+    public KeyEvent getKeyEventType() {
+        return keyEvent;
+    }
+    
     /**
      * {@inheritDoc }
      * <p>
      * @param viewertype 
      */
-    public void selectSpecializedViewer(ViewerType viewertype) {
-        type = viewertype;
+    public void selectSpecializedViewer(Phase phase) {
+        switch (phase) {
+        	case session: 
+        		type = ViewerType.worldWindSessions;
+        		break;
+        	case LOCATIONS:
+        		type = ViewerType.worldWindPlaces;
+        		break;
+        	case DATA:
+        		type = ViewerType.dataViewer;
+        		break;
+        }
     }
 
     public void setAvesObjectsList(List<? extends AvesObject> objectList) {
@@ -152,8 +192,8 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
      * {@inheritDoc }
      * <p>
      */
-    public void runSpecializedViewers() {
-
+    public void requestObjectsInViewer(Phase phase) {
+    	selectSpecializedViewer(phase);
         switch (type) {
             case worldWindSessions: {
 
@@ -196,7 +236,8 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
                 layer = new RenderableLayer();
                 layer.setPickEnabled(true);
                 this.wwv.getwwPanel().addSelectListener(this);
-                this.wwv.getwwPanel().getModel().getLayers().add(0, layer);
+                this.wwv.getwwPanel().addKeyListener(this);
+                this.wwv.getwwPanel().getModel().getLayers().add(0, layer);                
  
                 Iterator<JButton> jb = buttonList.iterator();
                 while (jb.hasNext()) {
@@ -362,6 +403,8 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
             this.pack();
             this.setVisible(true);
         }
+        
+//        ve.setPhase(Phase.LOCATIONS);
   
     }
    
@@ -463,4 +506,52 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
      */
     public void displayRoute(List<? extends LatLon> listOfCoords) {
     }
+    
+    /**
+     * {@inheritDoc }
+     * <p>
+     * Unused.
+     * 
+     */
+    public void keyTyped(KeyEvent ke) {
+    }
+
+    /**
+     * {@inheritDoc }
+     * 
+     * Left and right arrow to navigate forward and backward. Escape key to return to general view.
+     * <p>
+     */
+    public void keyPressed(KeyEvent ke) {
+        int keyCode = ke.getKeyCode();
+        System.out.println("key pressedin avasviewerimpl__:" + keyCode);
+    	selectedItemType = "key";
+        if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) { //escape
+            try {
+            	System.out.println("escape AvesViewerImpl pressed:" + keyCode);
+            	keyEvent = ke;
+/*                selectedItem = ae.getActionCommand();
+                selectedItemType = "sessionButton";*/
+                ve.viewerEvent();
+/*                ve.setPhase(Phase.session);
+                ve.produceAndShow(Phase.session);*/
+//                selectSpecializedViewer(ViewerType.worldWindSessions);
+//                runSpecializedViewers();
+            } catch (Exception e) {
+            	System.out.print(e);              
+            }     
+        }
+    }
+
+    /**
+     * {@inheritDoc }
+     * 
+     * <p>
+     * 
+     * Unused
+     * 
+     */
+    public void keyReleased(KeyEvent e) {
+    }
+    
 }

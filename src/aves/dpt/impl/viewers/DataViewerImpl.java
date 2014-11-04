@@ -1,6 +1,6 @@
 package aves.dpt.impl.viewers;
 
-//TODO add button to close data viewer
+//TODO add button to close DATA viewer
 
 import javax.swing.JPanel;
 
@@ -20,6 +20,7 @@ import aves.dpt.intf.production.AvesObject.ObjectDataType;
 import aves.dpt.intf.viewers.DataNotFoundException;
 import aves.dpt.intf.viewers.DataViewer;
 import aves.dpt.intf.viewers.DisplaySlideException;
+import aves.dpt.intf.viewers.ViewerEvent;
 
 import java.io.IOException;
 import java.awt.GridBagLayout;
@@ -27,10 +28,11 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Toolkit;
 
+
 /**
  *
  * Implements the {@link aves.dpt.intf.viewers.DataViewer}. 
- * The current implementation is ready to display data based on the 
+ * The current implementation is ready to display DATA based on the 
  * {@link aves.dpt.intf.production.AvesObject.ObjectDataType}
  * but can actually only handle to display images as a slide show by using a 
  * {@link aves.dpt.intf.viewers.ImageViewer}.
@@ -55,20 +57,36 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
     private ListIterator<AvesObjectImpl> mOIt;
     private List<String> values = new ArrayList<String>();
     private Iterator<String> s;
-    private AvesViewerImpl parent;
+    private ViewerEvent ve;
+    private DataViewerEvent viewerEvent;
     boolean last = false;
     boolean firstIm = true;
     boolean movingBackwards = false;
     
-    public DataViewerImpl(AvesViewerImpl avesViewer) {
+    public DataViewerImpl(ViewerEvent viewerEvent) {
         
-        parent = avesViewer;
+        ve = viewerEvent;
+        //set most frequent event
+        setEvent(DataViewerEvent.UPDATE);
         addKeyListener(this);
         setFocusable(true);
-                    setLayout(new GridBagLayout());
+        setLayout(new GridBagLayout());
 
                     //        setLayout(new java.awt.BorderLayout());
 
+    }
+    
+    /**
+     * {@inheritDoc }
+     * 
+    */
+    
+    public void setEvent(DataViewerEvent event) {
+    	viewerEvent = event;
+    }
+    
+    public DataViewerEvent getEvent() {
+    	return viewerEvent;
     }
     
     /**
@@ -123,7 +141,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
                     gbc.insets = new Insets( - this.getHeight(), - this.getWidth(), 0, 0);
                     }
                     add(imV, gbc);
-                    parent.validate();
+                    ve.viewerEvent();
                     
                     System.out.println("dataviewe width post validate: " + this.getWidth());
                     System.out.println("dataVieweHeight: " + this.getHeight());
@@ -151,7 +169,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
                 c.insets = new Insets(-this.getHeight(), -this.getWidth(), 0, 0);
                 add(webV, c);
 
-                parent.validate();
+                ve.viewerEvent();
 
                 System.out.println("dataviewer uri width post validate: " + this.getWidth());
                 System.out.println("dataVieweHeight: " + this.getHeight());
@@ -179,7 +197,9 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
                 setViewerType(currentObject.getDataType());
                 showData();
             } else {
-                parent.closeDataViewer();
+            	// this is not an UPDATE, it ends the presentation
+                setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
+                ve.viewerEvent();
             }
         } catch (Exception e) {
             throw new DisplaySlideException("Error displaying slide: ");
@@ -204,7 +224,9 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
                 setViewerType(currentObject.getDataType());
                 showData();
             } else {
-                parent.closeDataViewer();
+            	//this is not an UPDATE, it ends the presentaion
+            	setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
+                ve.viewerEvent();
             }
         } catch (Exception e) {
             throw new DisplaySlideException("Error displaying slide: ");
@@ -231,7 +253,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
                     break;                   
             }
         } catch (Exception e) {
-            throw new DataNotFoundException("Error showing data: ");
+            throw new DataNotFoundException("Error showing DATA: ");
         }
     }
    
@@ -321,22 +343,32 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
     /**
      * {@inheritDoc }
      * 
-     * Currently only responds to right arrow pressed to advance to next data.
+     * Left and right arrow to navigate forward and backward. Escape key to return to general view.
      * <p>
      */
     public void keyPressed(KeyEvent ke) {
         int keyCode = ke.getKeyCode();
         System.out.println("key pressedin dataviewr:" + keyCode);
-        if (keyCode == 39) { //right arrow
+        if (keyCode == java.awt.event.KeyEvent.VK_RIGHT) { //right arrow
             try {
                 displayNext();
             } catch (Exception e) {
                 
             }     
         }
-        if (keyCode == 37) { //left arrow
+        if (keyCode == java.awt.event.KeyEvent.VK_LEFT) { //left arrow
             try {
                 displayPrev();
+            } catch (Exception e) {
+                
+            }     
+        }
+        if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) { //escape
+            try {
+            	System.out.println("escape pressed");
+            	//this is not an UPDATE, it ends the presentation
+            	setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
+                ve.viewerEvent();
             } catch (Exception e) {
                 
             }     

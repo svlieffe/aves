@@ -22,7 +22,7 @@ public class XMLDataReaderImpl implements XMLDataReader{
     private AvesObjectType objectType;
 
     /**
-     * parses the data source using a 
+     * parses the DATA source using a 
      * {@link javax.xml.parsers.XMLSaxHandlerImpl}
      */
     public void startParse() {

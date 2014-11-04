@@ -11,9 +11,9 @@ import aves.dpt.intf.production.AvesObject.ObjectDataType;
 
 /**
  * 
- * A basic interface for a viewer specialized in displaying data. Classes implementing
+ * A basic interface for a viewer specialized in displaying DATA. Classes implementing
  * this interface can be called by a {@link aves.dpt.intf.viewers.AvesViewer}
- * to display different types of data.
+ * to display different types of DATA.
  *
  * <p> 
  * @author stefaanvanliefferinge
@@ -24,6 +24,11 @@ public interface DataViewer {
     enum DataViewerType {
 
         textViewer, imageViewer, webViewer;
+    }
+    
+    enum DataViewerEvent {
+    	
+    	UPDATE, ENDSHOW;
     }
     
     /**
@@ -40,7 +45,7 @@ public interface DataViewer {
     
     /**
      * Sets the list of {@link aves.dpt.intf.production.AvesObject}
-     * data to display in the show.
+     * DATA to display in the show.
      * 
      * @param avesObjects 
      */
@@ -59,4 +64,8 @@ public interface DataViewer {
      * @throws DataNotFoundException 
      */
     void showData() throws DataNotFoundException;
+    
+    DataViewerEvent getEvent();
+    
+    void setEvent(DataViewerEvent event);
 }

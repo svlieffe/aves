@@ -130,7 +130,7 @@ public class FactoryImpl implements Factory {
         Iterator<String> e;
 
         switch (productionMode) {
-            case sessionMode:
+            case SESSIONSMODE:
                 avesObjectType = AvesObjectType.sessionObject;
                 String session;
                 dr = new DataRetrieverImpl();
@@ -141,7 +141,7 @@ public class FactoryImpl implements Factory {
                     addAvesSessionObject(avesObjectType, session);
                 }
                 break;
-            case locationMode:
+            case LOCATIONSMODE:
                 String place;
                 String longitude;
                 String latitude;
@@ -158,7 +158,7 @@ public class FactoryImpl implements Factory {
                     addAvesLocationObject(avesObjectType, place, longitude, latitude);
                }
                 break;
-            case docMode:
+            case DATAMODE:
                 String uri;
                 String type;
                 listOfObjects.clear();

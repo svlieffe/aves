@@ -8,8 +8,8 @@ import java.util.List;
 
 import aves.dpt.intf.production.AvesObject.AvesObjectType;
 /**
- * Objects implementing this interface retrieve data with specific tags from the 
- * {@link src/main/resource/data/avesdatasrc.xml} file
+ * Objects implementing this interface retrieve DATA with specific tags from the 
+ * {@link src/main/resource/DATA/avesdatasrc.xml} file
  *
  * @author stefaanvanliefferinge
  * @version $Id: XMLDataReader.java,v 649d54af3d47 2012/03/29 17:18:33 svl $
@@ -31,13 +31,13 @@ public interface XMLDataReader {
     void setType(AvesObjectType objectType);   
     
     /**
-     * reads the data from the source
+     * reads the DATA from the source
      * @param avesObjectType 
      */
     void read();
      
     /** 
-     * returns the list of data values
+     * returns the list of DATA values
      * @return List<String>
      */
      List<String> valueList();

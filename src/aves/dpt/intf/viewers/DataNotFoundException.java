@@ -6,7 +6,7 @@ package aves.dpt.intf.viewers;
 
 /**
  *
- * Generates an error when the program cannot find the source data
+ * Generates an error when the program cannot find the source DATA
  * of the requested {@link aves.dpt.intf.production.AvesObject}
  * 
  * @author stefaanvanliefferinge

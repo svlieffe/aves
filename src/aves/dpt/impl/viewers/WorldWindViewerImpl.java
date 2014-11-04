@@ -4,11 +4,14 @@
  */
 package aves.dpt.impl.viewers;
 
+import aves.dpt.intf.ctrl.AvesManager.Phase;
 import aves.dpt.intf.viewers.WorldWindViewer;
 
 import javax.swing.JPanel;
 
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import gov.nasa.worldwind.BasicModel;
 import gov.nasa.worldwind.globes.*;
@@ -26,7 +29,7 @@ import gov.nasa.worldwind.layers.ViewControlsSelectListener;
  * @version $Id: WorldWindViewerImpl.java,v e7e78df9ca90 2012/03/30 19:53:39 svl $ 
  * 
  */
-public class WorldWindViewerImpl extends JPanel implements WorldWindViewer {
+public class WorldWindViewerImpl extends JPanel implements WorldWindViewer, KeyListener {
 
     private FlatGlobe flatGlobe;
     private BasicModel bm;
@@ -106,4 +109,44 @@ public class WorldWindViewerImpl extends JPanel implements WorldWindViewer {
     public WorldWindowGLJPanel getwwPanel() {
         return wwp;
     }
+    /**
+     * {@inheritDoc }
+     * <p>
+     * Unused.
+     * 
+     */
+    public void keyTyped(KeyEvent ke) {
+    }
+
+    /**
+     * {@inheritDoc }
+     * 
+     * Left and right arrow to navigate forward and backward. Escape key to return to general view.
+     * <p>
+     */
+    public void keyPressed(KeyEvent ke) {
+        int keyCode = ke.getKeyCode();
+        System.out.println("key pressedin dataviewr:" + keyCode);
+        if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) { //escape
+            try {
+            	System.out.println("escape pressed");
+//                this.setPhase(Phase.session);
+            } catch (Exception e) {
+                
+            }     
+        }
+    }
+
+    /**
+     * {@inheritDoc }
+     * 
+     * <p>
+     * 
+     * Unused
+     * 
+     */
+    public void keyReleased(KeyEvent e) {
+    }
+    
+    
 }

@@ -23,7 +23,7 @@ public interface Factory {
      * define the {@link aves.dpt.intf.production.AvesObject.AvesObjectType}
      * requested by the {@link aves.dpt.intf.production.Factory}.
      */
-    enum ProductionMode {sessionMode, locationMode, docMode}
+    enum ProductionMode {SESSIONSMODE, LOCATIONSMODE, DATAMODE}
 
     /**sets the {@link aves.dpt.intf.production.Factory.ProductionMode}
      * to the {@link aves.dpt.intf.ctrl.AvesManager.Phase} determined by the 

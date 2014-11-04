@@ -7,6 +7,7 @@ package aves.dpt.intf.viewers;
 import java.util.List;
 
 import gov.nasa.worldwind.geom.LatLon;
+import aves.dpt.intf.ctrl.AvesManager.Phase;
 import aves.dpt.intf.production.AvesObject;
 
 /**
@@ -29,9 +30,9 @@ public interface AvesViewer{
     /**
      * Selects the type of content-specific 
      * viewer to display.
-     * @param type 
+     * @param phase TODO
      */  
-    void selectSpecializedViewer(ViewerType type);
+    void selectSpecializedViewer(Phase phase);
     
     /**
      * Sets the list of {@link aves.dpt.intf.production.AvesObject} to be displayed
@@ -47,8 +48,9 @@ public interface AvesViewer{
      * {@link aves.dpt.intf.viewers.WorldWindViewer}
      * <p>
      * {@link aves.dpt.intf.viewers.DataViewer}
+     * @param phase TODO
      */
-    void runSpecializedViewers();
+    void requestObjectsInViewer(Phase phase);
     
      /**
      * Hides the specialized {@link aves.dpt.intf.viewers.DataViewer}
@@ -66,7 +68,7 @@ public interface AvesViewer{
     
      /**
      * TBI
-     * Creates a route based on the list of locations.
+     * Creates a LOCATIONS based on the list of locations.
      * returns a List of objects extending or implementing {@link gov.nasa.worldwind.geom.LatLon} 
      */
     List<? extends LatLon> makeRoute();
