@@ -27,6 +27,24 @@ public interface AvesViewer{
         worldWindSessions, worldWindPlaces, dataViewer
     }
     
+    enum EventItemType {
+    	JOURNEYBUTTON, LOCATIONSPOT, ESCKEY;
+    }
+
+    /**
+     * Sets the current phase of {@link aves.dpt.intf.viewers.AvesViewer} to be displayed
+     * 
+     * @param Phase 
+     */
+    void setCurrentPhase(Phase phase);
+
+    /**
+     * Returns the current phase of {@link aves.dpt.intf.viewers.AvesViewer} to be displayed
+     * 
+     * @param 
+     */
+    Phase getCurrentPhase();
+
     /**
      * Selects the type of content-specific 
      * viewer to display.
@@ -50,7 +68,7 @@ public interface AvesViewer{
      * {@link aves.dpt.intf.viewers.DataViewer}
      * @param phase TODO
      */
-    void requestObjectsInViewer(Phase phase);
+    void requestObjectsInViewer();
     
      /**
      * Hides the specialized {@link aves.dpt.intf.viewers.DataViewer}

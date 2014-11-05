@@ -17,6 +17,7 @@ import aves.dpt.intf.production.AvesObject.AvesObjectType;
 import aves.dpt.intf.viewers.AvesViewer;
 import aves.dpt.intf.viewers.DataViewer.DataViewerEvent;
 import aves.dpt.intf.viewers.ViewerEvent;
+import aves.dpt.intf.viewers.AvesViewer.EventItemType;
 import aves.dpt.intf.viewers.AvesViewer.ViewerType;
 import aves.dpt.intf.ctrl.*;
 import aves.dpt.intf.ctrl.AvesManager.Phase;
@@ -74,24 +75,47 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
     boolean needGraphics = true;
     private ArrayList<AvesObjectImpl> avesObjects = new ArrayList<AvesObjectImpl>();
     private Iterator<AvesObjectImpl> e;
-    private ArrayList<Integer> buttonIndexes = new ArrayList<Integer>();
-    private ArrayList<JButton> buttonList = new ArrayList<JButton>();
+//    private ArrayList<Integer> buttonIndexes = new ArrayList<Integer>();
+    private ArrayList<JButton> buttonList;
     private Dimension dim = new Dimension(720, 540);
     private String selectedItem;
-    private String selectedItemType;
+    private EventItemType eventItemType;
     private KeyEvent keyEvent;
     private ViewerEvent ve;
     private Integer count = 0;
     private WorldWindViewerImpl wwv;
     private DataViewerImpl dv;
     private final Integer borderFraction;
+    private Phase currentPhase;
 //    private AvesManager parent;
    
     public AvesViewerImpl(ViewerEvent event) {
         ve = event;
         borderFraction = 10;
+        addKeyListener(this);
+        setFocusable(true);
+        // avoid shifting focus by pressing for example the TAB key
+        setFocusTraversalKeysEnabled(false);
     }
     
+    /**
+     * {@inheritDoc }
+     * <p>
+     *  
+     */
+    public void setCurrentPhase(Phase phase) {
+    	currentPhase = phase;
+    }
+    
+    /**
+     * {@inheritDoc }
+     * <p>
+     *  
+     */
+    public Phase getCurrentPhase() {
+    	return currentPhase;
+    }
+
     /**
      * {@inheritDoc }
      * <p>
@@ -105,6 +129,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
     			break;
     		case ENDSHOW:
     			this.closeDataViewer();
+    			setCurrentPhase(Phase.LOCATIONS);
     		default:
     			break;    		
     	}
@@ -115,18 +140,19 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
      * <p>
      * @param ae 
      */
-    @Override
+	@Override
     public void actionPerformed(ActionEvent ae) {
-        // session selection takes place once only
-    	System.out.println("action performerd");
-        if (count == 0) {
+        // session selection takes place once only //20141104 removed restriction because this is deprecated
+    	System.out.println("action performered button clicker");
+//        if (count == 0) {
             //JButton source = (JButton) ae.getSource();
             //selectedSession = source.getText();
+    		setCurrentPhase(Phase.LOCATIONS);
             selectedItem = ae.getActionCommand();
-            selectedItemType = "sessionButton";
+            eventItemType = EventItemType.JOURNEYBUTTON;
             ve.viewerEvent();
-            count = 1;
-        }
+//            count = 1;
+//        }
         
     }
     
@@ -143,7 +169,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
                 NamedSpot selected = (NamedSpot) topPickedObject.getObject();
                 System.out.println(selected.getName());
                 selectedItem = selected.getName();
-                selectedItemType = selected.getType();
+                eventItemType = selected.getType();
                 ve.viewerEvent();
                 //NamedSpot spotName = (NamedSpot) e.getSource();
                 //System.out.println(spotName.getName());
@@ -157,8 +183,8 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
         return selectedItem;
     }
     
-    public String getSelectedItemType() {
-        return selectedItemType;
+    public EventItemType getSelectedItemType() {
+        return eventItemType;
     }
     
     public KeyEvent getKeyEventType() {
@@ -192,11 +218,11 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
      * {@inheritDoc }
      * <p>
      */
-    public void requestObjectsInViewer(Phase phase) {
-    	selectSpecializedViewer(phase);
+    public void requestObjectsInViewer() {
+    	selectSpecializedViewer(currentPhase);
         switch (type) {
             case worldWindSessions: {
-
+            	buttonList = new ArrayList<JButton>();
                 getLayeredPane().setLayout(new FlowLayout());
 
                 for (AvesObject mo : avesObjects) {
@@ -222,7 +248,8 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
                 wwv.initComponents(dim);
                 getLayeredPane().setLayout(new java.awt.BorderLayout());
                 getLayeredPane().add(wwv, java.awt.BorderLayout.CENTER, new Integer(-1));// new Integer(0));
-                validate();
+//                validate();
+//                pack();
                 break;
             }
             case worldWindPlaces: {
@@ -237,6 +264,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
                 layer.setPickEnabled(true);
                 this.wwv.getwwPanel().addSelectListener(this);
                 this.wwv.getwwPanel().addKeyListener(this);
+//                this.wwv.getwwPanel().setFocusable(true);
                 this.wwv.getwwPanel().getModel().getLayers().add(0, layer);                
  
                 Iterator<JButton> jb = buttonList.iterator();
@@ -262,8 +290,6 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
                                  */
                                 if (first) {
                                     firstSpot = spot;
-
-
                                     first = false;
                                 }
                                 layer.addRenderable(spot);
@@ -305,7 +331,8 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
                             
                             //animationCtrl.startAnimation(2);
                             
-                            
+//                            validate();
+//                            pack();
                             break;
                     }
 
@@ -368,6 +395,8 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
                                     System.out.println("error opening DataViewer:" + ex);
                                  //   Logger.getLogger(AvesViewerImpl.class.getName()).log(Level.SEVERE, null, ex);
                                 }
+                                //validate(); //blacks out dataviewer??
+                                //pack(); //blacks out dataviewer??
                                 break;
                         }
                 }
@@ -442,7 +471,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
     private class NamedSpot extends PointPlacemark {
         
         String placeName;
-        String itemType = "spot";
+        EventItemType itemType = EventItemType.LOCATIONSPOT;
         LatLon spotPos;
         
         public NamedSpot(String name, LatLon latLon, Double diam) {
@@ -466,7 +495,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
             return placeName;
         }
         
-        public String getType() {
+        public EventItemType getType() {
             return itemType;
         }
         
@@ -525,14 +554,38 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
     public void keyPressed(KeyEvent ke) {
         int keyCode = ke.getKeyCode();
         System.out.println("key pressedin avasviewerimpl__:" + keyCode);
-    	selectedItemType = "key";
+//    	eventItemType = EventItemType.ESCKEY;
         if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) { //escape
             try {
             	System.out.println("escape AvesViewerImpl pressed:" + keyCode);
-            	keyEvent = ke;
+                System.out.println(currentPhase);
+                switch (currentPhase) {
+                case session:
+                	System.exit(0);
+                	break;
+                case LOCATIONS:
+                	eventItemType = EventItemType.ESCKEY;
+                	ve.viewerEvent();
+                	break;
+				default:
+					break;                	
+                }
+/*                if (currentPhase == Phase.session) {
+                	System.exit(0);
+                } else {
+                	eventItemType = EventItemType.ESCKEY;
+                	ve.viewerEvent();
+//                	removeAll();
+//                	revalidate();
+//                	repaint();
+                }*/
+//                dispose();
+                //invalidate();
+//                getLayeredPane().remove(wwv);
+//            	keyEvent = ke;
 /*                selectedItem = ae.getActionCommand();
-                selectedItemType = "sessionButton";*/
-                ve.viewerEvent();
+                eventItemType = "sessionButton";*/
+//                ve.viewerEvent();
 /*                ve.setPhase(Phase.session);
                 ve.produceAndShow(Phase.session);*/
 //                selectSpecializedViewer(ViewerType.worldWindSessions);

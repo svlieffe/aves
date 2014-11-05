@@ -28,7 +28,7 @@ public class FactoryImpl implements Factory {
     private ProductionMode productionMode;
     private String requestedItem;
     private AvesObjectType avesObjectType;
-    private ArrayList<AvesObject> listOfObjects = new ArrayList<AvesObject>();
+    private ArrayList<AvesObject> listOfObjects;
 
 
     /**
@@ -57,6 +57,7 @@ public class FactoryImpl implements Factory {
      * @param valueOfObjectToAdd 
      */
     private void addAvesSessionObject(AvesObjectType avesObjectType, String valueOfObjectToAdd) {
+//    	listOfObjects = new ArrayList<AvesObject>();
         AvesObjectImpl mo = new AvesObjectImpl();
         mo.setObjectType(avesObjectType);
         mo.addDataValue(valueOfObjectToAdd);
@@ -72,6 +73,7 @@ public class FactoryImpl implements Factory {
      * @param valueOfObjectToAdd 
      */
     private void addAvesDocumentObject(AvesObjectType avesObjectType, String typeOfObjectToAdd, String valueOfObjectToAdd) {
+//    	listOfObjects = new ArrayList<AvesObject>();
         ObjectDataType dataType = null;
         AvesObjectImpl mo = new AvesObjectImpl();
         mo.setObjectType(avesObjectType);
@@ -100,6 +102,7 @@ public class FactoryImpl implements Factory {
      * @param latitude 
      */
     private void addAvesLocationObject(AvesObjectType avesObjectType, String place, String longitude, String latitude) {
+//    	listOfObjects = new ArrayList<AvesObject>();
         ObjectDataType dataType = null;
         AvesObjectImpl mo = new AvesObjectImpl();
         mo.setObjectType(avesObjectType);
@@ -136,6 +139,7 @@ public class FactoryImpl implements Factory {
                 dr = new DataRetrieverImpl();
                 dr.setDataType(avesObjectType);
                 e = dr.getData().iterator();
+                listOfObjects = new ArrayList<AvesObject>();
                 while (e.hasNext()) {
                     session = e.next();
                     addAvesSessionObject(avesObjectType, session);
@@ -151,6 +155,7 @@ public class FactoryImpl implements Factory {
                 dr.setDataType(avesObjectType);
                 dr.setGroupName(requestedItem);
                 e = dr.getData().iterator();
+                listOfObjects = new ArrayList<AvesObject>();
                 while (e.hasNext()) {      
                     place = e.next();
                     longitude = e.next();
@@ -167,6 +172,7 @@ public class FactoryImpl implements Factory {
                 dr.setDataType(avesObjectType);
                 dr.setGroupName(requestedItem);
                 e = dr.getData().iterator();
+                listOfObjects = new ArrayList<AvesObject>();
                 while (e.hasNext()) {      
                     type = e.next();
                     uri = e.next();

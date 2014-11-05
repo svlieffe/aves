@@ -365,7 +365,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
         }
         if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) { //escape
             try {
-            	System.out.println("escape pressed");
+            	System.out.println("escape pressed in dataviewer");
             	//this is not an UPDATE, it ends the presentation
             	setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
                 ve.viewerEvent();

@@ -34,9 +34,8 @@ public interface AvesManager {
 
     /**
      * Sets the current {@link aves.dpt.intf.ctrl.AvesManager.Phase}
-     * based on the previous {@link aves.dpt.intf.ctrl.AvesManager.Phase}.
      */
-    void setPhase(Phase currentPhase);
+    void setPhase(Phase phase);
     
     /**
      * Consecutively calls {@link aves.dpt.intf.ctrl.AvesManager} methods: 
