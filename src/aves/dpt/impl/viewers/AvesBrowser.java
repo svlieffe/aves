@@ -75,7 +75,7 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
 //    InputStream contentStream = null;
     protected TextDecoder textDecoder = new BasicTextDecoder();
     protected String text;
-    protected static final String BROWSER_CONTENT_PATH = "AvesBrowserTest/BrowserBalloonExample.html";//gov/nasa/worldwindx/examples/DATA/BrowserBalloonExample.html";
+    protected static final String BROWSER_CONTENT_PATH = "AvesBrowserTest/BrowserBalloonExample.html";//gov/nasa/worldwindx/examples/DOCUMENTS/BrowserBalloonExample.html";
     Rectangle webViewRect;
     Rectangle screenRect;
     /**

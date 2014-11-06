@@ -60,7 +60,7 @@ public class AvesManagerImpl implements AvesManager, ViewerEvent, KeyListener {
         mv = new AvesViewerImpl(this);
 
         // the first phase is to show the sessions
-        this.setPhase(Phase.SESSIONS);
+        this.setPhase(Phase.JOURNEYS);
         this.requestShow(currentPhase);
 
         //        this.produceAndShow(currentPhase);
@@ -74,23 +74,23 @@ public class AvesManagerImpl implements AvesManager, ViewerEvent, KeyListener {
      */
     @Override
     public void viewerEvent() {
-//        currentPhase = Phase.SESSIONS;
+//        currentPhase = Phase.JOURNEYS;
 //        System.out.println("Phase I:" + currentPhase);
 //        callIsFromAvesViewer = true;
         mvSelected = mv.getSelectedItem();
         switch(mv.getSelectedItemType()) {
         case JOURNEYBUTTON:
             factory.setRequestedItem(mvSelected);
-            this.setPhase(Phase.LOCATIONS);
+            this.setPhase(Phase.PLACES);
         	break;
         case LOCATIONSPOT:
         	factory.setRequestedItem(mvSelected);
-            this.setPhase(Phase.DATA);
+            this.setPhase(Phase.DOCUMENTS);
         	break;
         case ESCKEY:
         	// dispose the AvesViewer JFrame and restart from scratch
         	mv.dispose();
-           	this.setPhase(Phase.SESSIONS);
+           	this.setPhase(Phase.JOURNEYS);
             mv = new AvesViewerImpl(this);
         	break;
         default:
@@ -101,13 +101,13 @@ public class AvesManagerImpl implements AvesManager, ViewerEvent, KeyListener {
         System.out.println("Manager receives:" + mvSelected);
         System.out.println("Manager receives type:" + mvSelectedType);
         if ("spot".equals(mvSelectedType)) {
-            currentPhase = Phase.LOCATIONS;
+            currentPhase = Phase.PLACES;
         }
         if (currentPhase != null) {
             this.setPhase(currentPhase);
         }
         if(mvSelectedType == "key") {
-           	this.setPhase(Phase.SESSIONS);
+           	this.setPhase(Phase.JOURNEYS);
         }*/
     }
 
@@ -149,31 +149,31 @@ public class AvesManagerImpl implements AvesManager, ViewerEvent, KeyListener {
         mv.requestObjectsInViewer();
 
 /*        switch (phase) {
-        case SESSIONS:
+        case JOURNEYS:
             if (callIsFromAvesViewer) {// && mvSelectedType == "sessionButton") {
                 factory.setRequestedItem(mvSelected);
-                phase = Phase.LOCATIONS;
-                System.out.println("from SESSIONS to LOCATIONS phase");
+                phase = Phase.PLACES;
+                System.out.println("from JOURNEYS to PLACES phase");
                 callIsFromAvesViewer = false;
             } else {
-                phase = Phase.SESSIONS;                	
+                phase = Phase.JOURNEYS;                	
             }
             break;
-        case LOCATIONS:
+        case PLACES:
             if (callIsFromAvesViewer && mvSelectedType == "key") {
 //              factory.setRequestedItem(mvSelected);
-              phase = Phase.SESSIONS;
-              System.out.println("from LOCATIONS to sesion phase");
+              phase = Phase.JOURNEYS;
+              System.out.println("from PLACES to sesion phase");
               callIsFromAvesViewer = false;
           } else {
         	  factory.setRequestedItem(mvSelected);
-        	  System.out.println("from LOCATIONS to DATA phase");
-        	  phase = Phase.DATA;
+        	  System.out.println("from PLACES to DOCUMENTS phase");
+        	  phase = Phase.DOCUMENTS;
           }
             break;
-        case DATA:
-            System.out.println("from DATA to LOCATIONS phase");
-            phase = Phase.LOCATIONS;
+        case DOCUMENTS:
+            System.out.println("from DOCUMENTS to PLACES phase");
+            phase = Phase.PLACES;
             break;
         default:
         	break;
@@ -186,16 +186,16 @@ public class AvesManagerImpl implements AvesManager, ViewerEvent, KeyListener {
      */
     public void makeObjectsInFactory(Phase currentPhase) {
         //creates a FactoryImpl that maintains a list of AvesObjects
-        //AvesObjects are of a certain type (SESSIONS, place, document)
+        //AvesObjects are of a certain type (JOURNEYS, place, document)
         switch (currentPhase) {
-            case SESSIONS:   //request FactoryImpl to maintain list of sessions
+            case JOURNEYS:   //request FactoryImpl to maintain list of sessions
                 mode = ProductionMode.SESSIONSMODE;
                 break;
-            case LOCATIONS:     //request FactoryImpl to maintain list of locations
-                //for a specific SESSIONS
+            case PLACES:     //request FactoryImpl to maintain list of locations
+                //for a specific JOURNEYS
                 mode = ProductionMode.LOCATIONSMODE;
                 break;
-            case DATA:      //request FactoryImpl to maintain list of Data 
+            case DOCUMENTS:      //request FactoryImpl to maintain list of Data 
                 //for a specific location
                 mode = ProductionMode.DATAMODE;
                 break;

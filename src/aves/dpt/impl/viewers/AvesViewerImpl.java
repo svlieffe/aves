@@ -129,7 +129,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
     			break;
     		case ENDSHOW:
     			this.closeDataViewer();
-    			setCurrentPhase(Phase.LOCATIONS);
+    			setCurrentPhase(Phase.PLACES);
     		default:
     			break;    		
     	}
@@ -142,12 +142,12 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
      */
 	@Override
     public void actionPerformed(ActionEvent ae) {
-        // SESSIONS selection takes place once only //20141104 removed restriction because this is deprecated
+        // JOURNEYS selection takes place once only //20141104 removed restriction because this is deprecated
     	System.out.println("action performered button clicker");
 //        if (count == 0) {
             //JButton source = (JButton) ae.getSource();
             //selectedSession = source.getText();
-    		setCurrentPhase(Phase.LOCATIONS);
+    		setCurrentPhase(Phase.PLACES);
             selectedItem = ae.getActionCommand();
             eventItemType = EventItemType.JOURNEYBUTTON;
             ve.viewerEvent();
@@ -198,13 +198,13 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
      */
     public void selectSpecializedViewer(Phase phase) {
         switch (phase) {
-        	case SESSIONS: 
+        	case JOURNEYS: 
         		type = ViewerType.worldWindSessions;
         		break;
-        	case LOCATIONS:
+        	case PLACES:
         		type = ViewerType.worldWindPlaces;
         		break;
-        	case DATA:
+        	case DOCUMENTS:
         		type = ViewerType.dataViewer;
         		break;
         }
@@ -230,7 +230,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
                     ArrayList<String> values = new ArrayList<String>();
                     values = (ArrayList) mo.getDataValues();
                     switch (objectType) {
-                        case sessionObject:
+                        case JOURNEYS:
                             for (String vi : values) {
                                 JButton button;
                                 button = new JButton(vi);
@@ -278,7 +278,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
                     ArrayList<String> values = new ArrayList<String>();
                     values = (ArrayList) mo.getDataValues();
                     switch (objectType) {
-                        case placeObject:
+                        case PLACES:
                             Iterator vi = values.iterator();
                             while (vi.hasNext()) {
                                 spotName = (String) vi.next();
@@ -340,11 +340,11 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
                 break;
             }
             case dataViewer: {
-                AvesObjectType objectType = AvesObjectType.documentObject;
+                AvesObjectType objectType = AvesObjectType.DOCUMENTS;
                 switch (objectType) { //this switch is unused but can be used for other types than documents (?)
-                    case documentObject:
+                    case DOCUMENTS:
                         switch (objectType) {
-                            case documentObject:
+                            case DOCUMENTS:
                                 //wwv.setVisible(false);
                                 this.getLayeredPane().moveToBack(wwv);
                                 dv = new DataViewerImpl(this);
@@ -433,7 +433,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
             this.setVisible(true);
         }
         
-//        ve.setPhase(Phase.LOCATIONS);
+//        ve.setPhase(Phase.PLACES);
   
     }
    
@@ -560,17 +560,17 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
             	System.out.println("escape AvesViewerImpl pressed:" + keyCode);
                 System.out.println(currentPhase);
                 switch (currentPhase) {
-                case SESSIONS:
+                case JOURNEYS:
                 	System.exit(0);
                 	break;
-                case LOCATIONS:
+                case PLACES:
                 	eventItemType = EventItemType.ESCKEY;
                 	ve.viewerEvent();
                 	break;
 				default:
 					break;                	
                 }
-/*                if (currentPhase == Phase.SESSIONS) {
+/*                if (currentPhase == Phase.JOURNEYS) {
                 	System.exit(0);
                 } else {
                 	eventItemType = EventItemType.ESCKEY;
@@ -586,8 +586,8 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
 /*                selectedItem = ae.getActionCommand();
                 eventItemType = "sessionButton";*/
 //                ve.viewerEvent();
-/*                ve.setPhase(Phase.SESSIONS);
-                ve.produceAndShow(Phase.SESSIONS);*/
+/*                ve.setPhase(Phase.JOURNEYS);
+                ve.produceAndShow(Phase.JOURNEYS);*/
 //                selectSpecializedViewer(ViewerType.worldWindSessions);
 //                runSpecializedViewers();
             } catch (Exception e) {

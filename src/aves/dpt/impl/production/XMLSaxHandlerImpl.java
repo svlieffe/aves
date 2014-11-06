@@ -41,15 +41,15 @@ public class XMLSaxHandlerImpl extends DefaultHandler {
             String qName, Attributes attrs) throws SAXException {
 
         switch (type) {
-            case sessionObject:
-                if (qName.equals("session")) {
+            case JOURNEYS:
+                if (qName.equals("journey")) {
                     dataList.add(attrs.getValue("date"));
                 } else {
                     break;
                 }
                 break;
-            case placeObject:
-                if (qName.equals("session")) // && sessionDate.equals(group)) {
+            case PLACES:
+                if (qName.equals("journey")) // && sessionDate.equals(group)) {
                 {
                     sessionDate = attrs.getValue("date");
                 }
@@ -65,7 +65,7 @@ public class XMLSaxHandlerImpl extends DefaultHandler {
                 }
 
                 break;
-            case documentObject:
+            case DOCUMENTS:
                 if (qName.equals("place")) {
                     placeName = attrs.getValue("name");
                 }

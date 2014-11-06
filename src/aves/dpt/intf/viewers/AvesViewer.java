@@ -86,7 +86,7 @@ public interface AvesViewer{
     
      /**
      * TBI
-     * Creates a LOCATIONS based on the list of locations.
+     * Creates a PLACES based on the list of locations.
      * returns a List of objects extending or implementing {@link gov.nasa.worldwind.geom.LatLon} 
      */
     List<? extends LatLon> makeRoute();

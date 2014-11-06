@@ -1,6 +1,6 @@
 package aves.dpt.impl.viewers;
 
-//TODO add button to close DATA viewer
+//TODO add button to close DOCUMENTS viewer
 
 import javax.swing.JPanel;
 
@@ -32,7 +32,7 @@ import java.awt.Toolkit;
 /**
  *
  * Implements the {@link aves.dpt.intf.viewers.DataViewer}. 
- * The current implementation is ready to display DATA based on the 
+ * The current implementation is ready to display DOCUMENTS based on the 
  * {@link aves.dpt.intf.production.AvesObject.ObjectDataType}
  * but can actually only handle to display images as a slide show by using a 
  * {@link aves.dpt.intf.viewers.ImageViewer}.
@@ -108,13 +108,13 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
     public void setViewerType(ObjectDataType objectType) {
         
         switch (objectType) {
-            case text:
+//            case text:
                 //if (imV != null)
                 //    remove(imV);
                 //if (webV != null)
                 //    remove(webV);
-                type = DataViewerType.textViewer;
-                break;
+//                type = DataViewerType.textViewer;
+//                break;
             case image:
                 //if (txtV != null
                 //    remove(txtV);
@@ -253,7 +253,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
                     break;                   
             }
         } catch (Exception e) {
-            throw new DataNotFoundException("Error showing DATA: ");
+            throw new DataNotFoundException("Error showing DOCUMENTS: ");
         }
     }
    

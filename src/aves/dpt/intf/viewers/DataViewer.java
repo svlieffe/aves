@@ -11,9 +11,9 @@ import aves.dpt.intf.production.AvesObject.ObjectDataType;
 
 /**
  * 
- * A basic interface for a viewer specialized in displaying DATA. Classes implementing
+ * A basic interface for a viewer specialized in displaying DOCUMENTS. Classes implementing
  * this interface can be called by a {@link aves.dpt.intf.viewers.AvesViewer}
- * to display different types of DATA.
+ * to display different types of DOCUMENTS.
  *
  * <p> 
  * @author stefaanvanliefferinge
@@ -45,7 +45,7 @@ public interface DataViewer {
     
     /**
      * Sets the list of {@link aves.dpt.intf.production.AvesObject}
-     * DATA to display in the show.
+     * DOCUMENTS to display in the show.
      * 
      * @param avesObjects 
      */

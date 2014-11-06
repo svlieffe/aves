@@ -56,7 +56,7 @@ public class WebViewerImpl extends JPanel implements WebViewer { //, KeyListener
 
     URI uri;
     Dimension dim;
-    protected static final String BROWSER_CONTENT_PATH = "DATA/BrowserBalloonExampleMurray.html";//gov/nasa/worldwindx/examples/DATA/BrowserBalloonExample.html";
+    protected static final String BROWSER_CONTENT_PATH = "DOCUMENTS/BrowserBalloonExampleMurray.html";//gov/nasa/worldwindx/examples/DOCUMENTS/BrowserBalloonExample.html";
     // debug Class thisClass;
     String htmlString = null;
     InputStream contentStream = null;

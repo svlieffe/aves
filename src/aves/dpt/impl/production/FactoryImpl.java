@@ -77,12 +77,12 @@ public class FactoryImpl implements Factory {
         ObjectDataType dataType = null;
         AvesObjectImpl mo = new AvesObjectImpl();
         mo.setObjectType(avesObjectType);
-        if ("txt".equals(typeOfObjectToAdd)) {
-            dataType = ObjectDataType.text;
-        } else if ("img".equals(typeOfObjectToAdd)){
-            dataType = ObjectDataType.image;
+        if ("img".equals(typeOfObjectToAdd)) {
+        	dataType = ObjectDataType.image;
         } else if ("web".equals(typeOfObjectToAdd)){
-            dataType = ObjectDataType.web;
+        	dataType = ObjectDataType.web;
+//        } else if ("txt".equals(typeOfObjectToAdd)){
+//        	dataType = ObjectDataType.text;
         } else {
             System.out.println("Unknown object type");
         }
@@ -134,7 +134,7 @@ public class FactoryImpl implements Factory {
 
         switch (productionMode) {
             case SESSIONSMODE:
-                avesObjectType = AvesObjectType.sessionObject;
+                avesObjectType = AvesObjectType.JOURNEYS;
                 String session;
                 dr = new DataRetrieverImpl();
                 dr.setDataType(avesObjectType);
@@ -150,7 +150,7 @@ public class FactoryImpl implements Factory {
                 String longitude;
                 String latitude;
                 listOfObjects.clear();
-                avesObjectType = AvesObjectType.placeObject;
+                avesObjectType = AvesObjectType.PLACES;
                 dr = new DataRetrieverImpl();
                 dr.setDataType(avesObjectType);
                 dr.setGroupName(requestedItem);
@@ -167,7 +167,7 @@ public class FactoryImpl implements Factory {
                 String uri;
                 String type;
                 listOfObjects.clear();
-                avesObjectType = AvesObjectType.documentObject;
+                avesObjectType = AvesObjectType.DOCUMENTS;
                 dr = new DataRetrieverImpl();
                 dr.setDataType(avesObjectType);
                 dr.setGroupName(requestedItem);

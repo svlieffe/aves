@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : avesJourneysc.xml
+    Document   : avesJourneys.xml
     Created on : March 30, 2012, 11:02 AM
     Author     : svlieffe
     Description:
         Purpose of the document follows.
         
-        TODO different sessions with same place name
+        TODO different journeys with same place name
         TODO need for switch between type="img" and type="txt"
         TODO need to write schema to validate XML
 -->
 
 <root>
-    <session date="North America 04/03/2013">
+    <journey date="North America 04/03/2013">
         <place name="New York" latitude="40.67" longitude="-73.94">
             <document type="web" uri="./Journeys/FirstJourney/NewYork/Aves.html"></document>
         </place>
-    </session>
-    <session date="Europe I 04/05/2013">
+    </journey>
+    <journey date="Europe I 04/05/2013">
         <place name="London" latitude="51.507222" longitude="-0.1275">
         </place>
         <place name="Canterbury" latitude="51.276681" longitude="1.074767">
@@ -38,10 +38,10 @@
         </place>
         <place name="Clermont-Ferrand" latitude="45.7831" longitude="3.0824">
         </place>
-    </session>
-    <session date="Europe II 11/02/2013">
+    </journey>
+    <journey date="Europe II 11/02/2013">
         <place name="Chartres" latitude="48.4558" longitude="1.4842">
             <document type="web" uri="./Journeys/ThirdJourney/Chartres/MTDavisChartres.html"></document>
         </place>
-    </session>
+    </journey>
 </root>

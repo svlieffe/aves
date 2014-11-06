@@ -9,8 +9,8 @@ import java.util.List;
 import aves.dpt.intf.production.AvesObject.AvesObjectType;
 
 /**
- * Classes implementing this interface extract the source DATA 
- * in the {@link src/main/resource/DATA/avesdatasrc.xml} for the 
+ * Classes implementing this interface extract the source DOCUMENTS 
+ * in the {@link src/main/resource/DOCUMENTS/avesdatasrc.xml} for the 
  * {@link aves.dpt.intf.production.Factory} that 
  * manages how {@link aves.dpt.intf.production.AvesObject}s
  *  are added to the list that is returned to the 
@@ -23,13 +23,13 @@ public interface DataRetriever {
     
     /**
      * Sets the {@link aves.dpt.intf.production.AvesObject.AvesObjectType}
-     * of DATA to retrieve
+     * of DOCUMENTS to retrieve
      * @param avesObjectType 
      */
     void setDataType(AvesObjectType avesObjectType);
     
     /**
-     * sets the name of the dataset to be retrieved from the DATA source file.
+     * sets the name of the dataset to be retrieved from the DOCUMENTS source file.
      * This name is requested by the user selecting an object in the 
      * {@link aves.dpt.intf.viewers.AvesViewer}.
      * 
@@ -38,7 +38,7 @@ public interface DataRetriever {
     public void setGroupName(String name);
    
     /** 
-     * gets the DATA from the DATA source
+     * gets the DOCUMENTS from the DOCUMENTS source
      * @return 
      */
     List<String> getData();
