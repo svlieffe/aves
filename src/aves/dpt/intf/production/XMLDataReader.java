@@ -17,7 +17,7 @@ import aves.dpt.intf.production.AvesObject.AvesObjectType;
 public interface XMLDataReader {
     
     /**
-     * sets the session or place to which the
+     * sets the SESSIONS or place to which the
      * retrieved XML items belong
      * @param itemGroupName 
      */

@@ -7,7 +7,7 @@ package aves.dpt.intf.production;
 import java.util.List;
 
 /**
- * Interface defining the type of the objects presented in a Aves session. Classes 
+ * Interface defining the type of the objects presented in a Aves SESSIONS. Classes 
  * implementing this interface can be be rendered in a 
  * {@link aves.dpt.intf.viewers.DataViewer}.
  * 
@@ -19,7 +19,7 @@ public interface AvesObject {
     /**
      * Defines objects depending on the 
      * {@link aves.dpt.intf.ctrl.AvesManager.Phase} 
-     * when it will be used during a Aves session.
+     * when it will be used during a Aves SESSIONS.
      */
     enum AvesObjectType{sessionObject, placeObject, documentObject}
     

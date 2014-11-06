@@ -142,7 +142,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
      */
 	@Override
     public void actionPerformed(ActionEvent ae) {
-        // session selection takes place once only //20141104 removed restriction because this is deprecated
+        // SESSIONS selection takes place once only //20141104 removed restriction because this is deprecated
     	System.out.println("action performered button clicker");
 //        if (count == 0) {
             //JButton source = (JButton) ae.getSource();
@@ -198,7 +198,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
      */
     public void selectSpecializedViewer(Phase phase) {
         switch (phase) {
-        	case session: 
+        	case SESSIONS: 
         		type = ViewerType.worldWindSessions;
         		break;
         	case LOCATIONS:
@@ -560,7 +560,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
             	System.out.println("escape AvesViewerImpl pressed:" + keyCode);
                 System.out.println(currentPhase);
                 switch (currentPhase) {
-                case session:
+                case SESSIONS:
                 	System.exit(0);
                 	break;
                 case LOCATIONS:
@@ -570,7 +570,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
 				default:
 					break;                	
                 }
-/*                if (currentPhase == Phase.session) {
+/*                if (currentPhase == Phase.SESSIONS) {
                 	System.exit(0);
                 } else {
                 	eventItemType = EventItemType.ESCKEY;
@@ -586,8 +586,8 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
 /*                selectedItem = ae.getActionCommand();
                 eventItemType = "sessionButton";*/
 //                ve.viewerEvent();
-/*                ve.setPhase(Phase.session);
-                ve.produceAndShow(Phase.session);*/
+/*                ve.setPhase(Phase.SESSIONS);
+                ve.produceAndShow(Phase.SESSIONS);*/
 //                selectSpecializedViewer(ViewerType.worldWindSessions);
 //                runSpecializedViewers();
             } catch (Exception e) {

@@ -13,7 +13,7 @@ import aves.dpt.intf.production.AvesObject;
  * This interface controls the principal functionalities 
  * of Aves application. Classes that implement this interface keep track of the 
  * current {@link aves.dpt.intf.ctrl.AvesManager.Phase} of the 
- * session in order to manage the 
+ * SESSIONS in order to manage the 
  * production of DATA ({@link aves.dpt.intf.production.AvesObject}) 
  * in the {@link aves.dpt.intf.production.Factory} and 
  * to organize the sequence in which the {@link aves.dpt.intf.viewers.AvesViewer}
@@ -25,10 +25,10 @@ import aves.dpt.intf.production.AvesObject;
 public interface AvesManager {
 
     /**
-     * Different phases in a Aves session
+     * Different phases in a Aves SESSIONS
      */
     enum Phase {
-        session, LOCATIONS, DATA
+        SESSIONS, LOCATIONS, DATA
     };
     
 
