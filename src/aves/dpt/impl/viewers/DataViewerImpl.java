@@ -44,7 +44,7 @@ import java.awt.Toolkit;
  * <p>
  * @author svlieffe
  */
-public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
+public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListener {
     
     private DataViewerType type;
     private DataViewerEvent dataViewerEvent;
@@ -68,8 +68,8 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
     	this.avesViewer = avesViewer;
         //set most frequent event
         setEvent(DataViewerEvent.UPDATE);
-        addKeyListener(this);
-        setFocusable(true);
+//        addKeyListener(this);
+//        setFocusable(true);
         setLayout(new GridBagLayout());
 
                     //        setLayout(new java.awt.BorderLayout());
@@ -354,7 +354,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
      * Left and right arrow to navigate forward and backward. Escape key to return to general view.
      * <p>
      */
-    public void keyPressed(KeyEvent ke) {
+/*    public void keyPressed(KeyEvent ke) {
         int keyCode = ke.getKeyCode();
         System.out.println("key pressedin dataviewr:" + keyCode);
         if (keyCode == java.awt.event.KeyEvent.VK_RIGHT) { //right arrow
@@ -381,7 +381,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
                 
             }     
         }
-    }
+    }*/
 
     /**
      * {@inheritDoc }

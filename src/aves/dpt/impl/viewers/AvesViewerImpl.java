@@ -17,6 +17,7 @@ import aves.dpt.intf.production.AvesObject.AvesObjectType;
 import aves.dpt.intf.viewers.AvesViewer;
 //import aves.dpt.intf.viewers.DataViewer.DataViewerEvent;
 import aves.dpt.intf.viewers.AvesViewer.EventItemType;
+import aves.dpt.intf.viewers.DataViewer.DataViewerEvent;
 import aves.dpt.intf.ctrl.AvesEventManager;
 import aves.dpt.intf.viewers.AvesViewer.ViewerType;
 import aves.dpt.intf.ctrl.*;
@@ -410,7 +411,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                                 //getLayeredPane().setLayout(new java.awt.FlowLayout());
                                 //getLayeredPane().add(dv, java.awt.FlowLayout.LEFT);
                                 getLayeredPane().add(dv, java.awt.BorderLayout.CENTER, new Integer(300));
-                                dv.requestFocusInWindow();                                
+//                                dv.requestFocusInWindow();                                
                                 this.getLayeredPane().moveToFront(dv);
                                 dv.setSize(new Dimension(this.getWidth(), this.getHeight()));
                                 dv.setOpaque(true);
@@ -581,6 +582,20 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
         int keyCode = ke.getKeyCode();
         System.out.println("key pressedin avasviewerimpl__:" + keyCode);
 //    	eventItemType = EventItemType.ESCKEY;
+        if (keyCode == java.awt.event.KeyEvent.VK_RIGHT) { //right arrow
+            try {
+                dv.displayNext();
+            } catch (Exception e) {
+                
+            }     
+        }
+        if (keyCode == java.awt.event.KeyEvent.VK_LEFT) { //left arrow
+            try {
+                dv.displayPrev();
+            } catch (Exception e) {
+                
+            }     
+        }
         if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) { //escape
             try {
             	System.out.println("escape AvesViewerImpl pressed:" + keyCode);
@@ -593,6 +608,10 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                 	eventItemType = EventItemType.ESCKEY;
                 	avesManager.avesViewerEvent();
                 	break;
+                case DOCUMENTS:
+                	closeDataViewer();
+                	dv.setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
+                    this.dataViewerEvent();                	
 				default:
 					break;                	
                 }
