@@ -7,14 +7,22 @@ import java.util.ArrayList;
 
 
 
+
+
+
+
 import aves.dpt.impl.production.FactoryImpl;
 import aves.dpt.impl.viewers.AvesViewerImpl;
 import aves.dpt.intf.ctrl.AvesManager;
 import aves.dpt.intf.ctrl.AvesManager.Phase;
+import aves.dpt.intf.ctrl.AvesEventManager;
 import aves.dpt.intf.production.AvesObject;
 import aves.dpt.intf.production.Factory.ProductionMode;
-import aves.dpt.intf.viewers.ViewerEvent;
 import aves.dpt.intf.viewers.AvesViewer.ViewerType;
+
+
+
+
 
 
 
@@ -39,7 +47,7 @@ import java.util.List;
  * 
  * @version $Id: AvesManagerImpl.java,v 649d54af3d47 2012/03/29 17:18:33 svlieffe $
  */
-public class AvesManagerImpl implements AvesManager, ViewerEvent, KeyListener {
+public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListener {
 //  System.exit(0);
 
     private AvesViewerImpl mv;//
@@ -67,13 +75,44 @@ public class AvesManagerImpl implements AvesManager, ViewerEvent, KeyListener {
         
     }
 
+    /*	
+    section to manage events
+    *
+    **/
+
+    /**
+     * {@inheritDoc }
+     * <p>
+     * unused 
+     */
+    @Override
+	public Object getAvesEventSubject() {
+		return null;
+	}
+	
+    /**
+     * {@inheritDoc }
+     * <p>
+     * unused 
+     */
+    @Override
+	public void setAvesEventSubject(Object subject){ }
+	
+    /**
+     * {@inheritDoc }
+     * <p>
+     * unused 
+     */
+    @Override
+    public void dataViewerEvent() { }
+
     /**
      * {@inheritDoc }
      * <p>
      *  
      */
     @Override
-    public void viewerEvent() {
+    public void avesViewerEvent() {
 //        currentPhase = Phase.JOURNEYS;
 //        System.out.println("Phase I:" + currentPhase);
 //        callIsFromAvesViewer = true;

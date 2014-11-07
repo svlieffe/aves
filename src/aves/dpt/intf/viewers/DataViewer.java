@@ -23,7 +23,7 @@ public interface DataViewer {
    
     enum DataViewerType {
 
-        textViewer, imageViewer, webViewer;
+        imageViewer, webViewer;
     }
     
     enum DataViewerEvent {

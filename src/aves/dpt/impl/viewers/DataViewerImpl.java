@@ -16,11 +16,11 @@ import java.util.Iterator;
 import java.awt.event.*;
 
 import aves.dpt.impl.production.AvesObjectImpl;
+import aves.dpt.intf.ctrl.AvesEventManager;
 import aves.dpt.intf.production.AvesObject.ObjectDataType;
 import aves.dpt.intf.viewers.DataNotFoundException;
 import aves.dpt.intf.viewers.DataViewer;
 import aves.dpt.intf.viewers.DisplaySlideException;
-import aves.dpt.intf.viewers.ViewerEvent;
 
 import java.io.IOException;
 import java.awt.GridBagLayout;
@@ -47,6 +47,7 @@ import java.awt.Toolkit;
 public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
     
     private DataViewerType type;
+    private DataViewerEvent dataViewerEvent;
     private ImageViewerImpl imV;
     private WebViewerImpl webV;
     private GridBagConstraints gbc;
@@ -57,15 +58,14 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
     private ListIterator<AvesObjectImpl> mOIt;
     private List<String> values = new ArrayList<String>();
     private Iterator<String> s;
-    private ViewerEvent ve;
-    private DataViewerEvent viewerEvent;
+    private AvesEventManager avesViewer;
     boolean last = false;
     boolean firstIm = true;
     boolean movingBackwards = false;
     
-    public DataViewerImpl(ViewerEvent viewerEvent) {
+    public DataViewerImpl(AvesEventManager avesViewer) {
         
-        ve = viewerEvent;
+    	this.avesViewer = avesViewer;
         //set most frequent event
         setEvent(DataViewerEvent.UPDATE);
         addKeyListener(this);
@@ -75,18 +75,29 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
                     //        setLayout(new java.awt.BorderLayout());
 
     }
+
+    
+    /*	
+    section to manage events
+    *
+    **/    
     
     /**
      * {@inheritDoc }
      * 
     */
-    
+    @Override
     public void setEvent(DataViewerEvent event) {
-    	viewerEvent = event;
+    	dataViewerEvent = event;
     }
     
+    /**
+     * {@inheritDoc }
+     * 
+    */
+    @Override
     public DataViewerEvent getEvent() {
-    	return viewerEvent;
+    	return dataViewerEvent;
     }
     
     /**
@@ -141,7 +152,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
                     gbc.insets = new Insets( - this.getHeight(), - this.getWidth(), 0, 0);
                     }
                     add(imV, gbc);
-                    ve.viewerEvent();
+                    avesViewer.dataViewerEvent();
                     
                     System.out.println("dataviewe width post validate: " + this.getWidth());
                     System.out.println("dataVieweHeight: " + this.getHeight());
@@ -169,7 +180,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
                 c.insets = new Insets(-this.getHeight(), -this.getWidth(), 0, 0);
                 add(webV, c);
 
-                ve.viewerEvent();
+                avesViewer.dataViewerEvent();
 
                 System.out.println("dataviewer uri width post validate: " + this.getWidth());
                 System.out.println("dataVieweHeight: " + this.getHeight());
@@ -199,7 +210,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
             } else {
             	// this is not an UPDATE, it ends the presentation
                 setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
-                ve.viewerEvent();
+                avesViewer.dataViewerEvent();
             }
         } catch (Exception e) {
             throw new DisplaySlideException("Error displaying slide: ");
@@ -226,7 +237,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
             } else {
             	//this is not an UPDATE, it ends the presentaion
             	setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
-                ve.viewerEvent();
+                avesViewer.dataViewerEvent();
             }
         } catch (Exception e) {
             throw new DisplaySlideException("Error displaying slide: ");
@@ -240,9 +251,6 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
     public void showData() throws DataNotFoundException {
         try {
             switch (type) {
-                case textViewer:
-                    //TBI
-                    break;
                 case imageViewer:
                     if (bi != null)
                         bi.flush();
@@ -368,7 +376,7 @@ public class DataViewerImpl extends JPanel implements DataViewer, KeyListener {
             	System.out.println("escape pressed in dataviewer");
             	//this is not an UPDATE, it ends the presentation
             	setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
-                ve.viewerEvent();
+                avesViewer.dataViewerEvent();
             } catch (Exception e) {
                 
             }     

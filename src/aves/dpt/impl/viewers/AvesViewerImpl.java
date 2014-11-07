@@ -15,9 +15,9 @@ import aves.dpt.impl.production.AvesObjectImpl;
 import aves.dpt.intf.production.AvesObject;
 import aves.dpt.intf.production.AvesObject.AvesObjectType;
 import aves.dpt.intf.viewers.AvesViewer;
-import aves.dpt.intf.viewers.DataViewer.DataViewerEvent;
-import aves.dpt.intf.viewers.ViewerEvent;
+//import aves.dpt.intf.viewers.DataViewer.DataViewerEvent;
 import aves.dpt.intf.viewers.AvesViewer.EventItemType;
+import aves.dpt.intf.ctrl.AvesEventManager;
 import aves.dpt.intf.viewers.AvesViewer.ViewerType;
 import aves.dpt.intf.ctrl.*;
 import aves.dpt.intf.ctrl.AvesManager.Phase;
@@ -66,7 +66,7 @@ import javax.swing.JPanel;
  * 
  * @version $Id: AvesViewerImpl.java,v a1656ba63334 2012/03/31 20:52:12 svlieffe $
  */
-public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener, SelectListener, ViewerEvent, KeyListener  {
+public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManager, ActionListener, SelectListener, KeyListener  {
 
 	private ViewerType type;
     private GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -81,7 +81,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
     private String selectedItem;
     private EventItemType eventItemType;
     private KeyEvent keyEvent;
-    private ViewerEvent ve;
+    private AvesEventManager avesManager;
     private Integer count = 0;
     private WorldWindViewerImpl wwv;
     private DataViewerImpl dv;
@@ -89,8 +89,8 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
     private Phase currentPhase;
 //    private AvesManager parent;
    
-    public AvesViewerImpl(ViewerEvent event) {
-        ve = event;
+    public AvesViewerImpl(AvesEventManager avesManager) {
+    	this.avesManager = avesManager;
         borderFraction = 10;
         addKeyListener(this);
         setFocusable(true);
@@ -119,10 +119,36 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
     /**
      * {@inheritDoc }
      * <p>
+     * unused 
+     */
+    @Override
+	public Object getAvesEventSubject() {
+		return null;
+	}
+	
+    /**
+     * {@inheritDoc }
+     * <p>
+     * unused 
+     */
+    @Override
+	public void setAvesEventSubject(Object subject){ }
+	
+    /**
+     * {@inheritDoc }
+     * <p>
+     * unused 
+     */
+    @Override
+    public void avesViewerEvent() { }
+
+    /**
+     * {@inheritDoc }
+     * <p>
      *  
      */
     @Override
-    public void viewerEvent() {
+    public void dataViewerEvent() {
     	switch(dv.getEvent()) {
     		case UPDATE:
     			this.validate();
@@ -143,14 +169,14 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
 	@Override
     public void actionPerformed(ActionEvent ae) {
         // JOURNEYS selection takes place once only //20141104 removed restriction because this is deprecated
-    	System.out.println("action performered button clicker");
+    	System.out.println("action performed button clicked in Avesviewer");
 //        if (count == 0) {
             //JButton source = (JButton) ae.getSource();
             //selectedSession = source.getText();
-    		setCurrentPhase(Phase.PLACES);
             selectedItem = ae.getActionCommand();
             eventItemType = EventItemType.JOURNEYBUTTON;
-            ve.viewerEvent();
+            avesManager.avesViewerEvent();
+    		setCurrentPhase(Phase.PLACES);
 //            count = 1;
 //        }
         
@@ -170,7 +196,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
                 System.out.println(selected.getName());
                 selectedItem = selected.getName();
                 eventItemType = selected.getType();
-                ve.viewerEvent();
+                avesManager.avesViewerEvent();
                 //NamedSpot spotName = (NamedSpot) e.getSource();
                 //System.out.println(spotName.getName());
            } else {
@@ -565,7 +591,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, ActionListener
                 	break;
                 case PLACES:
                 	eventItemType = EventItemType.ESCKEY;
-                	ve.viewerEvent();
+                	avesManager.avesViewerEvent();
                 	break;
 				default:
 					break;                	

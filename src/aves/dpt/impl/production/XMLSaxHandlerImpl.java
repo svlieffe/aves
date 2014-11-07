@@ -21,7 +21,7 @@ public class XMLSaxHandlerImpl extends DefaultHandler {
     
     private AvesObjectType type;
     private String group;
-    private String sessionDate = "";
+    private String journeyDate = "";
     private String placeName = "";
     private ArrayList<String> dataList = new ArrayList<String>();
 
@@ -49,11 +49,11 @@ public class XMLSaxHandlerImpl extends DefaultHandler {
                 }
                 break;
             case PLACES:
-                if (qName.equals("journey")) // && sessionDate.equals(group)) {
+                if (qName.equals("journey")) // && journeyDate.equals(group)) {
                 {
-                    sessionDate = attrs.getValue("date");
+                    journeyDate = attrs.getValue("date");
                 }
-                if (sessionDate.equals(group)) {
+                if (journeyDate.equals(group)) {
                     if (qName.equals("place")) {
                         dataList.add(attrs.getValue("name"));
                         dataList.add(attrs.getValue("latitude"));
