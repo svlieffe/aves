@@ -205,7 +205,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
             }
         }
     }
-    
+
     public String getSelectedItem() {
         return selectedItem;
     }
@@ -299,7 +299,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                     getLayeredPane().remove(jb.next());
                 }
 
-                boolean first = true;
+                boolean firstspt = true;
                 for (AvesObject mo : avesObjects) {
                     AvesObjectType objectType = mo.getObjectType();
                     ArrayList<String> values = new ArrayList<String>();
@@ -315,9 +315,9 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
  /*                               spot.setAttributes(attrs);
                                 layer.addRenderable(spot);
                                  */
-                                if (first) {
+                                if (firstspt) {
                                     firstSpot = spot;
-                                    first = false;
+                                    firstspt = false;
                                 }
                                 layer.addRenderable(spot);
 
@@ -358,12 +358,14 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                             
                             //animationCtrl.startAnimation(2);
                             
-//                            validate();
-//                            pack();
+                            //to handle event through AvesViewer
+                            requestFocusInWindow();                                
+
+                            //validate();
+                            //pack();
                             break;
                     }
-
-                    }
+                }
                 break;
             }
             case dataViewer: {
