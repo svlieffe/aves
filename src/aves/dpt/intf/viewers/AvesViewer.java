@@ -4,6 +4,8 @@
  */
 package aves.dpt.intf.viewers;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 import gov.nasa.worldwind.geom.LatLon;
@@ -22,7 +24,7 @@ import aves.dpt.intf.production.AvesObject;
  * Delegates the display of specific content depending on the {@link aves.dpt.intf.production.AvesObject.AvesObjectType}
  * and on the {@link aves.dpt.intf.ctrl.AvesManager.Phase}.
  */
-public interface AvesViewer{
+public interface AvesViewer extends KeyListener {
     enum ViewerType {
         worldWindSessions, worldWindPlaces, dataViewer
     }
@@ -97,5 +99,11 @@ public interface AvesViewer{
      * the itinerary.
      */
     void displayRoute(List<? extends LatLon> listOfCoords);
+    
+    /**
+     * Listens to key events 
+     * 
+     */
+    public void keyPressed(KeyEvent ke);
 
 }

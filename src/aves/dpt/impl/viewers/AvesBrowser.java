@@ -1,20 +1,29 @@
 package aves.dpt.impl.viewers;
 
+import aves.dpt.intf.viewers.AvesViewer;
+import aves.dpt.intf.viewers.DataViewer.DataViewerEvent;
+
 import com.jogamp.common.nio.Buffers;
+
+
+
+
+
+
+
 //import com.sun.opengl.util.texture.TextureCoords;
 import gov.nasa.worldwind.BasicModel;
 import gov.nasa.worldwind.avlist.AVList;
 import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.event.SelectEvent;
 import gov.nasa.worldwind.event.*;
 
 //import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
-//import java.net.URL;
 
 import gov.nasa.worldwind.util.webview.WebView;
 import gov.nasa.worldwind.util.webview.WebViewFactory;
+import gov.nasa.worldwind.Disposable;
 import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.Configuration;
 import gov.nasa.worldwind.WWObject;
@@ -44,6 +53,7 @@ import gov.nasa.worldwind.util.webview.WebResourceResolver;
 import gov.nasa.worldwindx.examples.util.BalloonController;
 import gov.nasa.worldwindx.examples.util.HighlightController;
 import gov.nasa.worldwindx.examples.util.HotSpotController;
+
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
 import java.beans.PropertyChangeEvent;
@@ -55,6 +65,7 @@ import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import javax.media.opengl.GL2;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -72,6 +83,8 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
     protected boolean alwaysOnTop = false;
     protected boolean pickEnabled = true;
     String htmlString = null;
+//    Object parent;
+    private AvesViewer avesViewer;
 //    InputStream contentStream = null;
     protected TextDecoder textDecoder = new BasicTextDecoder();
     protected String text;
@@ -128,10 +141,11 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
 //    protected boolean highlighted;
     protected static final String DEFAULT_WEB_VIEW_FACTORY = BasicWebViewFactory.class.getName();
 
-    public AvesBrowser(String htmlStr, int width, int height) {
+    public AvesBrowser(String htmlStr, int width, int height, AvesViewer avesViewer) {
 
         this.setText(htmlStr);
         this.htmlString = htmlStr;
+        this.avesViewer = avesViewer;
 //        System.out.println("avesbrowser width = " + width);
         this.screenSize = new Dimension(width, height);
         webViewRect = new Rectangle(screenSize);
@@ -209,8 +223,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
 
     protected void beginDrawing(DrawContext dc) {
         GL2 gl = dc.getGL().getGL2();
-
-        System.out.println("in begin drawing");
 
         int attrMask =
                 GL2.GL_COLOR_BUFFER_BIT // For alpha enable, blend enable, alpha func, blend func.
@@ -519,7 +531,7 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
      * @param event The event to handle.
      */
     public void selected(SelectEvent event) {
-        System.out.println("boemboem selected");
+//        System.out.println("Browser selectEvent.....");
         if (event == null || event.isConsumed()) {
             return;
         }
@@ -535,11 +547,11 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
      * @param event The event to forward.
      */
     public void keyTyped(KeyEvent event) {
-        System.out.println("boemboem keytyped");
         if (event == null || event.isConsumed()) {
             return;
         }
 
+//        System.out.println("Browser keytyped");
         this.handleKeyEvent(event);
         event.consume(); // Consume the event so the View doesn't respond to it.
     }
@@ -552,11 +564,11 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
      * @param event The event to forward.
      */
     public void keyPressed(KeyEvent event) {
-        System.out.println("boemboem keyevent");
         if (event == null || event.isConsumed()) {
             return;
         }
 
+//        System.out.println("Browser keypressed");
         this.handleKeyEvent(event);
         event.consume(); // Consume the event so the View doesn't respond to it.
     }
@@ -573,6 +585,7 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
             return;
         }
 
+//        System.out.println("Browser keyreleased");
         this.handleKeyEvent(event);
         event.consume(); // Consume the event so the View doesn't respond to it.
     }
@@ -583,7 +596,7 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
      * @param event The event to handle.
      */
     public void mouseClicked(MouseEvent event) {
-    }
+   }
 
     /**
      * Does nothing; BrowserBalloon handles mouse pressed events in <code>selected</code>.
@@ -670,17 +683,19 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
      * @param event the event to send.
      */
     protected void handleKeyEvent(KeyEvent event) {
+        System.out.println("Browser handleKeyEvent");
         if (this.webView != null) {
-            this.webView.sendEvent(event);
-            // added to close dispose of webview when right arrow pressed -> not needed
-/*            int keyCode = event.getKeyCode();
+//            this.webView.sendEvent(event);
+ 
+           int keyCode = event.getKeyCode();
             System.out.println("key pressed in browser:" + keyCode);
-            if (keyCode == 39) { //right arrow
+//            if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) {
                 try {
                     this.dispose();
+                    avesViewer.keyPressed(event);
                 } catch (Exception e) {
                 }
-            }*/
+//            }
 
         }
     }
@@ -892,7 +907,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
     }
 
     protected void drawFrame(DrawContext dc) {
-        System.out.println("in drawframe");
         dc.getGL().getGL2().glVertexPointer(2, GL2.GL_INT, 0, vbuf); //generates invalid memory access if commented out
                                                            //nasty error: I had GL.GL_FLOAT -> the interior content with the flash viewer
                                                            //did not work because it was never updated (same error as below)
@@ -1092,7 +1106,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
         if (links == null) {
             return;
         }
-        System.out.println("in draw webview links");
         for (AVList linkParams : links) {
             System.out.println("adding a link");
             // This should never happen, but we check anyway.

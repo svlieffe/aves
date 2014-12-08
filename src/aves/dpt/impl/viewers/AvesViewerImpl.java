@@ -82,7 +82,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
     private String selectedItem;
     private EventItemType eventItemType;
     private KeyEvent keyEvent;
-    private AvesEventManager avesManager;
+    private AvesEventManager avesEventMgr;
     private Integer count = 0;
     private WorldWindViewerImpl wwv;
     private DataViewerImpl dv;
@@ -90,8 +90,8 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
     private Phase currentPhase;
 //    private AvesManager parent;
    
-    public AvesViewerImpl(AvesEventManager avesManager) {
-    	this.avesManager = avesManager;
+    public AvesViewerImpl(AvesEventManager avesEventMgr) {
+    	this.avesEventMgr = avesEventMgr;
         borderFraction = 10;
         addKeyListener(this);
         setFocusable(true);
@@ -176,7 +176,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
             //selectedSession = source.getText();
             selectedItem = ae.getActionCommand();
             eventItemType = EventItemType.JOURNEYBUTTON;
-            avesManager.avesViewerEvent();
+            avesEventMgr.avesViewerEvent();
     		setCurrentPhase(Phase.PLACES);
 //            count = 1;
 //        }
@@ -197,7 +197,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                 System.out.println(selected.getName());
                 selectedItem = selected.getName();
                 eventItemType = selected.getType();
-                avesManager.avesViewerEvent();
+                avesEventMgr.avesViewerEvent();
                 //NamedSpot spotName = (NamedSpot) e.getSource();
                 //System.out.println(spotName.getName());
            } else {
@@ -374,7 +374,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                             case DOCUMENTS:
                                 //wwv.setVisible(false);
                                 this.getLayeredPane().moveToBack(wwv);
-                                dv = new DataViewerImpl(this);
+                                dv = new DataViewerImpl(this, this);
                                 if (isFullScreen) {
                                     this.validate();
                                 } else {
@@ -606,7 +606,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                 	break;
                 case PLACES:
                 	eventItemType = EventItemType.ESCKEY;
-                	avesManager.avesViewerEvent();
+                	avesEventMgr.avesViewerEvent();
                 	break;
                 case DOCUMENTS:
                 	closeDataViewer();

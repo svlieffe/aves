@@ -17,7 +17,9 @@ import java.awt.event.*;
 
 import aves.dpt.impl.production.AvesObjectImpl;
 import aves.dpt.intf.ctrl.AvesEventManager;
+import aves.dpt.intf.ctrl.AvesManager;
 import aves.dpt.intf.production.AvesObject.ObjectDataType;
+import aves.dpt.intf.viewers.AvesViewer;
 import aves.dpt.intf.viewers.DataNotFoundException;
 import aves.dpt.intf.viewers.DataViewer;
 import aves.dpt.intf.viewers.DisplaySlideException;
@@ -58,13 +60,15 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
     private ListIterator<AvesObjectImpl> mOIt;
     private List<String> values = new ArrayList<String>();
     private Iterator<String> s;
-    private AvesEventManager avesViewer;
+    private AvesEventManager AvesEventMgr;
+    private AvesViewer avesViewer;
     boolean last = false;
     boolean firstIm = true;
     boolean movingBackwards = false;
     
-    public DataViewerImpl(AvesEventManager avesViewer) {
+    public DataViewerImpl(AvesEventManager AvesEventMgr, AvesViewer avesViewer) {
         
+    	this.AvesEventMgr = AvesEventMgr;
     	this.avesViewer = avesViewer;
         //set most frequent event
         setEvent(DataViewerEvent.UPDATE);
@@ -152,7 +156,7 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
                     gbc.insets = new Insets( - this.getHeight(), - this.getWidth(), 0, 0);
                     }
                     add(imV, gbc);
-                    avesViewer.dataViewerEvent();
+                    AvesEventMgr.dataViewerEvent();
                     
                     System.out.println("dataviewe width post validate: " + this.getWidth());
                     System.out.println("dataVieweHeight: " + this.getHeight());
@@ -173,14 +177,14 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
                 type = DataViewerType.webViewer;
                 // callback to notify DataViewer -> not needed
 //                webV = new WebViewerImpl(this);
-                webV = new WebViewerImpl();
+                webV = new WebViewerImpl(this.avesViewer);
                 GridBagConstraints c = new GridBagConstraints();
                 c.gridx = 0;
                 c.gridy = 0;
                 c.insets = new Insets(-this.getHeight(), -this.getWidth(), 0, 0);
                 add(webV, c);
 
-                avesViewer.dataViewerEvent();
+                AvesEventMgr.dataViewerEvent();
 
                 System.out.println("dataviewer uri width post validate: " + this.getWidth());
                 System.out.println("dataVieweHeight: " + this.getHeight());
@@ -210,7 +214,7 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
             } else {
             	// this is not an UPDATE, it ends the presentation
                 setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
-                avesViewer.dataViewerEvent();
+                AvesEventMgr.dataViewerEvent();
             }
         } catch (Exception e) {
             throw new DisplaySlideException("Error displaying slide: ");
@@ -237,7 +241,7 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
             } else {
             	//this is not an UPDATE, it ends the presentaion
             	setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
-                avesViewer.dataViewerEvent();
+            	AvesEventMgr.dataViewerEvent();
             }
         } catch (Exception e) {
             throw new DisplaySlideException("Error displaying slide: ");

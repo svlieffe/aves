@@ -14,6 +14,8 @@ import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import aves.dpt.intf.ctrl.AvesEventManager;
+import aves.dpt.intf.viewers.AvesViewer;
 import aves.dpt.intf.viewers.WebViewer;
 
 import java.net.URI;
@@ -64,10 +66,11 @@ public class WebViewerImpl extends JPanel implements WebViewer { //, KeyListener
     protected HotSpotController hotSpotController;
     AvesBrowser ogb;
     WorldWindowGLJPanel wwp;
+    private AvesViewer avesViewer;
 //    DataViewerImpl calling_dv;
     
-    public WebViewerImpl() {
-        
+    public WebViewerImpl(AvesViewer avesViewer) {
+    	this.avesViewer = avesViewer; 
     }
     
     public AvesBrowser getAvesBrowser() {
@@ -107,7 +110,7 @@ public class WebViewerImpl extends JPanel implements WebViewer { //, KeyListener
                 htmlString = Logging.getMessage("generic.ExceptionAttemptingToReadFile", source);
             }
 
-            ogb = new AvesBrowser(htmlString, this.getWidth(), this.getHeight());
+            ogb = new AvesBrowser(htmlString, this.getWidth(), this.getHeight(), this.avesViewer);
 //            JFrame frame = new JFrame();
 
 
