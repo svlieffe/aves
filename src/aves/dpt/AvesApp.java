@@ -7,14 +7,15 @@ import gov.nasa.worldwind.Configuration;
 /**
  * Main application
  * @author svlieffe
- * @version $Id: AvesApp.java,v 4cff031e2196 2012/03/29 14:49:23 svlieffe $
+ * 
+ * 2012/03/09
  */
 public class AvesApp {
 
     private static final class AppWin {
 
         private static void start() {
-            AvesManagerImpl mm = new AvesManagerImpl();
+            new AvesManagerImpl();
         }
     }
 
@@ -23,7 +24,7 @@ public class AvesApp {
             System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Aves");
         }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {  //If I understand correctly: this corresponds to an instance of a anonymous class that implements the interface runnable
+        java.awt.EventQueue.invokeLater(new Runnable() {
 
             @Override
             public void run() {
