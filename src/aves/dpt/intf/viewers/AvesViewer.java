@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package aves.dpt.intf.viewers;
 
 import java.awt.event.KeyEvent;
@@ -13,44 +9,44 @@ import aves.dpt.intf.ctrl.AvesManager.Phase;
 import aves.dpt.intf.production.AvesObject;
 
 /**
- *
- * @author stefaanvanliefferinge
- * @version $Id: AvesViewer.java,v 649d54af3d47 2012/03/29 17:18:33 svl $
- */
-
-/**
  * User interface showing {@link aves.dpt.intf.production.AvesObject}
- * content managed by a {@link aves.dpt.intf.ctrl.AvesManager}. 
+ * content, managed by a {@link aves.dpt.intf.ctrl.AvesManager}. 
  * Delegates the display of specific content depending on the {@link aves.dpt.intf.production.AvesObject.AvesObjectType}
  * and on the {@link aves.dpt.intf.ctrl.AvesManager.Phase}.
+
+ * @author svlieffe
+ * 2012/03/29
  */
 public interface AvesViewer extends KeyListener {
-    enum ViewerType {
+
+	/**
+	 * Type of viewer depending on the current {@link aves.dpt.intf.ctrl.AvesManager.Phase}
+	 */
+	enum ViewerType {
         worldWindSessions, worldWindPlaces, dataViewer
     }
     
+	/**
+	 * Type of event depending on the selected item
+	 */
     enum EventItemType {
     	JOURNEYBUTTON, LOCATIONSPOT, ESCKEY;
     }
 
     /**
      * Sets the current phase of {@link aves.dpt.intf.viewers.AvesViewer} to be displayed
-     * 
-     * @param Phase 
      */
     void setCurrentPhase(Phase phase);
 
     /**
      * Returns the current phase of {@link aves.dpt.intf.viewers.AvesViewer} to be displayed
-     * 
-     * @param 
      */
     Phase getCurrentPhase();
 
     /**
      * Selects the type of content-specific 
      * viewer to display.
-     * @param phase TODO
+     * @param phase
      */  
     void selectSpecializedViewer(Phase phase);
     
@@ -68,7 +64,7 @@ public interface AvesViewer extends KeyListener {
      * {@link aves.dpt.intf.viewers.WorldWindViewer}
      * <p>
      * {@link aves.dpt.intf.viewers.DataViewer}
-     * @param phase TODO
+     * @param phase
      */
     void requestObjectsInViewer();
     
@@ -84,7 +80,7 @@ public interface AvesViewer extends KeyListener {
     /**
      * Sets the {@link aves.dpt.intf.viewers.AvesViewer} to full screen.
      */
-    void setFullScreen(boolean val);
+    void setFullScreen(boolean fullScreen);
     
      /**
      * TBI

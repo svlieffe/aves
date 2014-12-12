@@ -1,13 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package aves.dpt.intf.viewers;
 
 /**
  *
- * @author stefaanvanliefferinge
+ * @author svlieffe
+ * 2012/03/29
  */
+
 public class DisplaySlideException extends Exception {
 
     public DisplaySlideException(String message) {

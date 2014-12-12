@@ -1,43 +1,40 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package aves.dpt.intf.production;
 
 import java.util.List;
 
 import aves.dpt.intf.production.AvesObject.AvesObjectType;
+
 /**
  * Objects implementing this interface retrieve DOCUMENTS with specific tags from the 
  * {@link src/main/resource/DOCUMENTS/avesdatasrc.xml} file
  *
- * @author stefaanvanliefferinge
- * @version $Id: XMLDataReader.java,v 649d54af3d47 2012/03/29 17:18:33 svl $
+ * @author svlieffe
+ * 2012/03/29
  */
 public interface XMLDataReader {
     
     /**
-     * sets the JOURNEYS or place to which the
+     * Sets the JOURNEYS or place to which the
      * retrieved XML items belong
      * @param itemGroupName 
      */
     void setGroup(String itemGroupName);
     
     /**
-     * sets the type of the items
+     * Sets the type of the items
      * to be retrieved
      * @param objectType 
      */
     void setType(AvesObjectType objectType);   
     
     /**
-     * reads the DOCUMENTS from the source
+     * Reads the DOCUMENTS from the source
      * @param avesObjectType 
      */
     void read();
      
     /** 
-     * returns the list of DOCUMENTS values
+     * Returns the list of DOCUMENTS values
      * @return List<String>
      */
      List<String> valueList();

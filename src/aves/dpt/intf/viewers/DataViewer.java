@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package aves.dpt.intf.viewers;
 
 import java.util.List;
@@ -15,17 +11,24 @@ import aves.dpt.intf.production.AvesObject.ObjectDataType;
  * this interface can be called by a {@link aves.dpt.intf.viewers.AvesViewer}
  * to display different types of DOCUMENTS.
  *
- * <p> 
- * @author stefaanvanliefferinge
- * @version 
+ * @author svlieffe
+ * 2012/03/29
  */
 public interface DataViewer {
-   
+
+	/**
+	 * Type of {@link aves.dpt.intf.viewers.DataViewer}
+	 *
+	 */
     enum DataViewerType {
 
         imageViewer, webViewer;
     }
     
+	/**
+	 * Type of event in the {@link aves.dpt.intf.viewers.DataViewer}
+	 *
+	 */
     enum DataViewerEvent {
     	
     	UPDATE, ENDSHOW;

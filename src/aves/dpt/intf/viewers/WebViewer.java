@@ -1,15 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package aves.dpt.intf.viewers;
-
 
 /**
  *
- * @author stefaanvanliefferinge
- * @version $Id$
+ * Objects implementing this interface render web content.
+ *
+ * @author svlieffe
+ * 2012/03/29
  */
+
 public interface WebViewer {
      void setCurrentSource(String uri);   
 }

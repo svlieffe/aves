@@ -1,18 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package aves.dpt.intf.production;
 
 import java.util.List;
 
 /**
- * Interface defining the type of the objects presented in a Aves JOURNEYS. Classes 
+ * Interface defining the type of the objects presented in Aves JOURNEYS. Classes 
  * implementing this interface can be be rendered in a 
  * {@link aves.dpt.intf.viewers.DataViewer}.
  * 
- * @author stefaanvanliefferinge
- * @version $Id: AvesObject.java,v 649d54af3d47 2012/03/29 17:18:33 svl $
+ * @author svlieffe
+ * 2012/03/29
  */
 public interface AvesObject {
     

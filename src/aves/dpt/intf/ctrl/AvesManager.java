@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package aves.dpt.intf.ctrl;
 
 import java.util.List;
@@ -11,21 +7,21 @@ import aves.dpt.intf.production.AvesObject;
 /**
  *
  * This interface controls the principal functionalities 
- * of Aves application. Classes that implement this interface keep track of the 
+ * of the Aves application. Classes that implement this interface keep track of the 
  * current {@link aves.dpt.intf.ctrl.AvesManager.Phase} of the 
  * JOURNEYS in order to manage the 
  * production of DOCUMENTS ({@link aves.dpt.intf.production.AvesObject}) 
  * in the {@link aves.dpt.intf.production.Factory} and 
  * to organize the sequence in which the {@link aves.dpt.intf.viewers.AvesViewer}
- * shows this DOCUMENTS.
+ * shows DOCUMENTS.
  * 
- * @author stefaanvanliefferinge
- * @version $Id: AvesManager.java,v 649d54af3d47 2012/03/29 17:18:33 svl $
+ * @author svlieffe
+ * 2012/03/29
  */
 public interface AvesManager {
 
     /**
-     * Different phases in a Aves JOURNEYS
+     * Different phases
      */
     enum Phase {
         JOURNEYS, PLACES, DOCUMENTS
@@ -72,8 +68,6 @@ public interface AvesManager {
      * {@link aves.dpt.intf.production.AvesObject} that will be
      * displayed.
      * 
-     * @param phase
-     * @param avesObjectList 
      */
     void requestDisplayObjectsInViewer(Phase phase, List<? extends AvesObject> avesObjectList);
     

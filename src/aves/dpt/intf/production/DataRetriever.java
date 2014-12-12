@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package aves.dpt.intf.production;
 
 import java.util.List;
@@ -16,8 +12,8 @@ import aves.dpt.intf.production.AvesObject.AvesObjectType;
  *  are added to the list that is returned to the 
  * {@link aves.dpt.intf.ctrl.AvesManager}.
  *
- * @author stefaanvanliefferinge
- * @version $Id: DataRetriever.java,v 649d54af3d47 2012/03/29 17:18:33 svl $
+ * @author svlieffe
+ * 2012/03/29
  */
 public interface DataRetriever {
     
