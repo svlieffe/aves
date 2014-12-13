@@ -5,6 +5,7 @@ import java.util.List;
 import aves.dpt.intf.production.AvesObject.AvesObjectType;
 
 /**
+ * 
  * Objects implementing this interface retrieve DOCUMENTS with specific tags from the 
  * {@link src/main/resource/DOCUMENTS/avesdatasrc.xml} file
  *
@@ -14,6 +15,7 @@ import aves.dpt.intf.production.AvesObject.AvesObjectType;
 public interface XMLDataReader {
     
     /**
+     * 
      * Sets the JOURNEYS or place to which the
      * retrieved XML items belong
      * @param itemGroupName 
@@ -21,6 +23,7 @@ public interface XMLDataReader {
     void setGroup(String itemGroupName);
     
     /**
+     * 
      * Sets the type of the items
      * to be retrieved
      * @param objectType 
@@ -28,12 +31,14 @@ public interface XMLDataReader {
     void setType(AvesObjectType objectType);   
     
     /**
+     * 
      * Reads the DOCUMENTS from the source
      * @param avesObjectType 
      */
     void read();
      
-    /** 
+    /**
+     *  
      * Returns the list of DOCUMENTS values
      * @return List<String>
      */

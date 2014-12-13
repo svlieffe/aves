@@ -1,32 +1,13 @@
 package aves.dpt.impl.ctrl;
 
-import java.util.ArrayList;
-
-//import aves.dpt.impl.production.AvesObjectImpl;
-//import aves.dpt.intf.production.AvesObject.AvesObjectType;
-
-
-
-
-
-
-
 import aves.dpt.impl.production.FactoryImpl;
 import aves.dpt.impl.viewers.AvesViewerImpl;
 import aves.dpt.intf.ctrl.AvesManager;
-import aves.dpt.intf.ctrl.AvesManager.Phase;
 import aves.dpt.intf.ctrl.AvesEventManager;
 import aves.dpt.intf.production.AvesObject;
 import aves.dpt.intf.production.Factory.ProductionMode;
-import aves.dpt.intf.viewers.AvesViewer.ViewerType;
 
-
-
-
-
-
-
-//import gov.nasa.worldwind.geom.LatLon;
+import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -44,78 +25,48 @@ import java.util.List;
  * and analyzes this input to make further decisions.
  * 
  * @author svlieffe
- * 
- * @version $Id: AvesManagerImpl.java,v 649d54af3d47 2012/03/29 17:18:33 svlieffe $
+ * 2012/03/29
  */
 public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListener {
-//  System.exit(0);
 
     private AvesViewerImpl mv;//
     private ProductionMode mode;
     private FactoryImpl factory;
     private boolean fullScreen;
     private String mvSelected;
-//    private String mvSelectedType;
-//    private boolean callIsFromAvesViewer;
     private Phase currentPhase;
     
     public AvesManagerImpl() {
 
         fullScreen = false;             // toggle fullscreen
-//        callIsFromAvesViewer = false;
 
         factory = new FactoryImpl();
         mv = new AvesViewerImpl(this);
 
-        // the first phase is to show the sessions
+        // the first phase is to show the sessions (=JOURNEYS)
         this.setPhase(Phase.JOURNEYS);
         this.requestShow(currentPhase);
-
-        //        this.produceAndShow(currentPhase);
-        
     }
 
-    /*	
-    section to manage events
-    *
-    **/
+    /**
+     * 	
+     * section to manage events
+     *
+     **/
 
     /**
+     * 
      * {@inheritDoc }
-     * <p>
-     * unused 
-     */
-    @Override
-	public Object getAvesEventSubject() {
-		return null;
-	}
-	
-    /**
-     * {@inheritDoc }
-     * <p>
-     * unused 
-     */
-    @Override
-	public void setAvesEventSubject(Object subject){ }
-	
-    /**
-     * {@inheritDoc }
-     * <p>
-     * unused 
      */
     @Override
     public void dataViewerEvent() { }
 
     /**
-     * {@inheritDoc }
-     * <p>
-     *  
+     * 
+     * {@inheritDoc } 
      */
     @Override
     public void avesViewerEvent() {
-//        currentPhase = Phase.JOURNEYS;
-//        System.out.println("Phase I:" + currentPhase);
-//        callIsFromAvesViewer = true;
         mvSelected = mv.getSelectedItem();
         switch(mv.getSelectedItemType()) {
         case JOURNEYBUTTON:
@@ -136,25 +87,13 @@ public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListen
         	break;
         }
         this.requestShow(currentPhase);
-/*        mvSelectedType = mv.getSelectedItemType();
-        System.out.println("Manager receives:" + mvSelected);
-        System.out.println("Manager receives type:" + mvSelectedType);
-        if ("spot".equals(mvSelectedType)) {
-            currentPhase = Phase.PLACES;
-        }
-        if (currentPhase != null) {
-            this.setPhase(currentPhase);
-        }
-        if(mvSelectedType == "key") {
-           	this.setPhase(Phase.JOURNEYS);
-        }*/
     }
 
-    /**
-     * {@inheritDoc }
+	/**
      * 
-     * @param phase 
+     * {@inheritDoc }
      */
+    @Override
     public void setPhase(Phase phase) {
     	currentPhase = phase;
     }
@@ -163,20 +102,24 @@ public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListen
      * 
      * {@inheritDoc } 
      */
-    public void requestShow(Phase currentPhase) {
+    @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public void requestShow(Phase currentPhase) {
     	// placeholder for objects
         ArrayList<AvesObject> avesObjectList = new ArrayList<AvesObject>();
         // produce the objects in the factory
         makeObjectsInFactory(currentPhase);
         // put the objects in the placeholder
-        avesObjectList = (ArrayList)requestObjectsFromFactory();
+        avesObjectList = (ArrayList) requestObjectsFromFactory();
         // now the objects are ready, request to display them
         requestDisplayObjectsInViewer(currentPhase, avesObjectList);      
     }
 
     /**
+     * 
      * {@inheritDoc }
      */
+    @Override
     public void requestDisplayObjectsInViewer(Phase phase, List<? extends AvesObject> avesObjects) {
     	mv.invalidate();
         mv.setFullScreen(fullScreen);
@@ -187,45 +130,16 @@ public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListen
         // delegates the display of the objects of the current phase to the AvesViewer
         mv.requestObjectsInViewer();
 
-/*        switch (phase) {
-        case JOURNEYS:
-            if (callIsFromAvesViewer) {// && mvSelectedType == "sessionButton") {
-                factory.setRequestedItem(mvSelected);
-                phase = Phase.PLACES;
-                System.out.println("from JOURNEYS to PLACES phase");
-                callIsFromAvesViewer = false;
-            } else {
-                phase = Phase.JOURNEYS;                	
-            }
-            break;
-        case PLACES:
-            if (callIsFromAvesViewer && mvSelectedType == "key") {
-//              factory.setRequestedItem(mvSelected);
-              phase = Phase.JOURNEYS;
-              System.out.println("from PLACES to sesion phase");
-              callIsFromAvesViewer = false;
-          } else {
-        	  factory.setRequestedItem(mvSelected);
-        	  System.out.println("from PLACES to DOCUMENTS phase");
-        	  phase = Phase.DOCUMENTS;
-          }
-            break;
-        case DOCUMENTS:
-            System.out.println("from DOCUMENTS to PLACES phase");
-            phase = Phase.PLACES;
-            break;
-        default:
-        	break;
-    }*/
     }
 
     /**
      * 
      * {@inheritDoc }
      */
+    @Override
     public void makeObjectsInFactory(Phase currentPhase) {
         //creates a FactoryImpl that maintains a list of AvesObjects
-        //AvesObjects are of a certain type (JOURNEYS, place, document)
+        //AvesObjects are of a certain type (JOURNEYS, PLACES, DOCUMENTS)
         switch (currentPhase) {
             case JOURNEYS:   //request FactoryImpl to maintain list of sessions
                 mode = ProductionMode.SESSIONSMODE;
@@ -247,52 +161,50 @@ public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListen
      * 
      * {@inheritDoc }
      */
+    @Override
     public List<? extends AvesObject> requestObjectsFromFactory() {
         
         ArrayList<AvesObject> avesObjectList = new ArrayList<AvesObject>();
 
-        avesObjectList = (ArrayList) factory.listOfObjects();
+        avesObjectList = (ArrayList<AvesObject>) factory.listOfObjects();
         
         return avesObjectList;
     }
     
     /**
-     * {@inheritDoc }
-     * <p>
-     * Unused.
      * 
+     * {@inheritDoc }
      */
+    @Override
     public void keyTyped(KeyEvent ke) {
     }
 
     /**
-     * {@inheritDoc }
      * 
-     * Left and right arrow to navigate forward and backward. Escape key to return to general view.
+     * {@inheritDoc }
      * <p>
+     * Left and right arrow to navigate forward and backward. Escape key to return to general view.
      */
+    @Override
     public void keyPressed(KeyEvent ke) {
         int keyCode = ke.getKeyCode();
-        System.out.println("key pressedin dataviewr:" + keyCode);
-        if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) { //escape
+//        System.out.println("key pressedin dataviewr:" + keyCode);
+        if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) {
             try {
-            	System.out.println("escape pressed in Sessions");
+//            	System.out.println("escape pressed in Sessions");
                 System.exit(0);
             } catch (Exception e) {
-                
+                System.out.println(e);
             }     
         }
     }
 
     /**
+     * 
      * {@inheritDoc }
-     * 
-     * <p>
-     * 
-     * Unused
-     * 
      */
+    @Override
     public void keyReleased(KeyEvent e) {
     }
-    
+
 }

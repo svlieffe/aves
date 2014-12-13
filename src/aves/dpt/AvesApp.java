@@ -5,9 +5,10 @@ import gov.nasa.worldwind.Configuration;
 
 
 /**
- * Main application
- * @author svlieffe
  * 
+ * Main application
+ * 
+ * @author svlieffe
  * 2012/03/09
  */
 public class AvesApp {

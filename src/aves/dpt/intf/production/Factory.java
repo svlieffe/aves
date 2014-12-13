@@ -2,6 +2,8 @@ package aves.dpt.intf.production;
 
 import java.util.List;
 
+import aves.dpt.intf.production.AvesObject.AvesObjectType;
+
 
 /**
  * Classes implementing this interface request the production of
@@ -60,5 +62,5 @@ public interface Factory {
      * @return ArrayList<AvesObjectInt>
      */
     List<AvesObject> listOfObjects();
-       
+
 }

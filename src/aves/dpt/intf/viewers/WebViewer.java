@@ -1,5 +1,7 @@
 package aves.dpt.intf.viewers;
 
+import aves.dpt.impl.viewers.AvesBrowser;
+
 /**
  *
  * Objects implementing this interface render web content.
@@ -9,5 +11,7 @@ package aves.dpt.intf.viewers;
  */
 
 public interface WebViewer {
-     void setCurrentSource(String uri);   
+     void setCurrentSource(String uri); 
+     
+     public AvesBrowser getAvesBrowser();
 }

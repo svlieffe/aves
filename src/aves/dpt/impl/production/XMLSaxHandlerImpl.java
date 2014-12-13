@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package aves.dpt.impl.production;
 
 
@@ -12,10 +8,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 import aves.dpt.intf.production.AvesObject.AvesObjectType;
+
 /**
+ * 
  * Hander for the {@link javax.xml.parsers.SAXParser}.
  *
  * @author svlieffe
+ * 2012/03/29
  */
 public class XMLSaxHandlerImpl extends DefaultHandler {
     
@@ -25,17 +24,29 @@ public class XMLSaxHandlerImpl extends DefaultHandler {
     private String placeName = "";
     private ArrayList<String> dataList = new ArrayList<String>();
 
+    /**
+     * 
+     * {@inheritDoc }
+     */
     @Override
     public void startDocument() throws SAXException {
         
         System.out.println("Document processing started");
     }
 
+    /**
+     * 
+     * {@inheritDoc }
+     */
     @Override
     public void endDocument() throws SAXException {
         System.out.println("Document processing finished");
     }
 
+    /**
+     * 
+     * {@inheritDoc }
+     */
     @Override
     public void startElement(String uri, String localName,
             String qName, Attributes attrs) throws SAXException {
@@ -49,8 +60,7 @@ public class XMLSaxHandlerImpl extends DefaultHandler {
                 }
                 break;
             case PLACES:
-                if (qName.equals("journey")) // && journeyDate.equals(group)) {
-                {
+                if (qName.equals("journey")) {
                     journeyDate = attrs.getValue("date");
                 }
                 if (journeyDate.equals(group)) {
@@ -63,7 +73,6 @@ public class XMLSaxHandlerImpl extends DefaultHandler {
                         break;
                     }
                 }
-
                 break;
             case DOCUMENTS:
                 if (qName.equals("place")) {
@@ -81,6 +90,10 @@ public class XMLSaxHandlerImpl extends DefaultHandler {
         }
     }
 
+    /**
+     * 
+     * {@inheritDoc }
+     */
     @Override
     public void endElement(String uri, String localName, String qName)
             throws SAXException {

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package aves.dpt.impl.production;
 
 import java.util.List;
@@ -10,10 +6,10 @@ import java.util.ArrayList;
 import aves.dpt.intf.production.AvesObject;
 
 /**
- * Implements a {@link aves.dpt.intf.production.AvesObject}
  * 
+ * Implements a {@link aves.dpt.intf.production.AvesObject}
  * @author svlieffe
- * @version $Id: AvesObjectImpl.java,v 649d54af3d47 2012/03/29 17:18:33 svlieffe $
+ * 2012/03/29
  */
 public class AvesObjectImpl implements AvesObject {
     
@@ -22,44 +18,47 @@ public class AvesObjectImpl implements AvesObject {
     private ObjectDataType type;
     
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
      * @param avesObjectType 
      */
+    @Override
     public void setObjectType(AvesObjectType avesObjectType) {
         objectType = avesObjectType;
     }
     
     /**
-     * {@inheritDoc }
      * 
-     * @return 
+     * {@inheritDoc }
+     * @return objectType
      */
+    @Override
     public AvesObjectType getObjectType() {
         return objectType;
     }
     
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
      * @param dataType 
      */
+    @Override
     public void setDataType(ObjectDataType dataType) {
         type = dataType;
     }
     
     /**
-     * {@inheritDoc }
      * 
-     * @return 
+     * {@inheritDoc }
+     * @return type
      */
     public ObjectDataType getDataType() {
         return type;
     }
     
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
      * @param value 
      */
     public void addDataValue(String value) {
@@ -67,9 +66,9 @@ public class AvesObjectImpl implements AvesObject {
     }
     
     /**
-     * {@inheritDoc }
      * 
-     * @return 
+     * {@inheritDoc }
+     * @return dataValue
      */
     public List<String> getDataValues() {
         return dataValue;

@@ -1,80 +1,49 @@
 package aves.dpt.impl.viewers;
 
+
 import aves.dpt.intf.viewers.AvesViewer;
-import aves.dpt.intf.viewers.DataViewer.DataViewerEvent;
 
 import com.jogamp.common.nio.Buffers;
 
-
-
-
-
-
-
-//import com.sun.opengl.util.texture.TextureCoords;
-import gov.nasa.worldwind.BasicModel;
 import gov.nasa.worldwind.avlist.AVList;
 import gov.nasa.worldwind.render.*;
 import gov.nasa.worldwind.event.*;
-
-//import javax.swing.event.*;
-import java.awt.*;
-import java.awt.event.*;
-
 import gov.nasa.worldwind.util.webview.WebView;
 import gov.nasa.worldwind.util.webview.WebViewFactory;
-import gov.nasa.worldwind.Disposable;
 import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.Configuration;
 import gov.nasa.worldwind.WWObject;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.avlist.AVListImpl;
-import gov.nasa.worldwind.awt.WorldWindowGLCanvas;
-//import gov.nasa.worldwind.awt.WorldWindowGLJPanel;
-import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.layers.Layer;
-import gov.nasa.worldwind.layers.LayerList;
-import gov.nasa.worldwind.layers.RenderableLayer;
 import gov.nasa.worldwind.pick.PickSupport;
 import gov.nasa.worldwind.pick.PickedObject;
 import gov.nasa.worldwind.render.DrawContext;
 import gov.nasa.worldwind.render.WWTexture;
 import gov.nasa.worldwind.util.BasicTextDecoder;
-import gov.nasa.worldwind.util.GeometryBuilder;
 import gov.nasa.worldwind.util.HotSpot;
 import gov.nasa.worldwind.util.Logging;
 import gov.nasa.worldwind.util.OGLStackHandler;
 import gov.nasa.worldwind.util.OGLUtil;
 import gov.nasa.worldwind.util.TextDecoder;
 import gov.nasa.worldwind.util.WWIO;
-import gov.nasa.worldwind.util.WWUtil;
 import gov.nasa.worldwind.util.webview.BasicWebViewFactory;
 import gov.nasa.worldwind.util.webview.WebResourceResolver;
-import gov.nasa.worldwindx.examples.util.BalloonController;
-import gov.nasa.worldwindx.examples.util.HighlightController;
-import gov.nasa.worldwindx.examples.util.HotSpotController;
 
 import java.awt.Dimension;
-import java.awt.geom.Point2D;
-import java.beans.PropertyChangeEvent;
-import java.io.InputStream;
-//import javax.media.opengl.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.net.URL;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.media.opengl.GL2;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 
 /**
- * @author svlieffe
- * based on gov.nasa.worldwind.render.AbstractBrowserBalloon.java @author dcollins
  * 
+ * @author svlieffe 09/14/2014 <p>
+ * modified gov.nasa.worldwind.render.AbstractBrowserBalloon.java from dcollins 
  */
 public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpot, WWObject {
     protected WebView webView;
@@ -83,12 +52,9 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
     protected boolean alwaysOnTop = false;
     protected boolean pickEnabled = true;
     String htmlString = null;
-//    Object parent;
     private AvesViewer avesViewer;
-//    InputStream contentStream = null;
     protected TextDecoder textDecoder = new BasicTextDecoder();
     protected String text;
-    protected static final String BROWSER_CONTENT_PATH = "AvesBrowserTest/BrowserBalloonExample.html";//gov/nasa/worldwindx/examples/DOCUMENTS/BrowserBalloonExample.html";
     Rectangle webViewRect;
     Rectangle screenRect;
     /**
@@ -106,8 +72,7 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
     protected PickSupport pickSupport = new PickSupport();
     FloatBuffer tbuf;
     IntBuffer vbuf;
-    WWTexture texture; // added svl
-//    private static AvesBrowserTest ogb;  
+    WWTexture texture;
     Object delegateOwner;
     /**
      * Indicates the object used to resolve relative resource paths in this browser balloon's HTML content. May be one
@@ -138,7 +103,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
         defaultAttributes = new BasicBalloonAttributes();
     }
     
-//    protected boolean highlighted;
     protected static final String DEFAULT_WEB_VIEW_FACTORY = BasicWebViewFactory.class.getName();
 
     public AvesBrowser(String htmlStr, int width, int height, AvesViewer avesViewer) {
@@ -146,7 +110,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
         this.setText(htmlStr);
         this.htmlString = htmlStr;
         this.avesViewer = avesViewer;
-//        System.out.println("avesbrowser width = " + width);
         this.screenSize = new Dimension(width, height);
         webViewRect = new Rectangle(screenSize);
         screenRect = new Rectangle(screenSize);
@@ -204,8 +167,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
     }
 
     protected void makeOrderedRenderable(DrawContext dc) {
-        // Update the balloon's active attributes and points if that hasn't already been done this frame.
-//        this.updateRenderStateIfNeeded(dc);
         // Update the balloon's WebView to be current with the BrowserBalloon's properties. This must be done after
         // updating the render state; this balloon's active attributes are applied to the WebView. Re-use WebView state
         // already calculated this frame.
@@ -268,17 +229,8 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
         // aligned exactly with screen pixels.
         gl.glTranslatef(this.screenRect.x, this.screenRect.y, 0);
 
-//Commented out 120611        
-//        if (!dc.isDeepPickingEnabled()) {
-//            this.setupDepthTest(dc);
-//        }
-
         this.drawFrame(dc);
-/*
-        if (this.isDrawBrowserControls(dc)) {
-            this.drawBrowserControls(dc);
-        }
-*/
+
         if (this.isDrawLinks(dc)) {
             this.drawLinks(dc);
         }
@@ -379,8 +331,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
         // color and frame size with the desired values before attempting to use the WebView's texture. The WebView
         // avoids doing unnecessary work when the same frame size or background color is specified.
         this.webView.setFrameSize(this.webViewRect.getSize());
-//Commented out 120611        
-//        this.webView.setBackgroundColor(this.getActiveAttributes().getInteriorMaterial().getDiffuse());
 
         // Update the WebView's text content each time the balloon's decoded string changes. We update the text even if
         // the user has navigated to a page other than the balloon's text content. This ensures that any changes the
@@ -418,7 +368,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
             if (resourceResolver != null) {
                 Logging.logger().warning(Logging.getMessage("generic.UnrecognizedResourceResolver", resourceResolver));
             }
-//            if (text != null)
             this.webView.setHTMLString(text);
             System.out.println("the next text is " + text);
         }
@@ -450,8 +399,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
         // Configure the balloon to forward the WebView's property change events to its listeners. AND set the html ref and text (SVL 05262012)
         if (this.webView != null) {
             this.webView.addPropertyChangeListener(this);
-            //           this.webView.setHTMLString(htmlString);
-            //           this.setText(htmlString);
         }
     }
 
@@ -531,7 +478,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
      * @param event The event to handle.
      */
     public void selected(SelectEvent event) {
-//        System.out.println("Browser selectEvent.....");
         if (event == null || event.isConsumed()) {
             return;
         }
@@ -551,7 +497,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
             return;
         }
 
-//        System.out.println("Browser keytyped");
         this.handleKeyEvent(event);
         event.consume(); // Consume the event so the View doesn't respond to it.
     }
@@ -568,7 +513,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
             return;
         }
 
-//        System.out.println("Browser keypressed");
         this.handleKeyEvent(event);
         event.consume(); // Consume the event so the View doesn't respond to it.
     }
@@ -585,7 +529,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
             return;
         }
 
-//        System.out.println("Browser keyreleased");
         this.handleKeyEvent(event);
         event.consume(); // Consume the event so the View doesn't respond to it.
     }
@@ -685,17 +628,15 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
     protected void handleKeyEvent(KeyEvent event) {
         System.out.println("Browser handleKeyEvent");
         if (this.webView != null) {
-//            this.webView.sendEvent(event);
  
            int keyCode = event.getKeyCode();
             System.out.println("key pressed in browser:" + keyCode);
-//            if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) {
                 try {
                     this.dispose();
                     avesViewer.keyPressed(event);
                 } catch (Exception e) {
+                	System.out.println(e);
                 }
-//            }
 
         }
     }
@@ -716,10 +657,9 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
         // Convert the mouse event's screen point to the WebView's local coordinate system. Note that we send the mouse
         // event to the WebView even when its screen point is outside the WebView's bounding rectangle. This gives the
         // WebView a chance to change its state or the cursor's state when the cursor it exits the WebView.
-//without the following line, the cursor does not turn into a little selection hand
+        // without the following line, the cursor does not turn into a little selection hand
         Point webViewPoint = this.convertToWebView(event.getSource(), event.getPoint());
-//        Point webViewPoint = event.getPoint();
-        
+
         // Send a copy of the mouse event using the point in the WebView's local coordinate system. 
         if (event instanceof MouseWheelEvent) {
             this.webView.sendEvent(
@@ -756,9 +696,8 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
             return;
         }
 
-//without the following line, it does not work probably because the source object coords are lost 
+        //without the following line, it does not work, probably because the source object coords are lost 
         Point webViewPoint = this.convertToWebView(event.getSource(), pickPoint);
-//        Point webViewPoint = pickPoint;
 
         if (event.isLeftPress() || event.isRightPress()) {
             int modifiers = event.isLeftPress() ? MouseEvent.BUTTON1_DOWN_MASK : MouseEvent.BUTTON3_DOWN_MASK;
@@ -838,32 +777,16 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
      *
      * @return A <code>null</code> Cursor.
      */
-//needed for interface hotspot and for changing arrow into selection hand
+    //needed for interface hotspot and for changing arrow into selection hand
     public Cursor getCursor() {
         return null;
     }
 
-    /**
-     * Get the active attributes, based on the highlight state.
-     *
-     * @return Highlight attributes if the balloon is highlighted, or normal attributes otherwise.
-     */
-//Commented out 120611        
-/*    protected BalloonAttributes getActiveAttributes()
-    {
-    return this.activeAttributes;
-    }*/
     /** {@inheritDoc} */
     public Object getDelegateOwner() {
         return this.delegateOwner;
     }
 
-    /** {@inheritDoc} */
-    /*    public void setDelegateOwner(Object delegateOwner)
-    {
-    this.delegateOwner = delegateOwner;
-    }*/
-    @SuppressWarnings({"UnusedDeclaration"})
     protected PickedObject createPickedObject(DrawContext dc, Color pickColor) {
         PickedObject po = new PickedObject(pickColor.getRGB(),
                 this.getDelegateOwner() != null ? this.getDelegateOwner() : this);
@@ -877,7 +800,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
         return po;
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
     protected PickedObject createLinkPickedObject(DrawContext dc, Color pickColor, AVList linkParams) {
         PickedObject po = new PickedObject(pickColor.getRGB(), this);
 
@@ -892,30 +814,16 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
         return po;
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
     protected boolean isDrawInterior(DrawContext dc) {
-        return true;//Commented out 120611        
-        //this.getActiveAttributes().isDrawInterior() && this.getActiveAttributes().getInteriorOpacity() > 0;
+        return true;      
     }
-/*
-    protected boolean isDrawBrowserControls(DrawContext dc) {
-        return this.isDrawBrowserControls() && this.isDrawInterior(dc);
-    }
-*/
+
     protected boolean isDrawLinks(DrawContext dc) {
         return this.isDrawInterior(dc) && dc.isPickingMode();
     }
 
     protected void drawFrame(DrawContext dc) {
-        dc.getGL().getGL2().glVertexPointer(2, GL2.GL_INT, 0, vbuf); //generates invalid memory access if commented out
-                                                           //nasty error: I had GL.GL_FLOAT -> the interior content with the flash viewer
-                                                           //did not work because it was never updated (same error as below)
-                                                           //to find this error I searched 1 month (at least).
-                                                           //it is due to the fact that I use a IntBuffer for vbuf
-                                                           //while AbstracBrowserBalloon uses a FloatBuffer for the tbus as well
-                                                           //as for the vbuf, actually both are called vertexBuffer
-
-        
+       dc.getGL().getGL2().glVertexPointer(2, GL2.GL_INT, 0, vbuf); 
        this.prepareToDrawInterior(dc);
        this.drawFrameInterior(dc);
     }
@@ -929,10 +837,8 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
 
         if (!dc.isPickingMode()) {
             // Apply the balloon's background color and opacity if we're in normal rendering mode.
-            Color color = new Color(255, 255, 255);//Commented out 120611        
-            //this.getActiveAttributes().getInteriorMaterial().getDiffuse(); //
-            double opacity = 1.0d;//Commented out 120611        
-            //this.getActiveAttributes().getInteriorOpacity();//
+            Color color = new Color(255, 255, 255);        
+            double opacity = 1.0d;        
             gl.glColor4ub((byte) color.getRed(), (byte) color.getGreen(), (byte) color.getBlue(),
                     (byte) (opacity < 1 ? (int) (opacity * 255 + 0.5) : 255));
         }
@@ -1019,15 +925,10 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
                 // texture's alpha is 1, and uses the balloon's background color where it's 0. The texture's
                 // internal format must be RGBA to work correctly, and we assume that the WebView's texture format
                 // is RGBA.
-//                tbuf.rewind();
-//                vbuf.rewind();
-
-                gl.glVertexPointer(2, GL2.GL_INT, 0, vbuf); //NASTY error here: I had GL_FLOAT -> nothing gets displayed!
-
-
+                gl.glVertexPointer(2, GL2.GL_INT, 0, vbuf);
                 gl.glEnable(GL2.GL_TEXTURE_2D);
                 gl.glEnableClientState(GL2.GL_TEXTURE_COORD_ARRAY);
-                gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_MODE, GL2.GL_DECAL);//GL_REPLACE 
+                gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_MODE, GL2.GL_DECAL);
                 gl.glTexCoordPointer(2, GL2.GL_FLOAT, 0, tbuf);//this.frameInfo.vertexBuffer);
                 // Denote that the texture has been applied and that we need to restore the default texture state.
 
@@ -1040,7 +941,7 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
             // Draw the balloon's geometry as a triangle fan to display the interior. The balloon's vertices are 
             // represented by (x,y) pairs in screen coordinates. The number of vertices to draw is computed by dividing
             // the number of coordinates by 2, because each vertex has exactly two coordinates: x and y.
-            gl.glDrawArrays(GL2.GL_TRIANGLE_FAN, 0, rest / 2); //this.frameInfo.vertexBuffer.remaining() / 2);
+            gl.glDrawArrays(GL2.GL_TRIANGLE_FAN, 0, rest / 2);
         } finally {
             // Restore the previous texture state and client array state. We do this to avoid pushing and popping the
             // texture attribute bit, which is expensive. We disable textures, disable texture coordinate arrays, bind
@@ -1082,12 +983,7 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
         // corner. Since texture coordinates are generated relative to the screenRect origin and webViewRect
         // is in screen coordinates, we translate the texture coordinates by the offset from the screenRect
         // origin to the webViewRect origin.
-//        texture.applyInternalTransform(dc);   //with this method A renders it upside down; 
-        //I believe this is because I transform the texture coords to vetexcoords
-        //by using two different methods: makeTexREctangle and makeVtxRectangle
         gl.glMatrixMode(GL2.GL_TEXTURE);//without this method it did work same way
-        //gl.glScalef(1f / this.webViewRect.width, 1f / this.webViewRect.height, 1f);//with this method A doesn't show anything
-
         gl.glTranslatef(this.screenRect.x - this.webViewRect.x, this.screenRect.y - this.webViewRect.y, 0f);
         // Restore the matrix mode.
         gl.glMatrixMode(GL2.GL_MODELVIEW);
@@ -1122,11 +1018,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
             Rectangle bounds = new Rectangle((Rectangle) linkParams.getValue(AVKey.BOUNDS));
             bounds.translate(this.webViewRect.x, this.webViewRect.y);
 
-            // Ignore link rectangles that do not intersect any of the current pick rectangles.
-//            if (!dc.getPickFrustums().intersectsAny(bounds)) {
-//                continue;
-//            }
-
             Color pickColor = dc.getUniquePickColor();
             gl.glColor3ub((byte) pickColor.getRed(), (byte) pickColor.getGreen(), (byte) pickColor.getBlue());
             this.pickSupport.addPickableObject(this.createLinkPickedObject(dc, pickColor, linkParams));
@@ -1154,7 +1045,5 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
             }
         }
     }
-
-
 
 }

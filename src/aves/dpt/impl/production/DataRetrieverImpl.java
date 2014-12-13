@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package aves.dpt.impl.production;
 
 import java.util.List;
@@ -18,6 +14,7 @@ import aves.dpt.intf.production.AvesObject.AvesObjectType;
  * object implementing {@link aves.dpt.intf.production.XMLDataReader}.
  * 
  * @author svlieffe
+ * 2012/03/29
  */
 public class DataRetrieverImpl implements DataRetriever{
     
@@ -27,10 +24,13 @@ public class DataRetrieverImpl implements DataRetriever{
     private ArrayList<String> dataList = new ArrayList<String>();
     
     /**
+     * 
      * {@inheritDoc }
-     * @return 
+     * @return dataList
      */
-    public List<String> getData() {
+    @Override
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public List<String> getData() {
         dr.setType(objectType);
         dr.setGroup(groupName);
         dr.read();
@@ -39,17 +39,21 @@ public class DataRetrieverImpl implements DataRetriever{
     }
     
     /**
+     * 
      * {@inheritDoc }
      * @param avesObjectType 
      */
+    @Override
     public void setDataType(AvesObjectType avesObjectType) {
         objectType = avesObjectType;        
     }
     
     /**
+     * 
      * {@inheritDoc }
      * @param name 
      */
+    @Override
     public void setGroupName(String name) {
         groupName = name;
     }

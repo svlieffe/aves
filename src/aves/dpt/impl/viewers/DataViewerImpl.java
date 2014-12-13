@@ -1,35 +1,27 @@
 package aves.dpt.impl.viewers;
 
-//TODO add button to close DOCUMENTS viewer
-
 import javax.swing.JPanel;
 
 import java.awt.image.BufferedImage;
 
-import javax.imageio.ImageIO;
-
-import java.awt.Dimension;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.ListIterator;
-import java.util.Iterator;
-import java.awt.event.*;
-
 import aves.dpt.impl.production.AvesObjectImpl;
 import aves.dpt.intf.ctrl.AvesEventManager;
-import aves.dpt.intf.ctrl.AvesManager;
 import aves.dpt.intf.production.AvesObject.ObjectDataType;
 import aves.dpt.intf.viewers.AvesViewer;
 import aves.dpt.intf.viewers.DataNotFoundException;
 import aves.dpt.intf.viewers.DataViewer;
 import aves.dpt.intf.viewers.DisplaySlideException;
 
+import javax.imageio.ImageIO;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.ListIterator;
+import java.util.Iterator;
 import java.io.IOException;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.Toolkit;
-
 
 /**
  *
@@ -45,8 +37,9 @@ import java.awt.Toolkit;
  * This implementation can only move forward by pressing the right arrow key.
  * <p>
  * @author svlieffe
+ * 2012/03/29
  */
-public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListener {
+public class DataViewerImpl extends JPanel implements DataViewer {
     
     private DataViewerType type;
     private DataViewerEvent dataViewerEvent;
@@ -54,14 +47,13 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
     private WebViewerImpl webV;
     private GridBagConstraints gbc;
     private BufferedImage bi;
-    private String source;
-    private AvesObjectImpl object;
     private List<AvesObjectImpl> objects = new ArrayList<AvesObjectImpl>();
     private ListIterator<AvesObjectImpl> mOIt;
     private List<String> values = new ArrayList<String>();
     private Iterator<String> s;
     private AvesEventManager AvesEventMgr;
     private AvesViewer avesViewer;
+    private String source;
     boolean last = false;
     boolean firstIm = true;
     boolean movingBackwards = false;
@@ -72,23 +64,19 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
     	this.avesViewer = avesViewer;
         //set most frequent event
         setEvent(DataViewerEvent.UPDATE);
-//        addKeyListener(this);
-//        setFocusable(true);
         setLayout(new GridBagLayout());
-
-                    //        setLayout(new java.awt.BorderLayout());
-
     }
 
     
-    /*	
-    section to manage events
-    *
-    **/    
+    /**
+     * 	
+     * Section to manage events
+     *
+     */    
     
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
     */
     @Override
     public void setEvent(DataViewerEvent event) {
@@ -96,8 +84,8 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
     }
     
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
     */
     @Override
     public DataViewerEvent getEvent() {
@@ -105,10 +93,12 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
     }
     
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
      * @param avesObjects 
      */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     public void setObjectsToDisplay(List<? extends AvesObjectImpl> avesObjects) {
         
         objects = (ArrayList) avesObjects;
@@ -117,24 +107,25 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
     }
     
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
      */
+	@Override
     public void setViewerType(ObjectDataType objectType) {
         
         switch (objectType) {
-//            case text:
+           //textviewer is not implemented
+           //case text:
                 //if (imV != null)
                 //    remove(imV);
                 //if (webV != null)
                 //    remove(webV);
-//                type = DataViewerType.textViewer;
-//                break;
+                //type = DataViewerType.textViewer;
+                //break;
             case image:
                 //if (txtV != null
                 //    remove(txtV);
                 if (webV != null) {
-                    //not working
                     webV.getAvesBrowser().dispose();               
                     remove(webV);
                 }
@@ -147,12 +138,9 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
                     System.out.println("dataviewe width: " + this.getWidth());
                     System.out.println("dataVieweHeight: " + this.getHeight());
                     
-                    //Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-                    
                     gbc = new GridBagConstraints();
                     gbc.gridx = 0;
                     gbc.gridy = 0;
-//                    c.insets = new Insets( - dim.height, - dim.width, 0, 0);
                     gbc.insets = new Insets( - this.getHeight(), - this.getWidth(), 0, 0);
                     }
                     add(imV, gbc);
@@ -161,12 +149,9 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
                     System.out.println("dataviewe width post validate: " + this.getWidth());
                     System.out.println("dataVieweHeight: " + this.getHeight());
 
-//                    imV.setSize(dim.width, dim.height);// - dim.width / 20, dim.height - dim.height / 20);
-                    imV.setSize(this.getWidth(), this.getHeight());// - dim.width / 20, dim.height - dim.height / 20);
+                    imV.setSize(this.getWidth(), this.getHeight());
                     
                     firstIm = false;
-                    // local variable with no use after exiting function 
-//                    prevtype = DataViewerType.imageViewer;
                 }
                 break;
             case web:
@@ -175,8 +160,6 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
                 if (imV != null)
                     remove(imV);
                 type = DataViewerType.webViewer;
-                // callback to notify DataViewer -> not needed
-//                webV = new WebViewerImpl(this);
                 webV = new WebViewerImpl(this.avesViewer);
                 GridBagConstraints c = new GridBagConstraints();
                 c.gridx = 0;
@@ -198,6 +181,8 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
      * {@inheritDoc }
      * 
      */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     public void displayNext() throws DisplaySlideException {
         try {
             if (mOIt.hasNext()) {
@@ -213,7 +198,7 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
                 showData();
             } else {
             	// this is not an UPDATE, it ends the presentation
-                setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
+                setEvent(DataViewerEvent.ENDSHOW);
                 AvesEventMgr.dataViewerEvent();
             }
         } catch (Exception e) {
@@ -222,9 +207,11 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
     }
 
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
      */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     public void displayPrev() throws DisplaySlideException {
         try {
             if (mOIt.hasPrevious()) {
@@ -239,7 +226,7 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
                 setViewerType(currentObject.getDataType());
                 showData();
             } else {
-            	//this is not an UPDATE, it ends the presentaion
+            	//this is not an UPDATE, it ends the presentation
             	setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
             	AvesEventMgr.dataViewerEvent();
             }
@@ -249,9 +236,10 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
     }
 
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
      */
+	@Override
     public void showData() throws DataNotFoundException {
         try {
             switch (type) {
@@ -270,8 +258,6 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
     }
    
     /**
-     * TBI
-     * Temporary solution to show an image.
      * 
      * @return BufferedImage
      */
@@ -281,8 +267,8 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
             s = values.iterator();
 
             String uri = s.next();
-//			use classloader instead of File            
-//          bIm = ImageIO.read(getClass().getClassLoader().getResource(uri));
+			//use classloader instead of File            
+            //bIm = ImageIO.read(getClass().getClassLoader().getResource(uri));
 
             java.io.File file = new java.io.File(uri);
             bIm = ImageIO.read(file);
@@ -306,22 +292,20 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
     }
     
     /**
-     * TBI
-     * Temporary solution to show a web resource
      * 
-     * @return String
+     * @return URI
      */    
     private String getSource() {
-        String source = null;
+        String sourceURI = null;
         try {
             s = values.iterator();
 
-            source = s.next();
+            sourceURI = s.next();
 
-            if (source == null) {
+            if (sourceURI == null) {
                 throw new DataNotFoundException("error reading uri");
             }
-            webV.setCurrentSource(source);
+            webV.setCurrentSource(sourceURI);
         } catch (IllegalArgumentException illArge) {
             System.err.println(illArge);
         } catch (DataNotFoundException dNFE) {
@@ -332,72 +316,9 @@ public class DataViewerImpl extends JPanel implements DataViewer {//, KeyListene
                 System.out.println(e);
             }
         }
-        return source;
+        return sourceURI;
     }
 
-    /**
-     * {@inheritDoc }
-     * 
-     * Currently disabled.
-     * <p>
-     * 
-     */
-    public void keyTyped(KeyEvent ke) {
-        /*        int keyCode = ke.getKeyCode();
-        System.out.println("key typed:" + keyCode);
-            try {
-                displayNext();
-            } catch (Exception e) {
-                
-            }     */
-    }
-
-    /**
-     * {@inheritDoc }
-     * 
-     * Left and right arrow to navigate forward and backward. Escape key to return to general view.
-     * <p>
-     */
-/*    public void keyPressed(KeyEvent ke) {
-        int keyCode = ke.getKeyCode();
-        System.out.println("key pressedin dataviewr:" + keyCode);
-        if (keyCode == java.awt.event.KeyEvent.VK_RIGHT) { //right arrow
-            try {
-                displayNext();
-            } catch (Exception e) {
-                
-            }     
-        }
-        if (keyCode == java.awt.event.KeyEvent.VK_LEFT) { //left arrow
-            try {
-                displayPrev();
-            } catch (Exception e) {
-                
-            }     
-        }
-        if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) { //escape
-            try {
-            	System.out.println("escape pressed in dataviewer");
-            	//this is not an UPDATE, it ends the presentation
-            	setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
-                avesViewer.dataViewerEvent();
-            } catch (Exception e) {
-                
-            }     
-        }
-    }*/
-
-    /**
-     * {@inheritDoc }
-     * 
-     * <p>
-     * 
-     * Unused
-     * 
-     */
-    public void keyReleased(KeyEvent e) {
-    }
-    
 }
 
    

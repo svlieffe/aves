@@ -10,10 +10,12 @@ import aves.dpt.intf.production.XMLDataReader;
 import aves.dpt.intf.production.AvesObject.AvesObjectType;
 
 /**
+ * 
  * Basic implementation of the {@link aves.dpt.intf.production.XMLDataReader}
  * that maintains a {@link javax.xml.parsers.SAXParser}.
  *
  * @author svlieffe
+ * 2012/03/29
  */
 public class XMLDataReaderImpl implements XMLDataReader{
 
@@ -22,10 +24,12 @@ public class XMLDataReaderImpl implements XMLDataReader{
     private AvesObjectType objectType;
 
     /**
+     * 
      * parses the DOCUMENTS source using a 
      * {@link javax.xml.parsers.XMLSaxHandlerImpl}
      */
-    public void startParse() {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public void startParse() {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
 
@@ -52,17 +56,17 @@ public class XMLDataReaderImpl implements XMLDataReader{
     }
     
     /**
-     * {@inheritDoc}
      * 
-     * @return 
+     * {@inheritDoc}
+     * @return valueList
      */
     public List<String> valueList() {
         return valueList;
     }
     
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
      * @param avesObjectType 
      */
     public void read() {
@@ -70,18 +74,17 @@ public class XMLDataReaderImpl implements XMLDataReader{
     }
     
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
      * @param avesObjectType 
      */
     public void setType(AvesObjectType avesObjectType) {
-        objectType = avesObjectType;
-        
+        objectType = avesObjectType;        
     }
     
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
      * @param itemGroupName 
      */
     public void setGroup(String itemGroupName) {

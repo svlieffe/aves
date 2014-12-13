@@ -1,5 +1,6 @@
 package aves.dpt.intf.ctrl;
 
+
 /**
  *
  * Serves to produce a callback from the {@link aves.dpt.intf.viewers.AvesViewer}
@@ -12,17 +13,16 @@ package aves.dpt.intf.ctrl;
  */
 public interface AvesEventManager {
 	
-	Object getAvesEventSubject();
-	
-	void setAvesEventSubject(Object subject);
-	
     /**
-     * handles events for the  {@link aves.dpt.intf.viewers.AvesViewer}
+     * 
+     * Handles events for the  {@link aves.dpt.intf.viewers.AvesViewer}
      */
     void avesViewerEvent();
 
     /**
-     * handles events for the  {@link aves.dpt.intf.viewers.DataViewer}
+     * 
+     * Handles events for the  {@link aves.dpt.intf.viewers.DataViewer} 
      */
     void dataViewerEvent();
+
 }

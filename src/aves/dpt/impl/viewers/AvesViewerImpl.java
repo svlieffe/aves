@@ -1,26 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package aves.dpt.impl.viewers;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import aves.dpt.impl.production.AvesObjectImpl;
 import aves.dpt.intf.production.AvesObject;
 import aves.dpt.intf.production.AvesObject.AvesObjectType;
 import aves.dpt.intf.viewers.AvesViewer;
-//import aves.dpt.intf.viewers.DataViewer.DataViewerEvent;
-import aves.dpt.intf.viewers.AvesViewer.EventItemType;
 import aves.dpt.intf.viewers.DataViewer.DataViewerEvent;
 import aves.dpt.intf.ctrl.AvesEventManager;
-import aves.dpt.intf.viewers.AvesViewer.ViewerType;
-import aves.dpt.intf.ctrl.*;
 import aves.dpt.intf.ctrl.AvesManager.Phase;
 
 import java.awt.event.*;
@@ -35,23 +24,16 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 
 import gov.nasa.worldwind.WorldWind;
-import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.geom.*;
 import gov.nasa.worldwind.layers.*;
 import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.WWUtil;
 
 import java.awt.Color;
-import java.awt.Point;
 
 import gov.nasa.worldwind.event.*;
 import gov.nasa.worldwind.pick.PickedObject;
-import gov.nasa.worldwind.render.SurfaceCircle;
-import gov.nasa.worldwind.render.DrawContext;
-import gov.nasa.worldwind.render.Renderable;
 import gov.nasa.worldwind.animation.RotateToAngleAnimator;
 import gov.nasa.worldwind.animation.MoveToPositionAnimator;
-import gov.nasa.worldwind.animation.AnimationController;
 import gov.nasa.worldwind.util.PropertyAccessor.PositionAccessor;
 import gov.nasa.worldwind.view.ViewPropertyAccessor;
 import gov.nasa.worldwind.util.PropertyAccessor.AngleAccessor;
@@ -60,12 +42,13 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
+
 /**
+ * 
  * Basic implementation of a {@link aves.dpt.intf.viewers.AvesViewer}. Manages
  * the content-specific viewers.
  * @author svlieffe
- * 
- * @version $Id: AvesViewerImpl.java,v a1656ba63334 2012/03/31 20:52:12 svlieffe $
+ * 2012/03/29
  */
 public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManager, ActionListener, SelectListener, KeyListener  {
 
@@ -75,20 +58,16 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
     boolean isFullScreen = gd.isFullScreenSupported();
     boolean needGraphics = true;
     private ArrayList<AvesObjectImpl> avesObjects = new ArrayList<AvesObjectImpl>();
-    private Iterator<AvesObjectImpl> e;
-//    private ArrayList<Integer> buttonIndexes = new ArrayList<Integer>();
     private ArrayList<JButton> buttonList;
     private Dimension dim = new Dimension(720, 540);
     private String selectedItem;
     private EventItemType eventItemType;
     private KeyEvent keyEvent;
     private AvesEventManager avesEventMgr;
-    private Integer count = 0;
     private WorldWindViewerImpl wwv;
     private DataViewerImpl dv;
     private final Integer borderFraction;
     private Phase currentPhase;
-//    private AvesManager parent;
    
     public AvesViewerImpl(AvesEventManager avesEventMgr) {
     	this.avesEventMgr = avesEventMgr;
@@ -100,18 +79,16 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
     }
     
     /**
+     * 
      * {@inheritDoc }
-     * <p>
-     *  
      */
     public void setCurrentPhase(Phase phase) {
     	currentPhase = phase;
     }
     
     /**
+     * 
      * {@inheritDoc }
-     * <p>
-     *  
      */
     public Phase getCurrentPhase() {
     	return currentPhase;
@@ -121,32 +98,13 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
      * {@inheritDoc }
      * <p>
      * unused 
-     */
-    @Override
-	public Object getAvesEventSubject() {
-		return null;
-	}
-	
-    /**
-     * {@inheritDoc }
-     * <p>
-     * unused 
-     */
-    @Override
-	public void setAvesEventSubject(Object subject){ }
-	
-    /**
-     * {@inheritDoc }
-     * <p>
-     * unused 
-     */
+     */ 
     @Override
     public void avesViewerEvent() { }
 
     /**
+     * 
      * {@inheritDoc }
-     * <p>
-     *  
      */
     @Override
     public void dataViewerEvent() {
@@ -162,66 +120,79 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
     	}
     }
 
+    
     /**
+     * 
      * {@inheritDoc }
-     * <p>
-     * @param ae 
+     * @param actionEvent 
      */
 	@Override
-    public void actionPerformed(ActionEvent ae) {
-        // JOURNEYS selection takes place once only //20141104 removed restriction because this is deprecated
+    public void actionPerformed(ActionEvent actionEvent) {
     	System.out.println("action performed button clicked in Avesviewer");
-//        if (count == 0) {
-            //JButton source = (JButton) ae.getSource();
-            //selectedSession = source.getText();
-            selectedItem = ae.getActionCommand();
+            selectedItem = actionEvent.getActionCommand();
             eventItemType = EventItemType.JOURNEYBUTTON;
             avesEventMgr.avesViewerEvent();
     		setCurrentPhase(Phase.PLACES);
-//            count = 1;
-//        }
-        
     }
     
-    @SuppressWarnings({"StringEquality"})
-    public void selected(SelectEvent e) {
-        if (e == null) {
+    /**
+     * 
+     * {@inheritDoc }
+     * @param selectEvent 
+     */
+	@Override
+    @SuppressWarnings({})
+    public void selected(SelectEvent selectEvent) {
+        if (selectEvent == null) {
             return;
         }
 
-        PickedObject topPickedObject = e.getTopPickedObject();
+        PickedObject topPickedObject = selectEvent.getTopPickedObject();
 
-        if (e.getEventAction() == SelectEvent.LEFT_CLICK) {
+        if (selectEvent.getEventAction() == SelectEvent.LEFT_CLICK) {
             if (topPickedObject != null && topPickedObject.getObject() instanceof NamedSpot) {
                 NamedSpot selected = (NamedSpot) topPickedObject.getObject();
                 System.out.println(selected.getName());
                 selectedItem = selected.getName();
                 eventItemType = selected.getType();
                 avesEventMgr.avesViewerEvent();
-                //NamedSpot spotName = (NamedSpot) e.getSource();
-                //System.out.println(spotName.getName());
            } else {
-                System.out.println("brol");
+                return;
             }
         }
     }
 
+    /**
+     * 
+     * {@inheritDoc }
+     */
+	@Override
     public String getSelectedItem() {
         return selectedItem;
     }
     
+    /**
+     * 
+     * {@inheritDoc }
+     */
+	@Override
     public EventItemType getSelectedItemType() {
         return eventItemType;
     }
     
+    /**
+     * 
+     * {@inheritDoc }
+     */
+	@Override
     public KeyEvent getKeyEventType() {
         return keyEvent;
     }
     
     /**
+     * 
      * {@inheritDoc }
-     * <p>
-     * @param viewertype 
+     * @param phase 
      */
     public void selectSpecializedViewer(Phase phase) {
         switch (phase) {
@@ -237,14 +208,23 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
         }
     }
 
+    /**
+     * 
+     * {@inheritDoc }
+     * @param objectList 
+     */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     public void setAvesObjectsList(List<? extends AvesObject> objectList) {
         avesObjects = (ArrayList)objectList;
     }
     
     /**
+     * 
      * {@inheritDoc }
-     * <p>
      */
+    @SuppressWarnings({ "unchecked", "rawtypes", "incomplete-switch" })
+	@Override
     public void requestObjectsInViewer() {
     	selectSpecializedViewer(currentPhase);
         switch (type) {
@@ -274,9 +254,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                 wwv = new WorldWindViewerImpl();
                 wwv.initComponents(dim);
                 getLayeredPane().setLayout(new java.awt.BorderLayout());
-                getLayeredPane().add(wwv, java.awt.BorderLayout.CENTER, new Integer(-1));// new Integer(0));
-//                validate();
-//                pack();
+                getLayeredPane().add(wwv, java.awt.BorderLayout.CENTER, new Integer(-1));
                 break;
             }
             case worldWindPlaces: {
@@ -291,7 +269,6 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                 layer.setPickEnabled(true);
                 this.wwv.getwwPanel().addSelectListener(this);
                 this.wwv.getwwPanel().addKeyListener(this);
-//                this.wwv.getwwPanel().setFocusable(true);
                 this.wwv.getwwPanel().getModel().getLayers().add(0, layer);                
  
                 Iterator<JButton> jb = buttonList.iterator();
@@ -311,10 +288,6 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                                 spotName = (String) vi.next();
                                 spot = new NamedSpot(spotName, LatLon.fromDegrees(new Double((String) vi.next()),
                                         new Double((String) vi.next())), 100.0);
-                                //spot.setAttributes(attrs);
- /*                               spot.setAttributes(attrs);
-                                layer.addRenderable(spot);
-                                 */
                                 if (firstspt) {
                                     firstSpot = spot;
                                     firstspt = false;
@@ -332,37 +305,13 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                             mpa.start();
                             this.wwv.getwwPanel().getView().stopAnimations();
                             this.wwv.getwwPanel().getView().addAnimator(mpa);
-                            //this.wwv.getwwPanel().getView().goTo(new Position(firstSpot.getPos(), 1.5e6), 1.5e6);
-                            
-//                            AnimationController animationCtrl = new AnimationController();
-//                            
-//                            animationCtrl.put(new Integer(1), mpa);
-                            
-                            /*                                   this.wwv.getwwPanel().getView().setEyePosition(
-                            new Position(spot.getPos(), 1.5e6));  //Position.fromDegrees(47.0844, 2.3964, 1.5e5));//1.5e7)); // for mathilde 2.50e9
-                            System.out.println(spot.getName());
-                             */
-                            RotateToAngleAnimator mraa;
+
                             final AngleAccessor angleAccessor = ViewPropertyAccessor.createPitchAccessor((this.wwv.getwwPanel().getView()));
 
-                            mraa = new RotateToAngleAnimator(Angle.fromDegrees(0.0), Angle.fromDegrees(80.0), 0.91, angleAccessor);
-//                            mraa.start();
-//                            this.wwv.getwwPanel().getView().stopAnimations();
-//                            this.wwv.getwwPanel().getView().addAnimator(mraa);
-
-//                            animationCtrl.put(new Integer(2), mraa);
-                            
-//                            animationCtrl.startAnimation(1);
-                            
-                            //while(animationCtrl.hasActiveAnimation());
-                            
-                            //animationCtrl.startAnimation(2);
-                            
-                            //to handle event through AvesViewer
+                            @SuppressWarnings("unused")
+							RotateToAngleAnimator mraa = new RotateToAngleAnimator(Angle.fromDegrees(0.0), Angle.fromDegrees(80.0), 0.91, angleAccessor);
                             requestFocusInWindow();                                
 
-                            //validate();
-                            //pack();
                             break;
                     }
                 }
@@ -370,11 +319,10 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
             }
             case dataViewer: {
                 AvesObjectType objectType = AvesObjectType.DOCUMENTS;
-                switch (objectType) { //this switch is unused but can be used for other types than documents (?)
+                switch (objectType) { //this switch is unused but can be used for other types than documents
                     case DOCUMENTS:
                         switch (objectType) {
                             case DOCUMENTS:
-                                //wwv.setVisible(false);
                                 this.getLayeredPane().moveToBack(wwv);
                                 dv = new DataViewerImpl(this, this);
                                 if (isFullScreen) {
@@ -383,7 +331,6 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                                     this.pack();
                                     this.setVisible(true);
                                 }
-//                                dv.repaint();
                                 JPanel left = new JPanel();
                                 JPanel right= new JPanel();
                                 JPanel bottom = new JPanel();
@@ -391,7 +338,6 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                                 
                                 Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
-                                // add transparent border
                                 left.setSize(dim.width / borderFraction, dim.height);
                                 right.setSize(dim.width / borderFraction, dim.height);
                                 top.setSize(dim.width, dim.height / borderFraction);
@@ -410,10 +356,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                                 System.out.println("DataViewer height: " + this.getHeight());
                                 
                                 dv.setObjectsToDisplay((List) avesObjects);
-                                //getLayeredPane().setLayout(new java.awt.FlowLayout());
-                                //getLayeredPane().add(dv, java.awt.FlowLayout.LEFT);
                                 getLayeredPane().add(dv, java.awt.BorderLayout.CENTER, new Integer(300));
-//                                dv.requestFocusInWindow();                                
                                 this.getLayeredPane().moveToFront(dv);
                                 dv.setSize(new Dimension(this.getWidth(), this.getHeight()));
                                 dv.setOpaque(true);
@@ -422,10 +365,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                                     dv.displayNext();
                                 } catch (Exception ex) {
                                     System.out.println("error opening DataViewer:" + ex);
-                                 //   Logger.getLogger(AvesViewerImpl.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-                                //validate(); //blacks out dataviewer??
-                                //pack(); //blacks out dataviewer??
                                 break;
                         }
                 }
@@ -436,17 +376,20 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
     
 
     /**
-     * Sets the viewer full screen to true or false
+     * 
+     * {@inheritDoc }
      * @param val 
      */
+    @Override
     public void setFullScreen(boolean val) {
         isFullScreen = val;
     }
     
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
      */
+    @Override
     public void closeDataViewer() {
 
         dv.setVisible(false);
@@ -461,16 +404,12 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
             this.pack();
             this.setVisible(true);
         }
-        
-//        ve.setPhase(Phase.PLACES);
-  
     }
    
     /**
+     * 
      * Shows the {@link aves.dpt.intf.viewers.AvesViewer}, 
      * full screen or in a window.
-     * 
-     * <p>
      */
     private void displayViewer() {
         setUndecorated(isFullScreen);
@@ -489,14 +428,13 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
             pack();
             setVisible(true);
         }
- 
     }
          
     /**
+     * 
      * The object used to mark a specific location in the 
      * WorldWind RenderableLayer.
      */
-    
     private class NamedSpot extends PointPlacemark {
         
         String placeName;
@@ -508,7 +446,6 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
             this.placeName = name;
             this.spotPos = latLon;
             super.setLabelText(name);
-            //super.setValue(AVKey.DISPLAY_NAME, "Clamp to ground, White label, Red point, Scale 5");
             super.setAltitudeMode(WorldWind.CLAMP_TO_GROUND);
             PointPlacemarkAttributes ppattrs = new PointPlacemarkAttributes();
             ppattrs = new PointPlacemarkAttributes();
@@ -535,6 +472,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
     }
     
     /**
+     * 
      * Initializes {@link aves.dpt.impl.viewers.AvesViewerImpl.NamedSpot} 
      * object used to mark a specific location in the 
      * WorldWind RenderableLayer.
@@ -549,9 +487,10 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
     }
 
     /**
+     * 
      * {@inheritDoc }
-     * <p>
      */
+    @Override
     public List<LatLon> makeRoute() {
         ArrayList<LatLon> listOfPlaces = new ArrayList<LatLon>();
 
@@ -559,46 +498,48 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
     }
 
     /**
+     * 
      * {@inheritDoc }
-     * <p>
      */
+    @Override
     public void displayRoute(List<? extends LatLon> listOfCoords) {
     }
     
     /**
+     * 
      * {@inheritDoc }
      * <p>
-     * Unused.
-     * 
+     * unused.
      */
+    @Override
     public void keyTyped(KeyEvent ke) {
     }
 
     /**
-     * {@inheritDoc }
      * 
+     * {@inheritDoc }
      * Left and right arrow to navigate forward and backward. Escape key to return to general view.
      * <p>
      */
+    @Override
     public void keyPressed(KeyEvent ke) {
         int keyCode = ke.getKeyCode();
         System.out.println("key pressedin avasviewerimpl__:" + keyCode);
-//    	eventItemType = EventItemType.ESCKEY;
-        if (keyCode == java.awt.event.KeyEvent.VK_RIGHT) { //right arrow
+        if (keyCode == java.awt.event.KeyEvent.VK_RIGHT) {
             try {
                 dv.displayNext();
             } catch (Exception e) {
-                
+                System.out.println(e);
             }     
         }
-        if (keyCode == java.awt.event.KeyEvent.VK_LEFT) { //left arrow
+        if (keyCode == java.awt.event.KeyEvent.VK_LEFT) {
             try {
                 dv.displayPrev();
             } catch (Exception e) {
                 
             }     
         }
-        if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) { //escape
+        if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) {
             try {
             	System.out.println("escape AvesViewerImpl pressed:" + keyCode);
                 System.out.println(currentPhase);
@@ -612,31 +553,11 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                 	break;
                 case DOCUMENTS:
                 	closeDataViewer();
-                	dv.setEvent(DataViewerEvent.ENDSHOW);//parent.closeDataViewer();
+                	dv.setEvent(DataViewerEvent.ENDSHOW);
                     this.dataViewerEvent();                	
 				default:
 					break;                	
                 }
-/*                if (currentPhase == Phase.JOURNEYS) {
-                	System.exit(0);
-                } else {
-                	eventItemType = EventItemType.ESCKEY;
-                	ve.viewerEvent();
-//                	removeAll();
-//                	revalidate();
-//                	repaint();
-                }*/
-//                dispose();
-                //invalidate();
-//                getLayeredPane().remove(wwv);
-//            	keyEvent = ke;
-/*                selectedItem = ae.getActionCommand();
-                eventItemType = "sessionButton";*/
-//                ve.viewerEvent();
-/*                ve.setPhase(Phase.JOURNEYS);
-                ve.produceAndShow(Phase.JOURNEYS);*/
-//                selectSpecializedViewer(ViewerType.worldWindSessions);
-//                runSpecializedViewers();
             } catch (Exception e) {
             	System.out.print(e);              
             }     
@@ -644,13 +565,13 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
     }
 
     /**
+     * 
      * {@inheritDoc }
-     * 
      * <p>
-     * 
-     * Unused
+     * unused
      * 
      */
+    @Override
     public void keyReleased(KeyEvent e) {
     }
     

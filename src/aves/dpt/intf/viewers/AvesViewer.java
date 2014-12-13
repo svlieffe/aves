@@ -102,4 +102,21 @@ public interface AvesViewer extends KeyListener {
      */
     public void keyPressed(KeyEvent ke);
 
+    /**
+     * 
+     * @return selectedItemEvent 
+     */
+    String getSelectedItem();
+    
+    /**
+     * 
+     * @return eventItemType 
+     */
+    EventItemType getSelectedItemType();
+
+    /**
+     * 
+     * @return keyEvent 
+     */
+    KeyEvent getKeyEventType();
 }
