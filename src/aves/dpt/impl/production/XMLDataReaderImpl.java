@@ -48,7 +48,6 @@ public class XMLDataReaderImpl implements XMLDataReader{
             parser.parse(inStream, xmlHandler);
 
             valueList = (ArrayList)xmlHandler.valueList();
-            valueList = (ArrayList)xmlHandler.valueList();
 
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
