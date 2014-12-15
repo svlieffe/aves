@@ -38,7 +38,7 @@ public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListen
     
     public AvesManagerImpl() {
 
-        fullScreen = false;             // toggle fullscreen
+        fullScreen = true;             // toggle fullscreen
 
         factory = new FactoryImpl();
         mv = new AvesViewerImpl(this);

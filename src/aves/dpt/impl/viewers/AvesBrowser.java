@@ -414,7 +414,7 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
         this.webViewContentSize = null;
     }
 
-    protected void determineWebViewContentSize() {
+/*    protected void determineWebViewContentSize() {
         // Update the WebView's HTML content size when the WebView is non-null and has not navigated to a another page
         // (indicated by a non-null URL). The latter case indicates that the WebView is not displaying this balloon's
         // text. We avoid updating the content size in this case to ensure that the balloon's size always fits the
@@ -426,7 +426,7 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
             this.webViewContentSize = this.webView.getContentSize();
         }
     }
-
+*/
     public void pick(DrawContext dc, Point pickPoint) {
         // This method is called only when ordered renderables are being drawn.
         // Arg checked within call to render.
@@ -962,7 +962,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
             return false;
         }
         GL2 gl = dc.getGL().getGL2();
-        gl.glTranslatef(this.screenPoint.x, this.screenPoint.y, 0);
 
         texture = this.webView.getTextureRepresentation(dc);
         if (texture == null) {
@@ -973,18 +972,9 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
             return false;
         }
 
-
-        // Set up the texture matrix to transform texture coordinates from the balloon's screen space vertex
-        // coordinates into WebView texture space. This places the WebView's texture in the WebView's screen
-        // rectangle. Use integer coordinates when possible to ensure that the image texels are aligned
-        // exactly with screen pixels. This transforms texture coordinates such that
-        // (webViewRect.getMinX(), webViewRect.getMinY()) maps to (0, 0) - the texture's lower left corner,
-        // and (webViewRect.getMaxX(), webViewRect.getMaxY()) maps to (1, 1) - the texture's upper right
-        // corner. Since texture coordinates are generated relative to the screenRect origin and webViewRect
-        // is in screen coordinates, we translate the texture coordinates by the offset from the screenRect
-        // origin to the webViewRect origin.
-        gl.glMatrixMode(GL2.GL_TEXTURE);//without this method it did work same way
-        gl.glTranslatef(this.screenRect.x - this.webViewRect.x, this.screenRect.y - this.webViewRect.y, 0f);
+        gl.glMatrixMode(GL2.GL_TEXTURE);
+        gl.glScalef(1f, 1f, 1f); // no scaling
+        gl.glTranslatef(this.screenPoint.x, this.screenPoint.y, 0);
         // Restore the matrix mode.
         gl.glMatrixMode(GL2.GL_MODELVIEW);
 

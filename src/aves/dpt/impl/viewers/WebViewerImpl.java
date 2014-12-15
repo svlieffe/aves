@@ -4,10 +4,12 @@ import gov.nasa.worldwind.BasicModel;
 import gov.nasa.worldwind.awt.WorldWindowGLJPanel;
 import gov.nasa.worldwind.layers.LayerList;
 import gov.nasa.worldwind.layers.RenderableLayer;
+import gov.nasa.worldwind.render.BalloonAttributes;
+import gov.nasa.worldwind.render.BasicBalloonAttributes;
+import gov.nasa.worldwind.render.Size;
 import gov.nasa.worldwind.util.Logging;
 import gov.nasa.worldwind.util.WWIO;
 import gov.nasa.worldwindx.examples.util.HotSpotController;
-
 import aves.dpt.intf.viewers.AvesViewer;
 import aves.dpt.intf.viewers.WebViewer;
 
@@ -31,7 +33,7 @@ public class WebViewerImpl extends JPanel implements WebViewer {
     InputStream contentStream = null;
     static GLCanvas canvas = new GLCanvas();
     protected HotSpotController hotSpotController;
-    AvesBrowser ogb;
+    AvesBrowser avesBrowser;
     WorldWindowGLJPanel wwp;
     private AvesViewer avesViewer;
 
@@ -40,7 +42,7 @@ public class WebViewerImpl extends JPanel implements WebViewer {
     }
     
     public AvesBrowser getAvesBrowser() {
-        return ogb;
+        return avesBrowser;
     }
 
     @Override
@@ -65,7 +67,7 @@ public class WebViewerImpl extends JPanel implements WebViewer {
             htmlString = Logging.getMessage("generic.ExceptionAttemptingToReadFile", source);
         }
 
-        ogb = new AvesBrowser(htmlString, this.getWidth(), this.getHeight(), this.avesViewer);
+        avesBrowser = new AvesBrowser(htmlString, this.getWidth(), this.getHeight(), this.avesViewer);
         BasicModel bm;
         bm = new BasicModel();
         LayerList layers;
@@ -77,7 +79,7 @@ public class WebViewerImpl extends JPanel implements WebViewer {
 
         RenderableLayer newlayer = new RenderableLayer();
         newlayer.setName("Web Browser");
-        newlayer.addRenderable(ogb);
+        newlayer.addRenderable(avesBrowser);
 
         // Add the newlayer to the ApplicationTemplate's newlayer panel.
         bm.getLayers().add(0, newlayer);
@@ -89,7 +91,7 @@ public class WebViewerImpl extends JPanel implements WebViewer {
 
         wwp.setModel(bm);
         newlayer.setPickEnabled(true);
-        wwp.addSelectListener(ogb);
+        wwp.addSelectListener(avesBrowser);
         hotSpotController = new HotSpotController(wwp);
         this.add(wwp, java.awt.BorderLayout.CENTER);
         System.out.println("yeoloooo");
