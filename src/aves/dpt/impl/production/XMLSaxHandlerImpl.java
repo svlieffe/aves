@@ -54,14 +54,14 @@ public class XMLSaxHandlerImpl extends DefaultHandler {
         switch (type) {
             case JOURNEYS:
                 if (qName.equals("journey")) {
-                    dataList.add(attrs.getValue("date"));
+                    dataList.add(attrs.getValue("sessiondate"));
                 } else {
                     break;
                 }
                 break;
             case PLACES:
                 if (qName.equals("journey")) {
-                    journeyDate = attrs.getValue("date");
+                    journeyDate = attrs.getValue("sessiondate");
                 }
                 if (journeyDate.equals(group)) {
                     if (qName.equals("place")) {
