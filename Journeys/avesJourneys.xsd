@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema 
-xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://www.w3schools.com" 
+xmlns="http://www.w3schools.com" 
 elementFormDefault="qualified">
 	<xs:element name="root">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="journey" maxOccurs="unbounded">
-					<xs:complexType>
+					<xs:complexType> 
 						<xs:sequence>
 							<xs:element name="place" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="document" maxOccurs="unbounded">
 											<xs:complexType>
+												<xs:attribute name="type"></xs:attribute>
 												<xs:attribute name="uri"></xs:attribute>
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>
-									<xs:attribute name="name"></xs:attribute>
+									<xs:attribute name="name" use="required"></xs:attribute>
 									<xs:attribute name="latitude"></xs:attribute>
 									<xs:attribute name="longitude"></xs:attribute>
 								</xs:complexType>

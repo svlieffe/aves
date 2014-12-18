@@ -11,36 +11,37 @@
         TODO need for switch between type="img" and type="txt"
         TODO need to write schema to validate XML
 -->
-<xsi:root xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com avesJourneys.xsd">
-    <xsi:journey sessiondate="North America 04/03/2013">
-        <xsi:place name="New York" latitude="40.67" longitude="-73.94">
-            <xsi:document xsi:type="web" xsi:uri="./Journeys/FirstJourney/NewYork/Aves.html"></xsi:document>
-        </xsi:place>
-    </xsi:journey>
-    <xsi:journey xsi:sessiondate="Europe I 04/05/2013">
-        <xsi:place xsi:name="London" xsi:latitude="51.507222" xsi:longitude="-0.1275">
-        </xsi:place>
-        <xsi:place xsi:name="Canterbury" xsi:latitude="51.276681" xsi:longitude="1.074767">
-        </xsi:place>
-        <xsi:place xsi:name="Reims" xsi:latitude="49.2628" xsi:longitude="4.0347">
-        </xsi:place>
-        <xsi:place xsi:name="Honnecourt" xsi:latitude="50.0375" xsi:longitude="3.1964">
-        </xsi:place>
-        <xsi:place xsi:name="Saint Denis" xsi:latitude="48.9364" xsi:longitude="2.3547">
-            <xsi:document xsi:type="img" xsi:uri="./Journeys/SecondJourney/SDenis/Slide7.JPG"></xsi:document>
-            <xsi:document xsi:type="img" xsi:uri="./Journeys/SecondJourney/SDenis/Slide8.JPG"></xsi:document>
-            <xsi:document xsi:type="web" xsi:uri="./Journeys/SecondJourney/SDenis/Mobile-Mapping.html"></xsi:document>
-        </xsi:place>
-        <xsi:place xsi:name="Paris" xsi:latitude="48.8567" xsi:longitude="2.3508">
-            <xsi:document xsi:type="img" xsi:uri="./Journeys/SecondJourney/Paris/Slide20.JPG"></xsi:document>
-            <xsi:document xsi:type="img" uri="./Journeys/SecondJourney/Paris/Slide47.JPG"></xsi:document>
-        </xsi:place>
-        <xsi:place xsi:name="Clermont-Ferrand" xsi:latitude="45.7831" xsi:longitude="3.0824">
-        </xsi:place>
-    </xsi:journey>
-    <xsi:journey xsi:sessiondate="Europe II 11/02/2013">
-        <xsi:place xsi:name="Chartres" xsi:latitude="48.4558" xsi:longitude="1.4842">
-            <xsi:document xsi:type="web" xsi:uri="./Journeys/ThirdJourney/Chartres/MTDavisChartres.html"></xsi:document>
-        </xsi:place>
-    </xsi:journey>
-</xsi:root>
+
+<root xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://www.w3schools.com file:///users/gent/workspace/aves/Journeys/avesJourneys.xsd">
+     <journey sessiondate="North America 04/03/2013">
+        <place name="New York" latitude="40.67" longitude="-73.94">
+            <document type="web" uri="./Journeys/FirstJourney/NewYork/Aves.html"></document>
+        </place>
+    </journey>
+    <journey sessiondate="Europe I 04/05/2013">
+        <place name="London" latitude="51.507222" longitude="-0.1275">
+        </place>
+        <place name="Canterbury" latitude="51.276681" longitude="1.074767">
+        </place>
+        <place name="Reims" latitude="49.2628" longitude="4.0347">
+        </place>
+        <place name="Honnecourt" latitude="50.0375" longitude="3.1964">
+        </place>
+        <place name="Saint Denis" latitude="48.9364" longitude="2.3547">
+            <document type="img" uri="./Journeys/SecondJourney/SDenis/Slide7.JPG"></document>
+            <document type="img" uri="./Journeys/SecondJourney/SDenis/Slide8.JPG"></document>
+            <document type="web" uri="./Journeys/SecondJourney/SDenis/Mobile-Mapping.html"></document>
+        </place>
+        <place name="Paris" latitude="48.8567" longitude="2.3508">
+            <document type="img" uri="./Journeys/SecondJourney/Paris/Slide20.JPG"></document>
+            <document type="img" uri="./Journeys/SecondJourney/Paris/Slide47.JPG"></document>
+        </place>
+        <place name="Clermont-Ferrand" latitude="45.7831" longitude="3.0824">
+        </place>
+    </journey>
+    <journey sessiondate="Europe II 11/02/2013">
+        <place name="Chartres" latitude="48.4558" longitude="1.4842">
+            <document type="web" uri="./Journeys/ThirdJourney/Chartres/MTDavisChartres.html"></document>
+        </place>
+    </journey>
+</root>
