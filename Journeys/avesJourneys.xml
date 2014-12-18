@@ -11,7 +11,7 @@
         TODO need for switch between type="img" and type="txt"
         TODO need to write schema to validate XML
 -->
-<root xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com avesJourneys.xsd">
+<xsi:root xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com avesJourneys.xsd">
     <xsi:journey sessiondate="North America 04/03/2013">
         <xsi:place name="New York" latitude="40.67" longitude="-73.94">
             <xsi:document type="web" uri="./Journeys/FirstJourney/NewYork/Aves.html"></xsi:document>
@@ -43,4 +43,4 @@
             <document type="web" uri="./Journeys/ThirdJourney/Chartres/MTDavisChartres.html"></document>
         </place>
     </journey>
-</root>
+</xsi:root>
