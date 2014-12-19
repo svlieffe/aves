@@ -13,10 +13,10 @@ elementFormDefault="qualified">
 							<xs:element name="place" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="document" maxOccurs="unbounded">
+										<xs:element name="document" maxOccurs="unbounded" minOccurs="0">
 											<xs:complexType>
-												<xs:attribute name="type"></xs:attribute>
-												<xs:attribute name="uri"></xs:attribute>
+												<xs:attribute name="type" use="required"></xs:attribute>
+												<xs:attribute name="uri" use="required"></xs:attribute>
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>

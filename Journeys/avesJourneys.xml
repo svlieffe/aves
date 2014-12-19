@@ -1,47 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<p:root xmlns:p="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com avesJourneys.xsd ">
+     <p:journey sessiondate="North America 04/03/2013">
+        <p:place name="New York" latitude="40.67" longitude="-73.94">
+            <p:document type="web" uri="./Journeys/FirstJourney/NewYork/Aves.html"></p:document>
+        </p:place>
+    </p:journey>
+    <p:journey sessiondate="Europe I 04/05/2013">
+        <p:place name="London" latitude="51.507222" longitude="-0.1275">
+        </p:place>
+        <p:place name="Canterbury" latitude="51.276681" longitude="1.074767">
+        </p:place>
+        <p:place name="Reims" latitude="49.2628" longitude="4.0347">
+        </p:place>
+        <p:place name="Honnecourt" latitude="50.0375" longitude="3.1964">
+        </p:place>
+        <p:place name="Saint Denis" latitude="48.9364" longitude="2.3547">
+            <p:document type="img" uri="./Journeys/SecondJourney/SDenis/Slide7.JPG"></p:document>
+            <p:document type="img" uri="./Journeys/SecondJourney/SDenis/Slide8.JPG"></p:document>
+            <p:document type="web" uri="./Journeys/SecondJourney/SDenis/Mobile-Mapping.html"></p:document>
+        </p:place>
+        <p:place name="Paris" latitude="48.8567" longitude="2.3508">
+            <p:document type="img" uri="./Journeys/SecondJourney/Paris/Slide20.JPG"></p:document>
+            <p:document type="img" uri="./Journeys/SecondJourney/Paris/Slide47.JPG"></p:document>
+        </p:place>
+        <p:place name="Clermont-Ferrand" latitude="45.7831" longitude="3.0824">
+        </p:place>
+    </p:journey>
+    <p:journey sessiondate="Europe II 11/02/2013">
+        <p:place name="Chartres" latitude="48.4558" longitude="1.4842">
+            <p:document type="web" uri="./Journeys/ThirdJourney/Chartres/MTDavisChartres.html"></p:document>
+        </p:place>
+    </p:journey>
+</p:root>
 
-<!--
-    Document   : avesJourneys.xml
-    Created on : March 30, 2012, 11:02 AM
-    Author     : svlieffe
-    Description:
-        Purpose of the document follows.
-        
-        TODO different journeys with same place name
-        TODO need for switch between type="img" and type="txt"
-        TODO need to write schema to validate XML
--->
-
-<root xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://www.w3schools.com file:///users/gent/workspace/aves/Journeys/avesJourneys.xsd">
-     <journey sessiondate="North America 04/03/2013">
-        <place name="New York" latitude="40.67" longitude="-73.94">
-            <document type="web" uri="./Journeys/FirstJourney/NewYork/Aves.html"></document>
-        </place>
-    </journey>
-    <journey sessiondate="Europe I 04/05/2013">
-        <place name="London" latitude="51.507222" longitude="-0.1275">
-        </place>
-        <place name="Canterbury" latitude="51.276681" longitude="1.074767">
-        </place>
-        <place name="Reims" latitude="49.2628" longitude="4.0347">
-        </place>
-        <place name="Honnecourt" latitude="50.0375" longitude="3.1964">
-        </place>
-        <place name="Saint Denis" latitude="48.9364" longitude="2.3547">
-            <document type="img" uri="./Journeys/SecondJourney/SDenis/Slide7.JPG"></document>
-            <document type="img" uri="./Journeys/SecondJourney/SDenis/Slide8.JPG"></document>
-            <document type="web" uri="./Journeys/SecondJourney/SDenis/Mobile-Mapping.html"></document>
-        </place>
-        <place name="Paris" latitude="48.8567" longitude="2.3508">
-            <document type="img" uri="./Journeys/SecondJourney/Paris/Slide20.JPG"></document>
-            <document type="img" uri="./Journeys/SecondJourney/Paris/Slide47.JPG"></document>
-        </place>
-        <place name="Clermont-Ferrand" latitude="45.7831" longitude="3.0824">
-        </place>
-    </journey>
-    <journey sessiondate="Europe II 11/02/2013">
-        <place name="Chartres" latitude="48.4558" longitude="1.4842">
-            <document type="web" uri="./Journeys/ThirdJourney/Chartres/MTDavisChartres.html"></document>
-        </place>
-    </journey>
-</root>
