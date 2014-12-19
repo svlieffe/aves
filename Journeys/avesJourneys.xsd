@@ -3,6 +3,7 @@
 xmlns:xs="http://www.w3.org/2001/XMLSchema" 
 targetNamespace="http://www.w3schools.com" 
 xmlns="http://www.w3schools.com" 
+xmlns:p="http://www.w3schools.com" 
 elementFormDefault="qualified">
 	<xs:element name="root">
 		<xs:complexType>
@@ -10,7 +11,7 @@ elementFormDefault="qualified">
 				<xs:element name="journey" maxOccurs="unbounded">
 					<xs:complexType> 
 						<xs:sequence>
-							<xs:element name="place" maxOccurs="unbounded">
+							<xs:element name="pplace" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="document" maxOccurs="unbounded" minOccurs="0">
@@ -20,13 +21,13 @@ elementFormDefault="qualified">
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>
-									<xs:attribute name="name" use="required"></xs:attribute>
+									<xs:attribute name="pname" use="required"></xs:attribute>
 									<xs:attribute name="latitude"></xs:attribute>
 									<xs:attribute name="longitude"></xs:attribute>
 								</xs:complexType>
-							  	<xs:unique name="uniqueName">
-    								<xs:selector xpath="place" /> 
-    								<xs:field xpath="@name" /> 
+							  	<xs:unique name="uniquePlaceName">
+    								<xs:selector xpath="p:pplace" /> 
+    								<xs:field xpath="@pname" /> 
   								</xs:unique>
 							</xs:element>
 						</xs:sequence>
