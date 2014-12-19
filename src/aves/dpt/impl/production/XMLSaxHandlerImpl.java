@@ -53,18 +53,18 @@ public class XMLSaxHandlerImpl extends DefaultHandler {
 
         switch (type) {
             case JOURNEYS:
-                if (qName.equals("journey")) {
+                if (qName.equals("p:journey")) {
                     dataList.add(attrs.getValue("sessiondate"));
                 } else {
                     break;
                 }
                 break;
             case PLACES:
-                if (qName.equals("journey")) {
+                if (qName.equals("p:journey")) {
                     journeyDate = attrs.getValue("sessiondate");
                 }
                 if (journeyDate.equals(group)) {
-                    if (qName.equals("place")) {
+                    if (qName.equals("p:place")) {
                         dataList.add(attrs.getValue("name"));
                         dataList.add(attrs.getValue("latitude"));
                         dataList.add(attrs.getValue("longitude"));
@@ -75,11 +75,11 @@ public class XMLSaxHandlerImpl extends DefaultHandler {
                 }
                 break;
             case DOCUMENTS:
-                if (qName.equals("place")) {
+                if (qName.equals("p:place")) {
                     placeName = attrs.getValue("name");
                 }
                 if (placeName.equals(group)) {    
-                    if (qName.equals("document")) {
+                    if (qName.equals("p:document")) {
                         dataList.add(attrs.getValue("type"));
                         dataList.add(attrs.getValue("uri"));
                     } else {
