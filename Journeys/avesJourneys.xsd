@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema 
 xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-targetNamespace="http://www.w3schools.com" 
-xmlns="http://www.w3schools.com" 
-xmlns:p="http://www.w3schools.com" 
-elementFormDefault="qualified">
-	<xs:element name="root">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="journey" maxOccurs="unbounded">
-					<xs:complexType> 
-						<xs:sequence>
-							<xs:element name="pplace" maxOccurs="unbounded">
-								<xs:complexType>
-									<xs:sequence>
-										<xs:element name="document" maxOccurs="unbounded" minOccurs="0">
-											<xs:complexType>
-												<xs:attribute name="type" use="required"></xs:attribute>
-												<xs:attribute name="uri" use="required"></xs:attribute>
-											</xs:complexType>
-										</xs:element>
-									</xs:sequence>
-									<xs:attribute name="pname" use="required"></xs:attribute>
-									<xs:attribute name="latitude"></xs:attribute>
-									<xs:attribute name="longitude"></xs:attribute>
-								</xs:complexType>
-							  	<xs:unique name="uniquePlaceName">
-    								<xs:selector xpath="p:pplace" /> 
-    								<xs:field xpath="@pname" /> 
-  								</xs:unique>
-							</xs:element>
-						</xs:sequence>
-					<xs:attribute name="sessiondate"></xs:attribute>
-					</xs:complexType>
-				</xs:element>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
+targetNamespace="http://localhost" 
+xmlns="http://localhost" 
+xmlns:p="http://localhost" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+
+<xs:complexType name="documenttype">
+	<xs:attribute name="type" use="required"></xs:attribute>
+	<xs:attribute name="uri" use="required"></xs:attribute>
+</xs:complexType>
+
+<xs:complexType name="pplacetype">
+	<xs:sequence>
+		<xs:element name="document" type="documenttype" maxOccurs="unbounded" minOccurs="0"/>
+	</xs:sequence>
+	<xs:attribute name="pname" type="xs:string"></xs:attribute>
+	<xs:attribute name="latitude"></xs:attribute>
+	<xs:attribute name="longitude"></xs:attribute>
+</xs:complexType>
+
+<xs:complexType name="journeytype">
+	<xs:sequence>
+		<xs:element name="pplace" type="pplacetype" maxOccurs="unbounded"/>
+	</xs:sequence>
+	<xs:attribute name="sessiondate"></xs:attribute>
+</xs:complexType>
+
+<xs:complexType name="roottype">
+	<xs:sequence>
+		<xs:element name="journey" type="journeytype" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:element name="root" type="roottype">
+	<xs:unique name="uniquePlaceName">
+    	<xs:selector xpath="p:pplace" /> 
+    	<xs:field xpath="@pname" /> 
+  	</xs:unique>	
+</xs:element>
+
 </xs:schema>
+
+

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<p:root xmlns:p="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com avesJourneys.xsd ">
+<p:root xmlns:p="http://localhost" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://localhost avesJourneys.xsd ">
      <p:journey sessiondate="North America 04/03/2013">
         <p:pplace pname="New York" latitude="40.67" longitude="-73.94">
             <p:document type="web" uri="./Journeys/FirstJourney/NewYork/Aves.html"></p:document>
