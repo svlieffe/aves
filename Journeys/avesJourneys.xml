@@ -8,8 +8,6 @@
     <p:journey sessiondate="Europe I 04/05/2013">
         <p:pplace pname="London" latitude="51.507222" longitude="-0.1275">
         </p:pplace>
-        <p:pplace pname="London" latitude="51.507222" longitude="-0.1275">
-        </p:pplace>
         <p:pplace pname="Canterbury" latitude="51.276681" longitude="1.074767">
         </p:pplace>
         <p:pplace pname="Reims" latitude="49.2628" longitude="4.0347">

@@ -24,23 +24,24 @@ elementFormDefault="qualified" attributeFormDefault="unqualified">
 
 <xs:complexType name="journeytype">
 	<xs:sequence>
-		<xs:element name="pplace" type="pplacetype" maxOccurs="unbounded"/>
+		<xs:element name="pplace" type="pplacetype" maxOccurs="unbounded">
+	</xs:element>
 	</xs:sequence>
 	<xs:attribute name="sessiondate"></xs:attribute>
 </xs:complexType>
 
 <xs:complexType name="roottype">
 	<xs:sequence>
-		<xs:element name="journey" type="journeytype" maxOccurs="unbounded"/>
+		<xs:element name="journey" type="journeytype" maxOccurs="unbounded">
+		<xs:unique name="uniquePlaceName">
+	    	<xs:selector xpath="p:pplace" /> 
+	    	<xs:field xpath="@pname" /> 
+	  	</xs:unique>
+		</xs:element>
 	</xs:sequence>
 </xs:complexType>
 
-<xs:element name="root" type="roottype">
-	<xs:unique name="uniquePlaceName">
-    	<xs:selector xpath="p:pplace" /> 
-    	<xs:field xpath="@pname" /> 
-  	</xs:unique>	
-</xs:element>
+<xs:element name="root" type="roottype"></xs:element>
 
 </xs:schema>
 
