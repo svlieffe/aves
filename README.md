@@ -3,7 +3,7 @@
 ### Aves ###
 
 * Summary
-Aves was first used in 2012 as an in-class presentation tool. The goal was to combine slideshows with geographic information. The project is using the NASA Worldwind java SDK.
+Aves was first used in 2012 as an in-class presentation tool. The goal was to combine slideshows with geographic information. The project is build around the NASA Worldwind java SDK.
 
 * Current Version
 v0.0.1
@@ -35,3 +35,7 @@ ESC to return to previous or exit Aves
 ### Contact ###
 
 * svlieffe
+
+### License ###
+
+* Worldwind is licensed under the NASA Open Source Agreement http://worldwind.arc.nasa.gov/worldwind-nosa-1.3.html
