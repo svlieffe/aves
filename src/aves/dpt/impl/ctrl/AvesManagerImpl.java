@@ -188,10 +188,8 @@ public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListen
     @Override
     public void keyPressed(KeyEvent ke) {
         int keyCode = ke.getKeyCode();
-//        System.out.println("key pressedin dataviewr:" + keyCode);
         if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) {
             try {
-//            	System.out.println("escape pressed in Sessions");
                 System.exit(0);
             } catch (Exception e) {
                 System.out.println(e);

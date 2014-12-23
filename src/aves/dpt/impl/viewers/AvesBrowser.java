@@ -290,7 +290,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
     }
 
     public String getText() {
-        System.out.println("in gettext");
         return this.text;
     }
 
@@ -320,7 +319,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
         // Attempt to create the balloon's WebView.
         if (this.webView == null) {
             this.makeWebView(dc, this.webViewRect.getSize());
-            System.out.println("in update just after making webview");
             // Exit immediately if WebView creation failed.
             if (this.webView == null) {
                 return;
@@ -344,11 +342,8 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
     }
 
     protected void setWebViewContent() {
-        String text = this.getTextDecoder().getDecodedText();//BROWSER_CONTENT_PATH;
+        String text = this.getTextDecoder().getDecodedText();
         Object resourceResolver = this.getResourceResolver();
-
-        System.out.println("the text in setwebviewcontent is " + text);
-
 
         if (resourceResolver instanceof WebResourceResolver) {
             this.webView.setHTMLString(text, (WebResourceResolver) resourceResolver);
@@ -369,7 +364,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
                 Logging.logger().warning(Logging.getMessage("generic.UnrecognizedResourceResolver", resourceResolver));
             }
             this.webView.setHTMLString(text);
-            System.out.println("the next text is " + text);
         }
     }
 
@@ -626,11 +620,9 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
      * @param event the event to send.
      */
     protected void handleKeyEvent(KeyEvent event) {
-        System.out.println("Browser handleKeyEvent");
         if (this.webView != null) {
  
            int keyCode = event.getKeyCode();
-            System.out.println("key pressed in browser:" + keyCode);
                 try {
                     this.dispose();
                     avesViewer.keyPressed(event);
@@ -993,7 +985,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
             return;
         }
         for (AVList linkParams : links) {
-            System.out.println("adding a link");
             // This should never happen, but we check anyway.
             if (linkParams == null) {
                 continue;
@@ -1022,7 +1013,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
                     if (rect == null) {
                         continue;
                     }
-                    System.out.println("in draw webview links rectangle vertices added to gl");
 
                     gl.glVertex2i(x + rect.x, y + rect.y);
                     gl.glVertex2i(x + rect.x + rect.width, y + rect.y);
@@ -1030,7 +1020,6 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
                     gl.glVertex2i(x + rect.x, y + rect.y + rect.height);
                 }
             } finally {
-                System.out.println("in finally of draw webview links");
                 gl.glEnd();
             }
         }

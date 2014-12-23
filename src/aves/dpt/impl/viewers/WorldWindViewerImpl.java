@@ -56,7 +56,6 @@ public class WorldWindViewerImpl extends JPanel implements WorldWindViewer {
 
         for (int i = 0; i < layers.size(); i++) {
             String name = layers.get(i).getName();
-            System.out.println(name);
         }
         for (int i = 0; i < layers.size(); i++) {
             String name = layers.get(i).getName();

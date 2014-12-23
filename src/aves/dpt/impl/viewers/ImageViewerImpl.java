@@ -35,16 +35,10 @@ public class ImageViewerImpl extends JPanel implements ImageViewer {
     public void setCurrentImage(BufferedImage bi) {
         dim = new Dimension(this.getWidth(), this.getHeight());
 
-        System.out.println("Img V w: " + dim.width);
-        System.out.println("Img V h: " + dim.height);
-        
-        this.setBackground(Color.yellow);
+//        this.setBackground(Color.yellow);
                 
         this.setOpaque(false);
 
-        System.out.println("bufferedImage width in imviewer= " + bi.getWidth());
-        System.out.println("bufferedImage height = " + bi.getHeight());
-        
         if (bi.getHeight() <= bi.getWidth() && dim.height < dim.width) {
             imScaled = bi.getScaledInstance(-1 , dim.height, Image.SCALE_SMOOTH);
             linset = (dim.width - imScaled.getWidth(null)) / 2;

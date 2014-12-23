@@ -135,9 +135,6 @@ public class DataViewerImpl extends JPanel implements DataViewer {
                     if(firstIm) {
                     imV = new ImageViewerImpl();
                     
-                    System.out.println("dataviewe width: " + this.getWidth());
-                    System.out.println("dataVieweHeight: " + this.getHeight());
-                    
                     gbc = new GridBagConstraints();
                     gbc.gridx = 0;
                     gbc.gridy = 0;
@@ -146,9 +143,6 @@ public class DataViewerImpl extends JPanel implements DataViewer {
                     add(imV, gbc);
                     AvesEventMgr.dataViewerEvent();
                     
-                    System.out.println("dataviewe width post validate: " + this.getWidth());
-                    System.out.println("dataVieweHeight: " + this.getHeight());
-
                     imV.setSize(this.getWidth(), this.getHeight());
                     
                     firstIm = false;
@@ -169,8 +163,6 @@ public class DataViewerImpl extends JPanel implements DataViewer {
 
                 AvesEventMgr.dataViewerEvent();
 
-                System.out.println("dataviewer uri width post validate: " + this.getWidth());
-                System.out.println("dataVieweHeight: " + this.getHeight());
 
                 webV.setSize(this.getWidth(), this.getHeight());
         }

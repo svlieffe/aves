@@ -47,8 +47,6 @@ public class WebViewerImpl extends JPanel implements WebViewer {
 
     @Override
     public void setCurrentSource(String source) {
-        System.out.println("source in webviewerimple= " + source);
-        System.out.println(source);
         dim = new Dimension(this.getWidth(), this.getHeight());
 
         String htmlString = null;
@@ -86,7 +84,6 @@ public class WebViewerImpl extends JPanel implements WebViewer {
 
         for (int i = 0; i < layers.size(); i++) {
             String name = layers.get(i).getName();
-            System.out.println(name);
         }
 
         wwp.setModel(bm);
@@ -94,7 +91,6 @@ public class WebViewerImpl extends JPanel implements WebViewer {
         wwp.addSelectListener(avesBrowser);
         hotSpotController = new HotSpotController(wwp);
         this.add(wwp, java.awt.BorderLayout.CENTER);
-        System.out.println("yeoloooo");
     }
 
 }

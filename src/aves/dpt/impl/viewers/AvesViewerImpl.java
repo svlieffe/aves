@@ -128,7 +128,6 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
      */
 	@Override
     public void actionPerformed(ActionEvent actionEvent) {
-    	System.out.println("action performed button clicked in Avesviewer");
             selectedItem = actionEvent.getActionCommand();
             eventItemType = EventItemType.JOURNEYBUTTON;
             avesEventMgr.avesViewerEvent();
@@ -152,7 +151,6 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
         if (selectEvent.getEventAction() == SelectEvent.LEFT_CLICK) {
             if (topPickedObject != null && topPickedObject.getObject() instanceof NamedSpot) {
                 NamedSpot selected = (NamedSpot) topPickedObject.getObject();
-                System.out.println(selected.getName());
                 selectedItem = selected.getName();
                 eventItemType = selected.getType();
                 avesEventMgr.avesViewerEvent();
@@ -351,10 +349,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
                                 getLayeredPane().add(right, java.awt.BorderLayout.EAST, new Integer(300));
                                 getLayeredPane().add(top, java.awt.BorderLayout.NORTH, new Integer(300));
                                 getLayeredPane().add(bottom, java.awt.BorderLayout.SOUTH, new Integer(300));
-                                                                                            
-                                System.out.println("DataViewer width: " + this.getWidth());
-                                System.out.println("DataViewer height: " + this.getHeight());
-                                
+                                                                                                                            
                                 dv.setObjectsToDisplay((List) avesObjects);
                                 getLayeredPane().add(dv, java.awt.BorderLayout.CENTER, new Integer(300));
                                 this.getLayeredPane().moveToFront(dv);
@@ -524,7 +519,6 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
     @Override
     public void keyPressed(KeyEvent ke) {
         int keyCode = ke.getKeyCode();
-        System.out.println("key pressedin avasviewerimpl__:" + keyCode);
         if (keyCode == java.awt.event.KeyEvent.VK_RIGHT) {
             try {
                 dv.displayNext();
@@ -541,8 +535,6 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
         }
         if (keyCode == java.awt.event.KeyEvent.VK_ESCAPE) {
             try {
-            	System.out.println("escape AvesViewerImpl pressed:" + keyCode);
-                System.out.println(currentPhase);
                 switch (currentPhase) {
                 case JOURNEYS:
                 	System.exit(0);
