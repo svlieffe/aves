@@ -25,12 +25,9 @@ ESC to return to previous or exit Aves
 
 ### Set up ###
 
-* import in IDE
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* import in java IDE
+* run
+* requires: JRE, 
 
 ### Contribution guidelines ###
 
