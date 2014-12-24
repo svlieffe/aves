@@ -1,0 +1,5 @@
+# basic configuration file
+# svlieffe 12/20/2014
+
+# toggle fullscreen (Y/N)
+fullscreen N

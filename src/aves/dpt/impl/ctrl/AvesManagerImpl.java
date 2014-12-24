@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -32,20 +38,61 @@ public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListen
     private AvesViewerImpl mv;//
     private ProductionMode mode;
     private FactoryImpl factory;
-    private boolean fullScreen;
     private String mvSelected;
     private Phase currentPhase;
+	private FileInputStream cfg = null;
+	private File config = new File("./config/config.txt");
+	private String fullscreen;
+    private boolean fullScreen;
     
     public AvesManagerImpl() {
 
-        fullScreen = false;             // toggle fullscreen
-
+        // toggle fullscreen
+        fullscreen = ReadConfig("fullscreen");
+        if (fullscreen.equals("Y")) {
+        	fullScreen = true;  
+        } else {
+        	fullScreen = false;
+        }
+        
         factory = new FactoryImpl();
         mv = new AvesViewerImpl(this);
 
         // the first phase is to show the sessions (=JOURNEYS)
         this.setPhase(Phase.JOURNEYS);
         this.requestShow(currentPhase);
+    }
+    
+    /**
+     * read the config.txt file (very basic)
+     */
+    private String ReadConfig(String element) {
+    	BufferedReader br = null;
+    	String value = "";
+		try {
+			br = new BufferedReader(new FileReader(config));
+		} catch (FileNotFoundException e) {
+			System.out.println("error reading config.txt");
+			e.printStackTrace();
+		}
+    	String line;
+    	try {
+			while ((line = br.readLine()) != null) {
+			   // process the line.
+			    String [] words = line.split("\\s+");
+			    if (words[0].equals(element)) {
+			    	value = words[1].toString();
+			    };
+			    }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	try {
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	return value;
     }
 
     /**
