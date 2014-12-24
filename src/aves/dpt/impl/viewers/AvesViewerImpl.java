@@ -514,7 +514,7 @@ public class AvesViewerImpl extends JFrame implements AvesViewer, AvesEventManag
      * 
      * {@inheritDoc }
      * Left and right arrow to navigate forward and backward. Escape key to return to general view.
-     * <p>
+     * 
      */
     @Override
     public void keyPressed(KeyEvent ke) {

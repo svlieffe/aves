@@ -48,7 +48,7 @@ public interface Factory {
     
     /**
      * Starts the production of requested objects
-     * and adds them to the list with {@link aves.dpt.intf.Factory.addAvesObject}
+     * and adds them to the list
      */
     void produceObjects();
     
@@ -59,7 +59,7 @@ public interface Factory {
      * phase as determined by the 
      * {@link aves.dpt.intf.ctrl.AvesManager}
      * 
-     * @return ArrayList<AvesObjectInt>
+     * @return listOfObjects
      */
     List<AvesObject> listOfObjects();
 

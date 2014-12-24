@@ -7,7 +7,7 @@ import aves.dpt.intf.production.AvesObject.AvesObjectType;
 /**
  * 
  * Classes implementing this interface extract the source DOCUMENTS 
- * in the {@link src/main/resource/DOCUMENTS/avesdatasrc.xml} for the 
+ * in the aves/Journeys/avesJourneys.xml file for the 
  * {@link aves.dpt.intf.production.Factory} that 
  * manages how {@link aves.dpt.intf.production.AvesObject}s
  *  are added to the list that is returned to the 
@@ -38,7 +38,7 @@ public interface DataRetriever {
     /**
      *  
      * gets the DOCUMENTS from the DOCUMENTS source
-     * @return List<String>
+     * @return dataList
      */
     List<String> getData();
     

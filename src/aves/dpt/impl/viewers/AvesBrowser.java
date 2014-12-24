@@ -266,10 +266,10 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
     /**
      * Specifies a the object to use when resolving relative resource paths in this browser balloon's HTML content. The
      * <code>resourceResolver</code> may be one of the following:
-     * <p/>
+     * <p>
      * <ul> <li>a <code>{@link gov.nasa.worldwind.util.webview.WebResourceResolver}</code></li> <li>a <code>{@link
      * java.net.URL}</code></li> <li>a <code>{@link String}</code> containing a valid URL description</li> </ul>
-     * <p/>
+     * <p>
      * If the <code>resourceResolver</code> is <code>null</code> or is not one of the recognized types, this browser
      * balloon interprets relative resource paths as unresolved references.
      *
@@ -579,7 +579,7 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
      * Forwards the mouse moved event to the balloon's internal <code>{@link gov.nasa.worldwind.util.webview.WebView}</code>.
      * This does not consume the event, because the <code>{@link gov.nasa.worldwind.event.InputHandler}</code>
      * implements the policy for consuming or forwarding mouse moved events to other objects.
-     * <p/>
+     * <p>
      * Unlike mouse clicked, mouse pressed, and mouse dragged events, mouse move events cannot be forwarded to the
      * WebView via SelectEvents in <code>selected</code>, because mouse movement events are not selection events.
      *
@@ -597,7 +597,7 @@ public class AvesBrowser extends AVListImpl implements OrderedRenderable, HotSpo
      * Forwards the mouse wheel event to the balloon's internal <code>{@link gov.nasa.worldwind.util.webview.WebView}</code>
      * and consumes the event. This consumes the event so the <code>{@link gov.nasa.worldwind.View}</code> doesn't
      * respond to it.
-     * <p/>
+     * <p>
      * Unlike mouse clicked, mouse pressed, and mouse dragged events, mouse wheel events cannot be forwarded to the
      * WebView via SelectEvents in <code>selected</code>, because mouse wheel events are not selection events.
      *

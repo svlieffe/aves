@@ -42,7 +42,7 @@ public class WorldWindViewerImpl extends JPanel implements WorldWindViewer {
     //private HotSpotController controller;
     /**
      * {@inheritDoc}
-     * <p>
+     * 
      */
     public void initComponents(Dimension dim) {
         wwp = new WorldWindowGLJPanel();

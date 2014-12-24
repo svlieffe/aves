@@ -39,5 +39,5 @@ ESC to return to previous or exit Aves
 
 ### License ###
 
-* Worldwind is licensed under the NASA Open Source Agreement @http://worldwind.arc.nasa.gov/worldwind-nosa-1.3.html
-* Aves' extensions to the NASA Worldwind core fall under the GNU GPL V3 @http://www.gnu.org/licenses/gpl-3.0.txt
+* World Wind is licensed under the NASA Open Source Agreement @http://worldwind.arc.nasa.gov/worldwind-nosa-1.3.html
+* Aves' extensions to the NASA World Wind core fall under the GNU GPL V3 @http://www.gnu.org/licenses/gpl-3.0.txt

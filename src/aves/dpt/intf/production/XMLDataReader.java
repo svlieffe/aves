@@ -7,7 +7,7 @@ import aves.dpt.intf.production.AvesObject.AvesObjectType;
 /**
  * 
  * Objects implementing this interface retrieve DOCUMENTS with specific tags from the 
- * {@link src/main/resource/DOCUMENTS/avesdatasrc.xml} file
+ * aves/Journeys/avesJourneys.xml file
  *
  * @author svlieffe
  * 2012/03/29
@@ -33,14 +33,14 @@ public interface XMLDataReader {
     /**
      * 
      * Reads the DOCUMENTS from the source
-     * @param avesObjectType 
+     *  
      */
     void read();
      
     /**
      *  
      * Returns the list of DOCUMENTS values
-     * @return List<String>
+     * @return valueList
      */
      List<String> valueList();
 }

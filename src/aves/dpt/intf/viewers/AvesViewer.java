@@ -35,11 +35,13 @@ public interface AvesViewer extends KeyListener {
 
     /**
      * Sets the current phase of {@link aves.dpt.intf.viewers.AvesViewer} to be displayed
+     * @param phase
      */
     void setCurrentPhase(Phase phase);
 
     /**
      * Returns the current phase of {@link aves.dpt.intf.viewers.AvesViewer} to be displayed
+     * @return currentPhase
      */
     Phase getCurrentPhase();
 
@@ -64,7 +66,7 @@ public interface AvesViewer extends KeyListener {
      * {@link aves.dpt.intf.viewers.WorldWindViewer}
      * <p>
      * {@link aves.dpt.intf.viewers.DataViewer}
-     * @param phase
+     *  
      */
     void requestObjectsInViewer();
     
@@ -79,20 +81,23 @@ public interface AvesViewer extends KeyListener {
     
     /**
      * Sets the {@link aves.dpt.intf.viewers.AvesViewer} to full screen.
+     * @param fullScreen
      */
     void setFullScreen(boolean fullScreen);
     
      /**
      * TBI
      * Creates a PLACES based on the list of locations.
-     * returns a List of objects extending or implementing {@link gov.nasa.worldwind.geom.LatLon} 
+     * returns a List of objects extending or implementing {@link gov.nasa.worldwind.geom.LatLon}
+     * @return listOfPlaces 
      */
     List<? extends LatLon> makeRoute();
        
     /**
      * TBI
-     * Request a WorldWindViewer ({@link aves.dpt.impl.viewers.WorldWindViewer}) to display 
+     * Request a WorldWindViewer ({@link aves.dpt.intf.viewers.WorldWindViewer}) to display 
      * the itinerary.
+     * @param listOfCoords
      */
     void displayRoute(List<? extends LatLon> listOfCoords);
     

@@ -74,7 +74,7 @@ public interface AvesObject {
      * 
      * Returns the {@link java.util.List} of {values for a {@link aves.dpt.intf.production.AvesObject}
      * 
-     * @param value 
+     * @return dataValueList 
      */
     List<String> getDataValues();
     

@@ -22,6 +22,7 @@ public interface WorldWindViewer {
 
     /**
      * Gets the customized {@link gov.nasa.worldwind.awt.WorldWindowGLJPanel}
+     * @return worldWindPanel
      */
     WorldWindowGLJPanel getwwPanel();
 }

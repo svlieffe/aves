@@ -26,7 +26,7 @@ public class XMLDataReaderImpl implements XMLDataReader{
     /**
      * 
      * parses the DOCUMENTS source using a 
-     * {@link javax.xml.parsers.XMLSaxHandlerImpl}
+     * {@link javax.xml.parsers.SAXParser}
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	public void startParse() {
@@ -66,7 +66,7 @@ public class XMLDataReaderImpl implements XMLDataReader{
     /**
      * 
      * {@inheritDoc }
-     * @param avesObjectType 
+     *  
      */
     public void read() {
         startParse();

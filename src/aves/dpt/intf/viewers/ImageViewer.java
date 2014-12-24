@@ -14,6 +14,7 @@ public interface ImageViewer {
     /**
      * 
      * Sets the image to display.
+     * @param image
      */
     void setCurrentImage(BufferedImage image);
 }
