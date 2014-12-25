@@ -4,7 +4,7 @@
 
 * Summary
 
-Aves was first used in 2012 as an in-class presentation tool. The goal was to combine slideshows with geographic information. The project is build around the NASA Worldwind java SDK.
+Aves was first used in 2012 as an in-class presentation tool. The goal was to combine slide shows with geographic information. The project is build around the NASA Worldwind java SDK.
 
 * Current Version
 
@@ -17,16 +17,23 @@ Navigation to hotspots on earth surface. Selecting a hotspot brings up a slidesh
 * Using Aves
 
 Create xml based on avesJourneys.xsd
+
+Toggle full screen in config.xml
+
 Run program
+
 Select a journey
+
 Click on hotspot
+
 Left and right arrow to navigate in slideshow
+
 ESC to return to previous or exit Aves
 
 ### Set up ###
 
 * import in java IDE
-* run
+* run or produce executable jar (do not forget dependencies)
 * requires: JRE 
 
 ### Contribution guidelines ###

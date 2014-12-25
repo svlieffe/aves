@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package aves.dpt.impl.viewers;
 
 import aves.dpt.intf.ctrl.AvesManager.Phase;
@@ -26,10 +22,9 @@ import gov.nasa.worldwind.layers.ViewControlsSelectListener;
 /**
  * Implementation of the {@link aves.dpt.intf.viewers.WorldWindViewer}
  * 
- * @author stefaanvanliefferinge
- * @version $Id: WorldWindViewerImpl.java,v e7e78df9ca90 2012/03/30 19:53:39 svl $ 
- * 
- */
+ * @author svlieffe
+ * 2012/03/09
+ */                                 
 public class WorldWindViewerImpl extends JPanel implements WorldWindViewer {
 
     private FlatGlobe flatGlobe;
