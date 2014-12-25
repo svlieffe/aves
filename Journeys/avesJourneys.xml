@@ -29,6 +29,7 @@
     <p:journey sessiondate="Europe II 11/02/2013">
         <p:pplace pname="Chartres" latitude="48.4558" longitude="1.4842">
             <p:document type="web" uri="./Journeys/ThirdJourney/Chartres/MTDavisChartres.html"></p:document>
+            <p:document type="img" uri="./Journeys/ThirdJourney/Chartres/Slide1.JPG"></p:document>
         </p:pplace>
     </p:journey>
 </p:root>
