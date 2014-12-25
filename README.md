@@ -4,7 +4,7 @@
 
 * Summary
 
-Aves was first used in 2012 as an in-class presentation tool. The goal was to combine slide shows with geographic information. The project is build around the NASA Worldwind java SDK.
+Aves was first used in 2012 as an in-class presentation tool. The goal was to combine slide shows with geographic information. This java project is build around the NASA Worldwind java SDK.
 
 * Current Version
 
