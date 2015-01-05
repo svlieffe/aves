@@ -12,7 +12,7 @@ v0.0.1
 
 * Current Functionalities
 
-Navigation to hotspots on earth surface. Selecting a hotspot brings up a slideshow. Slides can be JPG or html (no navigation implemented).
+Navigation to hotspots on earth surface. Selecting a hotspot brings up a slideshow. Slides can be JPG or html (no navigation implemented in browser).
 
 * Using Aves
 
