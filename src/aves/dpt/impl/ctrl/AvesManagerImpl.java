@@ -40,7 +40,7 @@ import java.util.List;
  */
 public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListener {
 
-    private AvesViewerImpl mv;//
+    private AvesViewerImpl av;//
     private ProductionMode mode;
     private FactoryImpl factory;
     private String mvSelected;
@@ -61,7 +61,7 @@ public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListen
         }
         
         factory = new FactoryImpl();
-        mv = new AvesViewerImpl(this);
+        av = new AvesViewerImpl(this);
 
         // the first phase is to show the sessions (=JOURNEYS)
         this.setPhase(Phase.JOURNEYS);
@@ -119,8 +119,8 @@ public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListen
      */
     @Override
     public void avesViewerEvent() {
-        mvSelected = mv.getSelectedItem();
-        switch(mv.getSelectedItemType()) {
+        mvSelected = av.getSelectedItem();
+        switch(av.getSelectedItemType()) {
         case JOURNEYBUTTON:
             factory.setRequestedItem(mvSelected);
             this.setPhase(Phase.PLACES);
@@ -131,9 +131,9 @@ public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListen
         	break;
         case ESCKEY:
         	// dispose the AvesViewer JFrame and restart from scratch
-        	mv.dispose();
+        	av.dispose();
            	this.setPhase(Phase.JOURNEYS);
-            mv = new AvesViewerImpl(this);
+            av = new AvesViewerImpl(this);
         	break;
         default:
         	break;
@@ -173,14 +173,14 @@ public class AvesManagerImpl implements AvesManager, AvesEventManager, KeyListen
      */
     @Override
     public void requestDisplayObjectsInViewer(Phase phase, List<? extends AvesObject> avesObjects) {
-    	mv.invalidate();
-        mv.setFullScreen(fullScreen);
-        mv.getContentPane().setBackground(Color.black);
-        mv.setAvesObjectsList(avesObjects);
+    	av.invalidate();
+        av.setFullScreen(fullScreen);
+        av.getContentPane().setBackground(Color.black);
+        av.setAvesObjectsList(avesObjects);
         // tell the viewer the current phase
-        mv.setCurrentPhase(phase);
+        av.setCurrentPhase(phase);
         // delegates the display of the objects of the current phase to the AvesViewer
-        mv.requestObjectsInViewer();
+        av.requestObjectsInViewer();
 
     }
 
