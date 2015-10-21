@@ -42,7 +42,7 @@ ESC to return to previous or exit Aves
 
 ### Contact ###
 
-* svlieffe
+* sv143@columbia.edu
 
 ### License ###
 
